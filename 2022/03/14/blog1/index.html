@@ -3,7 +3,7 @@
   <head>
      
     <meta charset="UTF-8">
-    <title>序章（好中二的标题） - 橙夏Blog</title>
+    <title>博客技术小记（1） - 橙夏Blog</title>
     <link rel="shortcut icon" href="/static/img/icon.png">
     <link rel="icon" href="/static/img/icon.png" sizes="192x192"/>
     
@@ -15,14 +15,11 @@
 
     <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1"/>
     <meta property="og:site_name" content="橙夏Blog">
-    <meta property="og:title" content="序章（好中二的标题）"/>
+    <meta property="og:title" content="博客技术小记（1）"/>
     
     <style>body:before{ content: ''; background-image: url(https://s1.ax1x.com/2022/03/12/bHPfIA.png) }</style>
     
-<meta name="generator" content="Hexo 6.1.0"><link rel="stylesheet" href="\assets\css\APlayer.min.css" class="aplayer-style-marker">
-<script src="\assets\js\APlayer.min.js" class="aplayer-script-marker"></script>
-<script src="\assets\js\Meting.min.js" class="meting-script-marker"></script>
-</head>
+<meta name="generator" content="Hexo 6.1.0"></head>
 
   <body>
     <header>
@@ -56,32 +53,36 @@
     <main>
     <div class="wrap min">
         <section class="post-title">
-            <h2>序章（好中二的标题）</h2>
+            <h2>博客技术小记（1）</h2>
             <div class="post-meta">
-                <time class="date">2022.03.11</time>
+                <time class="date">2022.03.14</time>
             
-                <span class="category"><a class="category-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a></span>
+                <span class="category"><a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span>
             
             </div>
         </section>
         <article class="post-content">
         
-            <p>经历千难万险，博客总算是搭好了。</p>
-<span id="more"></span>
-<p>最开始在知乎找了一个搭建教程，结果由于年代久远（指2020年发布）其中的一个步骤现已不可用，那时浪费了一个下午也没整明白。😂<br>最近在邦哥同学（<a target="_blank" rel="noopener" href="https://distinctwind.github.io/">他的博客</a>） 的鼎力相助之下，又花了一晚上，可算是整好了。<br>以后随缘更新博客，并且给网站陆续加点美化插件什么的。<br>请大家多多关照啦！</p>
-
-    <div id="aplayer-RcDPqurJ" class="aplayer aplayer-tag-marker meting-tag-marker"
-         data-id="531786301" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"
-    ></div>
+            <h2 id="用Hexo-Admin写博客"><a href="#用Hexo-Admin写博客" class="headerlink" title="用Hexo Admin写博客"></a>用Hexo Admin写博客</h2><h3 id="安装Hexo-Admin插件"><a href="#安装Hexo-Admin插件" class="headerlink" title="安装Hexo Admin插件"></a>安装Hexo Admin插件</h3><p>在博客根目录下右键打开Git Bash，键入“npm install –save hexo-admin”（若网络错误，则重试or搭梯）。</p>
+<h3 id="进入编辑界面"><a href="#进入编辑界面" class="headerlink" title="进入编辑界面"></a>进入编辑界面</h3><p>在Git Bash界面，键入<br>“hexo server -d”</p>
+<p>随后打开<a target="_blank" rel="noopener" href="http://localhost:4000/admin/">http://localhost:4000/admin/</a> ，即进入Hexo Admin图形界面。</p>
+<p><img src="/images/pasted-0.png"><br>（整理自[简书]（<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/925fa86ccc95%EF%BC%89">https://www.jianshu.com/p/925fa86ccc95）</a> ）</p>
+<h2 id="文章写作"><a href="#文章写作" class="headerlink" title="文章写作"></a>文章写作</h2><h3 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h3><p><em>图片素材按官方教程说法，可统一放置在source&#x2F;images目录中，并以 !删<a href="/images/image.jpg"></a> 方式引用</em></p>
+<p>作者：Wavky<br>链接：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/925fa86ccc95">https://www.jianshu.com/p/925fa86ccc95</a></p>
+<h3 id="各式文字"><a href="#各式文字" class="headerlink" title="各式文字"></a>各式文字</h3><p><img src="/images/%E6%A0%BC%E5%BC%8F.png"><br>（<del>截图</del>整理自CSDN作者梦里北极光的<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42796909/article/details/81745271">文章</a> ）</p>
+<h2 id="看板娘"><a href="#看板娘" class="headerlink" title="看板娘"></a>看板娘</h2><h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><p>Git Bash -&gt; npm install –save hexo-helper-live2d<br>若出现 “run ‘npm audit fix”……的错误”，键入npm audit fix force<br>若成功，则在node_modules目录下出现live2d-widget目录</p>
+<h3 id="安装看板娘"><a href="#安装看板娘" class="headerlink" title="安装看板娘"></a>安装看板娘</h3><p>可用npm安装模型文件，e.g.:<br>npm install live2d-widget-model-shizuku<br>model名字可在live2d-widget-models中找到</p>
+<h3 id="看板娘登场"><a href="#看板娘登场" class="headerlink" title="看板娘登场"></a>看板娘登场</h3><p>在主题或全局的_config.yml中添加如下语句<br>井井 Live2D看板娘<br>live2d:<br>  enable: true<br>  pluginModelPath: assets&#x2F;<br>  model:<br>    井 模板目录，在node_modules里<br>    use: live2d-widget-model-shizuku<br>  display:<br>    position: right<br>    width: 300<br>    height: 600<br>  mobile:<br>    井 在手机端显示<br>    show: false<br>  rect:<br>    opacity:0.7<br>（自行将井替换为#）</p>
+<p>暂时先写到这里吧，有空更新。</p>
 
         </article>
         <section class="post-near">
             <ul>
                 
-                    <li>上一篇: <a href="/2022/03/14/blog1/">博客技术小记（1）</a></li>
+                    <li>上一篇: 看完啦 (つд⊂)</li>
                 
                 
-                    <li>下一篇: <a href="/2022/03/11/hello-world/">Hello World</a></li>
+                    <li>下一篇: <a href="/2022/03/11/New-one/">序章（好中二的标题）</a></li>
                 
             </ul>
         </section>

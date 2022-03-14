@@ -67,13 +67,37 @@
 <h3 id="进入编辑界面"><a href="#进入编辑界面" class="headerlink" title="进入编辑界面"></a>进入编辑界面</h3><p>在Git Bash界面，键入<br>“hexo server -d”</p>
 <p>随后打开<a target="_blank" rel="noopener" href="http://localhost:4000/admin/">http://localhost:4000/admin/</a> ，即进入Hexo Admin图形界面。</p>
 <p><img src="/images/pasted-0.png"><br>（整理自<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/925fa86ccc95">简书</a> ）</p>
-<h2 id="文章写作"><a href="#文章写作" class="headerlink" title="文章写作"></a>文章写作</h2><h3 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h3><p><em>图片素材按官方教程说法，可统一放置在source&#x2F;images目录中，并以 !删<a href="/images/image.jpg"></a> 方式引用</em></p>
+<h2 id="文章写作"><a href="#文章写作" class="headerlink" title="文章写作"></a>文章写作</h2><h3 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h3><p><em>图片素材按官方教程说法，可统一放置在source&#x2F;images目录中，并以 <code>![](/images/image.jpg)</code> 方式引用</em></p>
 <p>作者：Wavky<br>链接：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/925fa86ccc95">https://www.jianshu.com/p/925fa86ccc95</a></p>
 <h3 id="各式文字"><a href="#各式文字" class="headerlink" title="各式文字"></a>各式文字</h3><p><img src="/images/%E6%A0%BC%E5%BC%8F.png"><br>（<del>截图</del>整理自CSDN作者梦里北极光的<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42796909/article/details/81745271">文章</a> ）</p>
 <h2 id="看板娘"><a href="#看板娘" class="headerlink" title="看板娘"></a>看板娘</h2><h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><p>Git Bash -&gt; npm install –save hexo-helper-live2d<br>若出现 “run ‘npm audit fix”……的错误”，键入npm audit fix force<br>若成功，则在node_modules目录下出现live2d-widget目录</p>
 <h3 id="安装看板娘"><a href="#安装看板娘" class="headerlink" title="安装看板娘"></a>安装看板娘</h3><p>可用npm安装模型文件，e.g.:<br>npm install live2d-widget-model-shizuku<br>model名字可在live2d-widget-models中找到</p>
-<h3 id="看板娘登场"><a href="#看板娘登场" class="headerlink" title="看板娘登场"></a>看板娘登场</h3><p>在主题或全局的_config.yml中添加如下语句<br>井井 Live2D看板娘<br>live2d:<br>  enable: true<br>  pluginModelPath: assets&#x2F;<br>  model:<br>    井 模板目录，在node_modules里<br>    use: live2d-widget-model-shizuku<br>  display:<br>    position: right<br>    width: 300<br>    height: 600<br>  mobile:<br>    井 在手机端显示<br>    show: false<br>  rect:<br>    opacity:0.7<br>（自行将井替换为#）</p>
+<h3 id="看板娘登场"><a href="#看板娘登场" class="headerlink" title="看板娘登场"></a>看板娘登场</h3><p>在主题或全局的_config.yml中添加如下语句</p>
+<pre><code class="bash">## Live2D看板娘
+live2d:
+  enable: true
+  pluginModelPath: assets/
+  model:
+    # 模板目录，在node_modules里
+    use: live2d-widget-model-shizuku  
+  display:
+    position: right
+    width: 300 
+    height: 600
+  mobile:
+    # 在手机端显示
+    show: false   
+  rect:
+    opacity:0.7
+（自行将井替换为#）
+</code></pre>
 <p>暂时先写到这里吧，有空更新。</p>
+<h2 id="插入音乐"><a href="#插入音乐" class="headerlink" title="插入音乐"></a>插入音乐</h2><h3 id="安装依赖-1"><a href="#安装依赖-1" class="headerlink" title="安装依赖"></a>安装依赖</h3><p>Git Bash -&gt; npm install –save hexo-tag-aplayer</p>
+<h3 id="启用Meting播放器"><a href="#启用Meting播放器" class="headerlink" title="启用Meting播放器"></a>启用Meting播放器</h3><p>在全局_config.yml中添加以下语句：<br>aplayer:<br>  meting: true</p>
+<h3 id="实际应用"><a href="#实际应用" class="headerlink" title="实际应用"></a>实际应用</h3><p>在网页md文件中加入如下语句</p>
+<pre><code class="bash">&#123;% meting "3986040" "netease" "song" "theme:#555" "mutex:true" "listmaxheight:340px" "preload:auto" %&#125;
+</code></pre>
+<p>可选参数：<br><img src="/images/InsertMusic.png"><br>（整理自 <a target="_blank" rel="noopener" href="https://blog.csdn.net/hushhw/article/details/88092728">https://blog.csdn.net/hushhw/article/details/88092728</a> ）</p>
 
         </article>
         <section class="post-near">

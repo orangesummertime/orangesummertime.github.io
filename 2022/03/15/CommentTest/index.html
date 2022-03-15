@@ -3,7 +3,7 @@
   <head>
      
     <meta charset="UTF-8">
-    <title>博客 - 橙夏Blog</title>
+    <title>CommentTest - 橙夏Blog</title>
     <link rel="shortcut icon" href="/static/img/icon.png">
     <link rel="icon" href="/static/img/icon.png" sizes="192x192"/>
     
@@ -15,7 +15,7 @@
 
     <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1"/>
     <meta property="og:site_name" content="橙夏Blog">
-    <meta property="og:title" content=""/>
+    <meta property="og:title" content="CommentTest"/>
     
     <style>body:before{ content: ''; background-image: url(https://s1.ax1x.com/2022/03/12/bHPfIA.png) }</style>
     
@@ -52,53 +52,57 @@
 
     <main>
     <div class="wrap min">
-        <section class="home-title">
+        <section class="post-title">
+            <h2>CommentTest</h2>
+            <div class="post-meta">
+                <time class="date">2022.03.15</time>
             
-            <h1>“博客”</h1>
+            </div>
         </section>
-        <section class="home-posts">
-    
-    <div class="post-item">
-        <h2>
-            <a href="/2022/03/14/blog1/">博客技术小记（1）</a>
-        </h2>
-    
-        <p>整理一下最近学到的博客技术吧。</p>
-    
-        <div class="post-meta">
-            <time class="date">2022.03.14</time>
-            
-                <span class="category"><a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span>
-            
-            
-                <span class="tags"><a class="-none-link" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a></span>
-            
-        </div>
-    </div>
-    
-    <div class="post-item">
-        <h2>
-            <a href="/2022/03/11/New-one/">序章（好中二的标题）</a>
-        </h2>
-    
-        <p>经历千难万险，博客总算是搭好了。</p>
-    
-        <div class="post-meta">
-            <time class="date">2022.03.11</time>
-            
-                <span class="category"><a class="category-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a></span>
-            
-            
-                <span class="tags"><a class="-none-link" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a></span>
-            
-        </div>
-    </div>
-    
-</section>
-
-        <section class="page-navigator">
-            <span class="page-number current">1</span>
+        <article class="post-content">
+        
+            <head>
+    ...
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+    ...
+</head>
+<body>
+    ...
+    <div id="vcomment"></div>
+    <script>
+        new Valine({
+            el: '#vcomment' ,
+            appId: 'GCsn5FpJjA321PEIKTsutIaL-gzGzoHsz',
+            appKey: '6eRziGABgnGGK78lYAF3SYXO'
+        });
+    </script>
+</body>
+        </article>
+        <section class="post-near">
+            <ul>
+                
+                    <li>上一篇: 看完啦 (つд⊂)</li>
+                
+                
+                    <li>下一篇: <a href="/2022/03/14/blog1/">博客技术小记（1）</a></li>
+                
+            </ul>
         </section>
+        
+    
+        <section class="post-author">
+        
+            <figure class="author-avatar">
+                <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fqqpublic.qpic.cn%2Fqq_public%2F0%2F0-2734754934-E08365D2183E738DEEE9AEBA5FDAD6DF%2F0%3Ffmt%3Djpg%26size%3D91%26h%3D726%26w%3D726%26ppv%3D1.jpg&refer=http%3A%2F%2Fqqpublic.qpic.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1649607787&t=b73c8cfb29c517404a9958af92743b5e" alt="Chin-san" />
+            </figure>
+        
+            <div class="author-info">
+                <h4>Chin-san</h4>
+                <p>悲观的理想主义者</p>
+            </div>
+        </section>
+    
     </div>
 </main>
 

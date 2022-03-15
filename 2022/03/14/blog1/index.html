@@ -99,7 +99,23 @@ live2d:
 <pre><code class="bash">&#123;% meting "3986040" "netease" "song" "theme:#555" "mutex:true" "listmaxheight:340px" "preload:auto" %&#125;
 </code></pre>
 <p>可选参数：<br><img src="/images/InsertMusic.png"><br>（整理自 <a target="_blank" rel="noopener" href="https://blog.csdn.net/hushhw/article/details/88092728">https://blog.csdn.net/hushhw/article/details/88092728</a> ）</p>
-
+<head>
+    ...
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+    ...
+</head>
+<body>
+    ...
+    <div id="vcomment"></div>
+    <script>
+        new Valine({
+            el: '#vcomment' ,
+            appId: 'GCsn5FpJjA321PEIKTsutIaL-gzGzoHsz',
+            appKey: '6eRziGABgnGGK78lYAF3SYXO'
+        });
+    </script>
+</body>
         </article>
         <section class="post-near">
             <ul>

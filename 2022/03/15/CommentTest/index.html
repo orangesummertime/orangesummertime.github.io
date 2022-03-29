@@ -66,6 +66,24 @@
             <p>（才不是为了方便拷贝代码）</p>
 <span id="more"></span>
 <head>
+    ..
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+    ...
+</head>
+<body>
+    ...
+    <div id="vcomments"></div>
+    <script>
+        new Valine({
+            el: '#vcomments',
+            appId: 'GCsn5FpJjA321PEIKTsutIaL-gzGzoHsz',
+            appKey: '6eRziGABgnGGK78lYAF3SYXO'
+        })
+    </script>
+</body>
+```
+以下内容无视即可
+<head>
     ...
     <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
     <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
@@ -82,6 +100,7 @@
         });
     </script>
 </body>
+```
         </article>
         <section class="post-near">
             <ul>

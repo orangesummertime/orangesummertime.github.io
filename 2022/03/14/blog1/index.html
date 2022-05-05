@@ -98,7 +98,26 @@ live2d:
 <h3 id="实际应用"><a href="#实际应用" class="headerlink" title="实际应用"></a>实际应用</h3><p>在网页md文件中加入如下语句</p>
 <pre><code class="bash">&#123;% meting "3986040" "netease" "song" "theme:#555" "mutex:true" "listmaxheight:340px" "preload:auto" %&#125;
 </code></pre>
-<p>可选参数：<br><img src="/images/InsertMusic.png"><br>（整理自 <a target="_blank" rel="noopener" href="https://blog.csdn.net/hushhw/article/details/88092728">https://blog.csdn.net/hushhw/article/details/88092728</a> ）</p>
+<p>可选参数：<br><img src="/images/InsertMusic.png"><br>（整理自 <a target="_blank" rel="noopener" href="https://blog.csdn.net/hushhw/article/details/88092728">https://blog.csdn.net/hushhw/article/details/88092728</a> ）<br>##个性化分割线</p>
+<h3 id="分割线的颜色"><a href="#分割线的颜色" class="headerlink" title="分割线的颜色"></a>分割线的颜色</h3><h4 id="红色分割线"><a href="#红色分割线" class="headerlink" title="红色分割线"></a>红色分割线</h4><hr>
+<h4 id="蓝色分割线"><a href="#蓝色分割线" class="headerlink" title="蓝色分割线"></a>蓝色分割线</h4><hr>
+<h4 id="半透明的黑色分割线"><a href="#半透明的黑色分割线" class="headerlink" title="半透明的黑色分割线"></a>半透明的黑色分割线</h4><hr>
+<h4 id="渐变色分割线"><a href="#渐变色分割线" class="headerlink" title="渐变色分割线"></a>渐变色分割线</h4><hr>
+<style>
+hr:nth-of-type(1) {
+  border-color: red !important;
+}
+hr:nth-of-type(2) {
+  border-color: #00F !important;
+}
+hr:nth-of-type(3) {
+  border-color: #0005 !important;
+}
+hr:nth-of-type(4) {
+  border-image: linear-gradient(to right, #F00, #0F0 20%, #00F 80%, #000) 1 !important;
+}
+</style>
+
 <head>
     ..
     <script src='//unpkg.com/valine/dist/Valine.min.js'></script>

@@ -208,7 +208,7 @@
 	position: fixed;
 	width: 5.5rem;
 	top: 2rem;
-	left: calc((100% - 5.5rem) / 6);
+	left: calc((100% - 5.5rem) / 5);
 }
 .logo_box img {
 	width: 300%;

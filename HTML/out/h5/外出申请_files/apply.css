@@ -211,7 +211,7 @@
 	left: calc((100% - 5.5rem) / 2);
 }
 .logo_box img {
-	width: 100%;
+	width: 300%;
 	height: auto;
 }
 .disabled_mask {

@@ -518,7 +518,7 @@ body[data-weui-theme='dark'] {
   text-align: center;
   text-decoration: none;
   color: #fff;
-  line-height: 1.41176471;
+  line-height: 2.41176471;
   border-radius: 4px;
   overflow: hidden;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
@@ -623,7 +623,7 @@ body[data-weui-theme='dark'] {
   text-align: center;
   text-decoration: none;
   color: #fff;
-  line-height: 1.41176471;
+  line-height: 2.41176471;
   padding: 16px;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   overflow: hidden;
@@ -737,7 +737,7 @@ button.weui-btn_inline,input.weui-btn_inline,button.weui-btn_mini,input.weui-btn
   margin-top: 8px;
   background-color: #fff;
   background-color: var(--weui-BG-2);
-  line-height: 1.41176471;
+  line-height: 2.41176471;
   font-size: 17px;
   overflow: hidden;
   position: relative;
@@ -787,7 +787,7 @@ button.weui-btn_inline,input.weui-btn_inline,button.weui-btn_mini,input.weui-btn
   color: rgba(0,0,0,0.5);
   color: var(--weui-FG-1);
   font-size: 14px;
-  line-height: 1.4;
+  line-height: 2.4;
 }
 
 .weui-cells__title+.weui-cells {
@@ -801,7 +801,7 @@ button.weui-btn_inline,input.weui-btn_inline,button.weui-btn_mini,input.weui-btn
   padding-left: 16px;
   padding-right: 16px;
   font-size: 14px;
-  line-height: 1.4;
+  line-height: 2.4;
 }
 
 .weui-cells__tips a,.weui-cells__tips navigator {
@@ -896,7 +896,7 @@ button.weui-btn_inline,input.weui-btn_inline,button.weui-btn_mini,input.weui-btn
 .weui-swiped-btn {
   display: block;
   padding: 16px 1em;
-  line-height: 1.41176471;
+  line-height: 2.41176471;
   color: inherit;
 }
 
@@ -1025,8 +1025,8 @@ button.weui-btn_inline,input.weui-btn_inline,button.weui-btn_mini,input.weui-btn
   background-color: transparent;
   font-size: inherit;
   color: inherit;
-  height: 1.41176471em;
-  line-height: 1.41176471;
+  height: 2.41176471em;
+  line-height: 2.41176471;
 }
 
 .weui-input::-webkit-outer-spin-button,.weui-input::-webkit-inner-spin-button {
@@ -2248,7 +2248,7 @@ i.weui-tabbar__icon,.weui-tabbar__icon>i {
   padding-top: calc(16px + env(safe-area-inset-top));
   text-align: center;
   font-size: 17px;
-  line-height: 1.41176471;
+  line-height: 2.41176471;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
@@ -3331,7 +3331,7 @@ a.weui-media-box:active {
   padding: 16px;
   text-align: center;
   font-size: 17px;
-  line-height: 1.41176471;
+  line-height: 2.41176471;
 }
 
 .weui-actionsheet__cell:before {
@@ -3397,7 +3397,7 @@ a.weui-media-box:active {
 .weui-skin_android .weui-actionsheet__cell {
   padding: 16px;
   font-size: 17px;
-  line-height: 1.41176471;
+  line-height: 2.41176471;
   color: rgba(0,0,0,0.9);
   color: var(--weui-FG-0);
   text-align: left;

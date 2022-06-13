@@ -137,8 +137,8 @@
 	margin-bottom: .3rem; */
 }
 .step_box img {
-	height: .4rem;
-	width: .4rem;
+	height: 1rem;
+	width: 1rem;
 	margin: 0 .1rem;
 }
 .step.line::after {

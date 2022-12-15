@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     
+    <meta charset="UTF-8">
+    <title>博客技术小记（1） - 橙夏Blog</title>
+    <link rel="shortcut icon" href="/static/img/icon.png">
+    <link rel="icon" href="/static/img/icon.png" sizes="192x192"/>
+    
+<link rel="stylesheet" href="/static/kico.css">
+<link rel="stylesheet" href="/static/hingle.css">
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome/css/font-awesome.min.css">
+
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1"/>
+    <meta property="og:site_name" content="橙夏Blog">
+    <meta property="og:title" content="博客技术小记（1）"/>
+    
+    <style>body:before{ content: ''; background-image: url(https://s1.ax1x.com/2022/03/12/bHPfIA.png) }</style>
+    
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="橙夏Blog" type="application/atom+xml">
+</head>
+
+  <body>
+    <header>
+    <div class="head-title">
+        <h4>橙夏Blog</h4>
+    </div>
+    <div class="head-action">
+        <div class="toggle-btn"></div>
+        <div class="light-btn"></div>
+        <div class="search-btn"></div>
+    </div>
+    <form class="head-search" method="post">
+        <input type="text" name="s" placeholder="搜索什么？">
+    </form>
+    <nav class="head-menu">
+        <a href="/">首页</a>
+        <div class="has-child">
+            <a>分类</a>
+            <div class="sub-menu">
+                <a class="category-link" href="/categories/Hello-World/">Hello World</a><a class="category-link" href="/categories/%E5%B0%8F%E8%AF%B4/">小说</a><a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a><a class="category-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a>
+            </div>
+        </div>
+        
+            <a href="/about">关于我</a>
+        
+            <a href="/friends">朋友们</a>
+        
+    </nav>
+</header>
+
+    <main>
+    <div class="wrap min">
+        <section class="post-title">
+            <h2>博客技术小记（1）</h2>
+            <div class="post-meta">
+                <time class="date">2022.03.14</time>
+            
+                <span class="category"><a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术<span class="category-count">2</span></a></span>
+            
+            </div>
+        </section>
+        <article class="post-content">
+        
+            <blockquote>这篇文章上次修改于 276 天前，可能其部分内容已经发生变化，如有疑问可询问作者。</blockquote>
+        
+            <p>整理一下最近学到的博客技术吧。</p>
+<span id="more"></span>
+<h2 id="用Hexo-Admin写博客"><a href="#用Hexo-Admin写博客" class="headerlink" title="用Hexo Admin写博客"></a>用Hexo Admin写博客</h2><h3 id="安装Hexo-Admin插件"><a href="#安装Hexo-Admin插件" class="headerlink" title="安装Hexo Admin插件"></a>安装Hexo Admin插件</h3><p>在博客根目录下右键打开Git Bash，键入“npm install –save hexo-admin”（若网络错误，则重试or搭梯）。</p>
+<h3 id="进入编辑界面"><a href="#进入编辑界面" class="headerlink" title="进入编辑界面"></a>进入编辑界面</h3><p>在Git Bash界面，键入<br>“hexo server -d”</p>
+<p>随后打开<a target="_blank" rel="noopener" href="http://localhost:4000/admin/">http://localhost:4000/admin/</a> ，即进入Hexo Admin图形界面。</p>
+<p><img src="/images/pasted-0.png"><br>（整理自<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/925fa86ccc95">简书</a> ）</p>
+<h2 id="文章写作"><a href="#文章写作" class="headerlink" title="文章写作"></a>文章写作</h2><h3 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h3><p><em>图片素材按官方教程说法，可统一放置在source&#x2F;images目录中，并以 <code>![](/images/image.jpg)</code> 方式引用</em></p>
+<p>作者：Wavky<br>链接：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/925fa86ccc95">https://www.jianshu.com/p/925fa86ccc95</a></p>
+<h3 id="各式文字"><a href="#各式文字" class="headerlink" title="各式文字"></a>各式文字</h3><p><img src="/images/%E6%A0%BC%E5%BC%8F.png"><br>（<del>截图</del>整理自CSDN作者梦里北极光的<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42796909/article/details/81745271">文章</a> ）</p>
+<h2 id="看板娘"><a href="#看板娘" class="headerlink" title="看板娘"></a>看板娘</h2><h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><p>Git Bash -&gt; npm install –save hexo-helper-live2d<br>若出现 “run ‘npm audit fix”……的错误”，键入npm audit fix force<br>若成功，则在node_modules目录下出现live2d-widget目录</p>
+<h3 id="安装看板娘"><a href="#安装看板娘" class="headerlink" title="安装看板娘"></a>安装看板娘</h3><p>可用npm安装模型文件，e.g.:<br>npm install live2d-widget-model-shizuku<br>model名字可在live2d-widget-models中找到</p>
+<h3 id="看板娘登场"><a href="#看板娘登场" class="headerlink" title="看板娘登场"></a>看板娘登场</h3><p>在主题或全局的_config.yml中添加如下语句</p>
+<pre><code class="bash">## Live2D看板娘
+live2d:
+  enable: true
+  pluginModelPath: assets/
+  model:
+    # 模板目录，在node_modules里
+    use: live2d-widget-model-shizuku  
+  display:
+    position: right
+    width: 300 
+    height: 600
+  mobile:
+    # 在手机端显示
+    show: false   
+  rect:
+    opacity:0.7
+</code></pre>
+<p>暂时先写到这里吧，有空更新。</p>
+<h2 id="插入音乐"><a href="#插入音乐" class="headerlink" title="插入音乐"></a>插入音乐</h2><h3 id="安装依赖-1"><a href="#安装依赖-1" class="headerlink" title="安装依赖"></a>安装依赖</h3><p>Git Bash -&gt; npm install –save hexo-tag-aplayer</p>
+<h3 id="启用Meting播放器"><a href="#启用Meting播放器" class="headerlink" title="启用Meting播放器"></a>启用Meting播放器</h3><p>在全局_config.yml中添加以下语句：<br>aplayer:<br>  meting: true</p>
+<h3 id="实际应用"><a href="#实际应用" class="headerlink" title="实际应用"></a>实际应用</h3><p>在网页md文件中加入如下语句</p>
+<pre><code class="bash">&#123;% meting "3986040" "netease" "song" "theme:#555" "mutex:true" "listmaxheight:340px" "preload:auto" %&#125;
+</code></pre>
+<p>可选参数：<br><img src="/images/InsertMusic.png"><br>（整理自 <a target="_blank" rel="noopener" href="https://blog.csdn.net/hushhw/article/details/88092728">https://blog.csdn.net/hushhw/article/details/88092728</a> ）<br>##个性化分割线</p>
+<h3 id="分割线的颜色"><a href="#分割线的颜色" class="headerlink" title="分割线的颜色"></a>分割线的颜色</h3><h4 id="红色分割线"><a href="#红色分割线" class="headerlink" title="红色分割线"></a>红色分割线</h4><hr>
+<h4 id="蓝色分割线"><a href="#蓝色分割线" class="headerlink" title="蓝色分割线"></a>蓝色分割线</h4><hr>
+<h4 id="半透明的黑色分割线"><a href="#半透明的黑色分割线" class="headerlink" title="半透明的黑色分割线"></a>半透明的黑色分割线</h4><hr>
+<h4 id="渐变色分割线"><a href="#渐变色分割线" class="headerlink" title="渐变色分割线"></a>渐变色分割线</h4><hr>
+<style>
+hr:nth-of-type(1) {
+  border-color: red !important;
+}
+hr:nth-of-type(2) {
+  border-color: #00F !important;
+}
+hr:nth-of-type(3) {
+  border-color: #0005 !important;
+}
+hr:nth-of-type(4) {
+  border-image: linear-gradient(to right, #F00, #0F0 20%, #00F 80%, #000) 1 !important;
+}
+</style>
+
+<head>
+    ..
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+    ...
+</head>
+<body>
+    ...
+    <div id="vcomments"></div>
+    <script>
+        new Valine({
+            el: '#vcomments',
+            appId: 'GCsn5FpJjA321PEIKTsutIaL-gzGzoHsz',
+            appKey: '6eRziGABgnGGK78lYAF3SYXO'
+        })
+    </script>
+</body>
+        </article>
+        <section class="post-near">
+            <ul>
+                
+                    <li>上一篇: <a href="/2022/03/15/CommentTest/">评论测试专用页面</a></li>
+                
+                
+                    <li>下一篇: <a href="/2022/03/11/New-one/">序章（好中二的标题）</a></li>
+                
+            </ul>
+        </section>
+        
+            <section class="post-tags">
+            <a class="-none-link" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a>
+            </section>
+        
+    
+        <section class="post-author">
+        
+            <figure class="author-avatar">
+                <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fqqpublic.qpic.cn%2Fqq_public%2F0%2F0-2734754934-E08365D2183E738DEEE9AEBA5FDAD6DF%2F0%3Ffmt%3Djpg%26size%3D91%26h%3D726%26w%3D726%26ppv%3D1.jpg&refer=http%3A%2F%2Fqqpublic.qpic.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1649607787&t=b73c8cfb29c517404a9958af92743b5e" alt="Chin-san" />
+            </figure>
+        
+            <div class="author-info">
+                <h4>Chin-san</h4>
+                <p>悲观的理想主义者</p>
+            </div>
+        </section>
+    
+    </div>
+</main>
+
+    <footer>
+    <div class="buttons">
+        <a class="to-top" href="#"></a>
+    </div>
+    <div class="wrap min">
+        <section class="widget">
+            <div class="row">
+                <div class="col-m-4">
+                    <h3 class="title-recent">最新文章：</h3>
+                    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/06/19/ReprintedNovel01/">【转载】她的爱已经烧录进了电路板</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/05/21/test2/">test2</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/04/08/OldTimeMemo/">时泪大合集</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/23/TheLottery/">彩票</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/19/%E5%8D%81%E4%B9%9D%E5%B2%81%E7%94%9F%E6%97%A5%E7%BA%AA%E5%BF%B5/">十九岁生日纪念</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/15/CommentTest/">评论测试专用页面</a></li></ul>
+                </div>
+                <div class="col-m-4">
+                    <h3 class="title-date">时光机：</h3>
+                    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">六月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">五月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a></li></ul>
+                </div>
+                <div class="col-m-4">
+                    <h3 class="title-tags">标签云：</h3>
+                    <a href="/tags/BBS/" style="font-size: 10px;">BBS</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 20px;">博客</a> <a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 10px;">生活</a> <a href="/tags/%E7%A7%91%E5%B9%BB/" style="font-size: 15px;">科幻</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 10px;">转载</a>
+                </div>
+            </div>
+        </section>
+        <section class="sub-footer">
+            <p>© 2022 <a href="/">橙夏Blog</a>. All Rights Reserved. Theme By <a href="https://github.com/Dreamer-Paul/Hingle" target="_blank" rel="nofollow">Hingle</a>.</p>
+        </section>
+    </div>
+	
+       <span id="busuanzi_container_site_pv">
+               本站总访问量<span id="busuanzi_value_site_pv"></span>次
+       </span>
+       <span class="post-meta-divider">|</span>
+       <span id="busuanzi_container_site_uv" style='display:none'>
+               本站访客数<span id="busuanzi_value_site_uv"></span>人
+       </span>
+       <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+</footer>
+
+
+<script src="/static/kico.js"></script>
+<script src="/static/hingle.js"></script>
+
+
+<script>var hingle = new Paul_Hingle({"copyright":true,"night":true});</script>
+
+	<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+<script type="text/javascript" src="/js/fireworks.js"></script>
+<!--动态线条背景-->
+<script type="text/javascript"
+color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="\js\FunnyTitle.js"></script>
+</script>
+  <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":300,"height":520},"mobile":{"show":false},"rect":"opacity:0.7","log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+

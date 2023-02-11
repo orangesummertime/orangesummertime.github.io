@@ -6,7 +6,7 @@
   <link href="https://orangesummertime.github.io/atom.xml" rel="self"/>
   
   <link href="https://orangesummertime.github.io/"/>
-  <updated>2022-06-19T08:41:00.790Z</updated>
+  <updated>2023-02-11T04:35:44.988Z</updated>
   <id>https://orangesummertime.github.io/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2023年首更</title>
+    <link href="https://orangesummertime.github.io/2023/02/11/2023%E5%B9%B4%E9%A6%96%E6%9B%B4/"/>
+    <id>https://orangesummertime.github.io/2023/02/11/2023%E5%B9%B4%E9%A6%96%E6%9B%B4/</id>
+    <published>2023-02-11T04:33:08.000Z</published>
+    <updated>2023-02-11T04:35:44.988Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>近来发现原有的Hingle主题连图标都没法正常显示了，遂上GitHub repo查看，发现作者大概率已经放弃维护这个主题，于是乎换了一个颜值更高的Fluid主题，看起来效果不错。😎</p><p>今后有时间的话还是多写点博客吧。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>【转载】她的爱已经烧录进了电路板</title>

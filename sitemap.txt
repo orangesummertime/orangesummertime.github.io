@@ -1,3 +1,4 @@
+https://orangesummertime.github.io/about/index.html
 https://orangesummertime.github.io/moyu/index.html
 https://orangesummertime.github.io/2022/06/19/ReprintedNovel01/
 https://orangesummertime.github.io/2023/02/11/2023%E5%B9%B4%E9%A6%96%E6%9B%B4/
@@ -14,7 +15,6 @@ https://orangesummertime.github.io/2022/03/23/TheLottery/
 https://orangesummertime.github.io/2022/03/11/New-one/
 https://orangesummertime.github.io/2022/03/19/%E5%8D%81%E4%B9%9D%E5%B2%81%E7%94%9F%E6%97%A5%E7%BA%AA%E5%BF%B5/
 https://orangesummertime.github.io/2022/03/15/CommentTest/
-https://orangesummertime.github.io/about/index.html
 https://orangesummertime.github.io/about/index0.html
 https://orangesummertime.github.io/friends/index.html
 https://orangesummertime.github.io/friends/index-2.html

@@ -1,3 +1,4 @@
+https://orangesummertime.github.io/moyu/index.html
 https://orangesummertime.github.io/2022/06/19/ReprintedNovel01/
 https://orangesummertime.github.io/2023/02/11/2023%E5%B9%B4%E9%A6%96%E6%9B%B4/
 https://orangesummertime.github.io/apply.html
@@ -19,6 +20,8 @@ https://orangesummertime.github.io/friends/index.html
 https://orangesummertime.github.io/friends/index-2.html
 https://orangesummertime.github.io/friends/index-1.html
 https://orangesummertime.github.io/categories/index.html
+https://orangesummertime.github.io/2048/README.html
+https://orangesummertime.github.io/2048/index.html
 https://orangesummertime.github.io/
 https://orangesummertime.github.io/tags/%E5%8D%9A%E5%AE%A2/
 https://orangesummertime.github.io/tags/BBS/

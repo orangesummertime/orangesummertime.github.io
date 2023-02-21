@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          1.6k 字
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          13 分钟
+          14 分钟
         
       </span>
     
@@ -303,29 +303,13 @@
 <h2 id="看板娘"><a href="#看板娘" class="headerlink" title="看板娘"></a>看板娘</h2><h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><p>Git Bash -&gt; npm install –save hexo-helper-live2d<br>若出现 “run ‘npm audit fix”……的错误”，键入npm audit fix force<br>若成功，则在node_modules目录下出现live2d-widget目录</p>
 <h3 id="安装看板娘"><a href="#安装看板娘" class="headerlink" title="安装看板娘"></a>安装看板娘</h3><p>可用npm安装模型文件，e.g.:<br>npm install live2d-widget-model-shizuku<br>model名字可在live2d-widget-models中找到</p>
 <h3 id="看板娘登场"><a href="#看板娘登场" class="headerlink" title="看板娘登场"></a>看板娘登场</h3><p>在主题或全局的_config.yml中添加如下语句</p>
-<pre><code class="bash">## Live2D看板娘
-live2d:
-  enable: true
-  pluginModelPath: assets/
-  model:
-    # 模板目录，在node_modules里
-    use: live2d-widget-model-shizuku  
-  display:
-    position: right
-    width: 300 
-    height: 600
-  mobile:
-    # 在手机端显示
-    show: false   
-  rect:
-    opacity:0.7
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">## Live2D看板娘</span><br>live2d:<br>  <span class="hljs-built_in">enable</span>: <span class="hljs-literal">true</span><br>  pluginModelPath: assets/<br>  model:<br>    <span class="hljs-comment"># 模板目录，在node_modules里</span><br>    use: live2d-widget-model-shizuku  <br>  display:<br>    position: right<br>    width: 300 <br>    height: 600<br>  mobile:<br>    <span class="hljs-comment"># 在手机端显示</span><br>    show: <span class="hljs-literal">false</span>   <br>  rect:<br>    opacity:0.7<br></code></pre></td></tr></table></figure>
+
 <p>暂时先写到这里吧，有空更新。</p>
 <h2 id="插入音乐"><a href="#插入音乐" class="headerlink" title="插入音乐"></a>插入音乐</h2><h3 id="安装依赖-1"><a href="#安装依赖-1" class="headerlink" title="安装依赖"></a>安装依赖</h3><p>Git Bash -&gt; npm install –save hexo-tag-aplayer</p>
 <h3 id="启用Meting播放器"><a href="#启用Meting播放器" class="headerlink" title="启用Meting播放器"></a>启用Meting播放器</h3><p>在全局_config.yml中添加以下语句：<br>aplayer:<br>  meting: true</p>
 <h3 id="实际应用"><a href="#实际应用" class="headerlink" title="实际应用"></a>实际应用</h3><p>在网页md文件中加入如下语句</p>
-<pre><code class="bash">&#123;% meting "3986040" "netease" "song" "theme:#555" "mutex:true" "listmaxheight:340px" "preload:auto" %&#125;
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">&#123;% meting <span class="hljs-string">&quot;3986040&quot;</span> <span class="hljs-string">&quot;netease&quot;</span> <span class="hljs-string">&quot;song&quot;</span> <span class="hljs-string">&quot;theme:#555&quot;</span> <span class="hljs-string">&quot;mutex:true&quot;</span> <span class="hljs-string">&quot;listmaxheight:340px&quot;</span> <span class="hljs-string">&quot;preload:auto&quot;</span> %&#125;<br></code></pre></td></tr></table></figure>
 <p>可选参数：<br><img src="/images/InsertMusic.png" srcset="/img/loading.gif" lazyload><br>（整理自 <a target="_blank" rel="noopener" href="https://blog.csdn.net/hushhw/article/details/88092728">https://blog.csdn.net/hushhw/article/details/88092728</a> ）<br>##个性化分割线</p>
 <h3 id="分割线的颜色"><a href="#分割线的颜色" class="headerlink" title="分割线的颜色"></a>分割线的颜色</h3><h4 id="红色分割线"><a href="#红色分割线" class="headerlink" title="红色分割线"></a>红色分割线</h4><hr>
 <h4 id="蓝色分割线"><a href="#蓝色分割线" class="headerlink" title="蓝色分割线"></a>蓝色分割线</h4><hr>

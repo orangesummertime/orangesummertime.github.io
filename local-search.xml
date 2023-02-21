@@ -11,6 +11,18 @@
     <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>近来发现原有的Hingle主题连图标都没法正常显示了，遂上GitHub repo查看，发现作者大概率已经放弃维护这个主题，于是乎换了一个颜值更高的Fluid主题，看起来效果不错。😎</p><p>今后有时间的话还是多写点博客吧。</p>]]></content>
     
     
+    <categories>
+      
+      <category>技术</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>博客</tag>
+      
+    </tags>
     
   </entry>
   

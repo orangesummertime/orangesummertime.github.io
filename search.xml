@@ -14,42 +14,13 @@
       </tags>
   </entry>
   <entry>
-    <title>评论测试专用页面</title>
-    <url>/2022/03/15/CommentTest/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>（才不是为了方便拷贝代码）</p>
-<span id="more"></span>
-<head>
-    ..
-    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
-    ...
-</head>
-<body>
-    ...
-    <div id="vcomments"></div>
-    <script>
-        new Valine({
-            el: '#vcomments',
-            appId: 'GCsn5FpJjA321PEIKTsutIaL-gzGzoHsz',
-            appKey: '6eRziGABgnGGK78lYAF3SYXO'
-        })
-    </script>
-</body>
-<figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml">以下内容无视即可<br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>    ...<br>    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;//cdn1.lncld.net/static/js/3.0.4/av-min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&#x27;//unpkg.com/valine/dist/Valine.min.js&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>    ...<br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>    ...<br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;vcomment&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">        <span class="hljs-keyword">new</span> <span class="hljs-title class_">Valine</span>(&#123;</span><br><span class="language-javascript">            <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#vcomment&#x27;</span> ,</span><br><span class="language-javascript">            <span class="hljs-attr">appId</span>: <span class="hljs-string">&#x27;GCsn5FpJjA321PEIKTsutIaL-gzGzoHsz&#x27;</span>,</span><br><span class="language-javascript">            <span class="hljs-attr">appKey</span>: <span class="hljs-string">&#x27;6eRziGABgnGGK78lYAF3SYXO&#x27;</span></span><br><span class="language-javascript">        &#125;);</span><br><span class="language-javascript">    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br></code></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>博客</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>序章（好中二的标题）</title>
     <url>/2022/03/11/New-one/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>经历千难万险，博客总算是搭好了。</p>
 <span id="more"></span>
 <p>最开始在知乎找了一个搭建教程，结果由于年代久远（指2020年发布）其中的一个步骤现已不可用，那时浪费了一个下午也没整明白。😂<br>最近在邦哥同学（<a href="https://distinctwind.github.io/">他的博客</a>） 的鼎力相助之下，又花了一晚上，可算是整好了。<br>以后随缘更新博客，并且给网站陆续加点美化插件什么的。<br>请大家多多关照啦！</p>
 
-    <div id="aplayer-ffNdItlk" class="aplayer aplayer-tag-marker meting-tag-marker"
+    <div id="aplayer-wOiklphz" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="531786301" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"
     ></div>
 
@@ -113,6 +84,89 @@ hr:nth-of-type(1) {
       </categories>
       <tags>
         <tag>BBS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>评论测试专用页面</title>
+    <url>/2022/03/15/CommentTest/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>（才不是为了方便拷贝代码）</p>
+<span id="more"></span>
+<head>
+    ..
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+    ...
+</head>
+<body>
+    ...
+    <div id="vcomments"></div>
+    <script>
+        new Valine({
+            el: '#vcomments',
+            appId: 'GCsn5FpJjA321PEIKTsutIaL-gzGzoHsz',
+            appKey: '6eRziGABgnGGK78lYAF3SYXO'
+        })
+    </script>
+</body>
+<figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml">以下内容无视即可<br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>    ...<br>    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;//cdn1.lncld.net/static/js/3.0.4/av-min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&#x27;//unpkg.com/valine/dist/Valine.min.js&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>    ...<br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>    ...<br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;vcomment&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">        <span class="hljs-keyword">new</span> <span class="hljs-title class_">Valine</span>(&#123;</span><br><span class="language-javascript">            <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#vcomment&#x27;</span> ,</span><br><span class="language-javascript">            <span class="hljs-attr">appId</span>: <span class="hljs-string">&#x27;GCsn5FpJjA321PEIKTsutIaL-gzGzoHsz&#x27;</span>,</span><br><span class="language-javascript">            <span class="hljs-attr">appKey</span>: <span class="hljs-string">&#x27;6eRziGABgnGGK78lYAF3SYXO&#x27;</span></span><br><span class="language-javascript">        &#125;);</span><br><span class="language-javascript">    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br></code></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>博客</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>彩票</title>
+    <url>/2022/03/23/TheLottery/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>特地到这间从小熟悉的广发银行大堂看了一眼墙上的电子挂钟。8时10分。嗯，没有问题。</p>
+<p>此时此地，正是2008年的广州早晨。我回来了。<span id="more"></span></p>
+<p>走出银行，引入眼帘的，是CBD地带摩肩接踵的人群。从他们西装革履的着装看来，他们正为了按时上班而奔波着。“天下熙熙皆为利来，天下攘攘皆为利往。”大概就是如此吧。这样的景象，几十年间似乎未曾变过。</p>
+<p>身为全世界最先成功完成时空旅行的科学家之一，在将这一壮举公之于世之前，我还是决定让一直以来的狂想成为现实。</p>
+<p>轻车熟路地，我顺手拦下一辆的士，让司机把我送到一座写字楼。</p>
+<p>“靓仔，你穿这样去上班咩？”司机对我“完美契合”2008年款式的装扮抛出了疑问。的确，这身当时的休闲装不太像是一个上班族。</p>
+<p>“我在那里搞创业，没关系的。”我成功打了个圆场。</p>
+<p>“哇，后生可畏喔。”司机爽朗地感叹。</p>
+<p>就这样与司机有一搭没一搭地聊了一会天，那座写字楼就到了车窗外。</p>
+<p>“不用找了。”我递给他一张特地找的第四套50元。</p>
+<p>醉翁之意不在酒。待的士远去后，我径直走向街对面的那家彩票投注站。印象中，这家投注站开张几个月就关门了。“看来竟然是我导致的。”我心想着，欣喜之余涌上一丝负罪感。</p>
+<p>这里说的就是儿时记忆中彩票站那个憨厚的大胡子叔叔，此时正在全神贯注地盯着电脑打机——没看错的话，游戏是《地下城与勇士》。角落里，几个中年彩民，盯着开奖的屏幕，眼神空洞而又带有期待。</p>
+<p>“来张27选5。”我一面说着，一面从兜里翻出一包烟。</p>
+<p>“哪几个数？”大叔恋恋不舍地停下游戏，调出了选数字的界面。</p>
+<p>“3，4，11，19，26。”</p>
+<p>说这几个数字的过程，我已经在脑海中排练了许多遍。</p>
+<p>大叔没有言语，一番操作将这张彩票打印了下来。我递出10元，踱步至店门口，抽起了烟。</p>
+<p>我拿起那张彩票，反复确认了这几个数字，没有差错。</p>
+<p>我手中的不是彩票，是改变命运的凭证。</p>
+<p>身后键盘敲击声不知何时停了下来，想必是开奖了吧。过了一会，我听见大叔吆喝着“今日不开了”，将几个彩民“请”请出了店面。他们经过我身边时，望向我流露出了难以置信的神色。</p>
+<p>我用脚踩灭烟头，转过头，看见大叔挥手招呼我过去，然后转身开了背后的门。</p>
+<p>我的嘴角微微扬起了一个角度。</p>
+<p>我还是第一次知道，门的背后是一个长长的、遍布监控摄像头的走廊，跟着大叔走了好久，总算是到达了尽头一个上锁的房间。门牌上写着“道具室”。</p>
+<p>大叔用钥匙开门进了去，半晌，从里面拿着一个跳跳虎cos服和一块写着“特等奖”的大牌子走了出来。</p>
+<p>“一会媒体估计就要来了，你乔装打扮一下吧。”大叔的声音额外镇定。</p>
+<p>“真是周到啊。”一面想着，我一面把cos服往身上套。</p>
+<p>就在cos服遮住视线的一瞬间，我的双手被强有力地反剪到了背后。我听见了手铐上锁的声音。</p>
+<p>“等你好久了，大科学家。监守自盗可是不对的哦。”</p>
+<head>
+    ..
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+    ...
+</head>
+<body>
+    ...
+    <div id="vcomments"></div>
+    <script>
+        new Valine({
+            el: '#vcomments',
+            appId: 'GCsn5FpJjA321PEIKTsutIaL-gzGzoHsz',
+            appKey: '6eRziGABgnGGK78lYAF3SYXO'
+        })
+    </script>
+</body>]]></content>
+      <categories>
+        <category>小说</category>
+      </categories>
+      <tags>
+        <tag>科幻</tag>
       </tags>
   </entry>
   <entry>
@@ -186,36 +240,21 @@ hr:nth-of-type(1) {
       </tags>
   </entry>
   <entry>
-    <title>彩票</title>
-    <url>/2022/03/23/TheLottery/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>特地到这间从小熟悉的广发银行大堂看了一眼墙上的电子挂钟。8时10分。嗯，没有问题。</p>
-<p>此时此地，正是2008年的广州早晨。我回来了。<span id="more"></span></p>
-<p>走出银行，引入眼帘的，是CBD地带摩肩接踵的人群。从他们西装革履的着装看来，他们正为了按时上班而奔波着。“天下熙熙皆为利来，天下攘攘皆为利往。”大概就是如此吧。这样的景象，几十年间似乎未曾变过。</p>
-<p>身为全世界最先成功完成时空旅行的科学家之一，在将这一壮举公之于世之前，我还是决定让一直以来的狂想成为现实。</p>
-<p>轻车熟路地，我顺手拦下一辆的士，让司机把我送到一座写字楼。</p>
-<p>“靓仔，你穿这样去上班咩？”司机对我“完美契合”2008年款式的装扮抛出了疑问。的确，这身当时的休闲装不太像是一个上班族。</p>
-<p>“我在那里搞创业，没关系的。”我成功打了个圆场。</p>
-<p>“哇，后生可畏喔。”司机爽朗地感叹。</p>
-<p>就这样与司机有一搭没一搭地聊了一会天，那座写字楼就到了车窗外。</p>
-<p>“不用找了。”我递给他一张特地找的第四套50元。</p>
-<p>醉翁之意不在酒。待的士远去后，我径直走向街对面的那家彩票投注站。印象中，这家投注站开张几个月就关门了。“看来竟然是我导致的。”我心想着，欣喜之余涌上一丝负罪感。</p>
-<p>这里说的就是儿时记忆中彩票站那个憨厚的大胡子叔叔，此时正在全神贯注地盯着电脑打机——没看错的话，游戏是《地下城与勇士》。角落里，几个中年彩民，盯着开奖的屏幕，眼神空洞而又带有期待。</p>
-<p>“来张27选5。”我一面说着，一面从兜里翻出一包烟。</p>
-<p>“哪几个数？”大叔恋恋不舍地停下游戏，调出了选数字的界面。</p>
-<p>“3，4，11，19，26。”</p>
-<p>说这几个数字的过程，我已经在脑海中排练了许多遍。</p>
-<p>大叔没有言语，一番操作将这张彩票打印了下来。我递出10元，踱步至店门口，抽起了烟。</p>
-<p>我拿起那张彩票，反复确认了这几个数字，没有差错。</p>
-<p>我手中的不是彩票，是改变命运的凭证。</p>
-<p>身后键盘敲击声不知何时停了下来，想必是开奖了吧。过了一会，我听见大叔吆喝着“今日不开了”，将几个彩民“请”请出了店面。他们经过我身边时，望向我流露出了难以置信的神色。</p>
-<p>我用脚踩灭烟头，转过头，看见大叔挥手招呼我过去，然后转身开了背后的门。</p>
-<p>我的嘴角微微扬起了一个角度。</p>
-<p>我还是第一次知道，门的背后是一个长长的、遍布监控摄像头的走廊，跟着大叔走了好久，总算是到达了尽头一个上锁的房间。门牌上写着“道具室”。</p>
-<p>大叔用钥匙开门进了去，半晌，从里面拿着一个跳跳虎cos服和一块写着“特等奖”的大牌子走了出来。</p>
-<p>“一会媒体估计就要来了，你乔装打扮一下吧。”大叔的声音额外镇定。</p>
-<p>“真是周到啊。”一面想着，我一面把cos服往身上套。</p>
-<p>就在cos服遮住视线的一瞬间，我的双手被强有力地反剪到了背后。我听见了手铐上锁的声音。</p>
-<p>“等你好久了，大科学家。监守自盗可是不对的哦。”</p>
+    <title>Hello World</title>
+    <url>/2022/03/11/hello-world/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 <head>
     ..
     <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
@@ -233,11 +272,8 @@ hr:nth-of-type(1) {
     </script>
 </body>]]></content>
       <categories>
-        <category>小说</category>
+        <category>Hello World</category>
       </categories>
-      <tags>
-        <tag>科幻</tag>
-      </tags>
   </entry>
   <entry>
     <title>博客技术小记（1）</title>
@@ -303,42 +339,6 @@ hr:nth-of-type(4) {
       <tags>
         <tag>博客</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/03/11/hello-world/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<head>
-    ..
-    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
-    ...
-</head>
-<body>
-    ...
-    <div id="vcomments"></div>
-    <script>
-        new Valine({
-            el: '#vcomments',
-            appId: 'GCsn5FpJjA321PEIKTsutIaL-gzGzoHsz',
-            appKey: '6eRziGABgnGGK78lYAF3SYXO'
-        })
-    </script>
-</body>]]></content>
-      <categories>
-        <category>Hello World</category>
-      </categories>
   </entry>
   <entry>
     <title>test2</title>

@@ -20,8 +20,8 @@ https://orangesummertime.github.io/friends/index.html
 https://orangesummertime.github.io/friends/index-2.html
 https://orangesummertime.github.io/friends/index-1.html
 https://orangesummertime.github.io/categories/index.html
-https://orangesummertime.github.io/2048/README.html
 https://orangesummertime.github.io/2048/index.html
+https://orangesummertime.github.io/2048/README.html
 https://orangesummertime.github.io/
 https://orangesummertime.github.io/tags/%E5%8D%9A%E5%AE%A2/
 https://orangesummertime.github.io/tags/BBS/

@@ -14,40 +14,6 @@
       </tags>
   </entry>
   <entry>
-    <title>序章（好中二的标题）</title>
-    <url>/2022/03/11/New-one/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>经历千难万险，博客总算是搭好了。</p>
-<span id="more"></span>
-<p>最开始在知乎找了一个搭建教程，结果由于年代久远（指2020年发布）其中的一个步骤现已不可用，那时浪费了一个下午也没整明白。😂<br>最近在邦哥同学（<a href="https://distinctwind.github.io/">他的博客</a>） 的鼎力相助之下，又花了一晚上，可算是整好了。<br>以后随缘更新博客，并且给网站陆续加点美化插件什么的。<br>请大家多多关照啦！</p>
-
-    <div id="aplayer-EOszqRdz" class="aplayer aplayer-tag-marker meting-tag-marker"
-         data-id="531786301" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"
-    ></div>
-
-<head>
-    ..
-    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
-    ...
-</head>
-<body>
-    ...
-    <div id="vcomments"></div>
-    <script>
-        new Valine({
-            el: '#vcomments',
-            appId: 'GCsn5FpJjA321PEIKTsutIaL-gzGzoHsz',
-            appKey: '6eRziGABgnGGK78lYAF3SYXO'
-        })
-    </script>
-</body>]]></content>
-      <categories>
-        <category>杂谈</category>
-      </categories>
-      <tags>
-        <tag>博客</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>评论测试专用页面</title>
     <url>/2022/03/15/CommentTest/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>（才不是为了方便拷贝代码）</p>
@@ -71,6 +37,40 @@
 <figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml">以下内容无视即可<br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>    ...<br>    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;//cdn1.lncld.net/static/js/3.0.4/av-min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&#x27;//unpkg.com/valine/dist/Valine.min.js&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>    ...<br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>    ...<br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;vcomment&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">        <span class="hljs-keyword">new</span> <span class="hljs-title class_">Valine</span>(&#123;</span><br><span class="language-javascript">            <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#vcomment&#x27;</span> ,</span><br><span class="language-javascript">            <span class="hljs-attr">appId</span>: <span class="hljs-string">&#x27;GCsn5FpJjA321PEIKTsutIaL-gzGzoHsz&#x27;</span>,</span><br><span class="language-javascript">            <span class="hljs-attr">appKey</span>: <span class="hljs-string">&#x27;6eRziGABgnGGK78lYAF3SYXO&#x27;</span></span><br><span class="language-javascript">        &#125;);</span><br><span class="language-javascript">    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br></code></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>技术</category>
+      </categories>
+      <tags>
+        <tag>博客</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>序章（好中二的标题）</title>
+    <url>/2022/03/11/New-one/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>经历千难万险，博客总算是搭好了。</p>
+<span id="more"></span>
+<p>最开始在知乎找了一个搭建教程，结果由于年代久远（指2020年发布）其中的一个步骤现已不可用，那时浪费了一个下午也没整明白。😂<br>最近在邦哥同学（<a href="https://distinctwind.github.io/">他的博客</a>） 的鼎力相助之下，又花了一晚上，可算是整好了。<br>以后随缘更新博客，并且给网站陆续加点美化插件什么的。<br>请大家多多关照啦！</p>
+
+    <div id="aplayer-CedWjshL" class="aplayer aplayer-tag-marker meting-tag-marker"
+         data-id="531786301" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"
+    ></div>
+
+<head>
+    ..
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+    ...
+</head>
+<body>
+    ...
+    <div id="vcomments"></div>
+    <script>
+        new Valine({
+            el: '#vcomments',
+            appId: 'GCsn5FpJjA321PEIKTsutIaL-gzGzoHsz',
+            appKey: '6eRziGABgnGGK78lYAF3SYXO'
+        })
+    </script>
+</body>]]></content>
+      <categories>
+        <category>杂谈</category>
       </categories>
       <tags>
         <tag>博客</tag>
@@ -113,6 +113,125 @@ hr:nth-of-type(1) {
       </categories>
       <tags>
         <tag>BBS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>博客技术小记（1）</title>
+    <url>/2022/03/14/blog1/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>整理一下最近学到的博客技术吧。</p>
+<span id="more"></span>
+<h2 id="用Hexo-Admin写博客"><a href="#用Hexo-Admin写博客" class="headerlink" title="用Hexo Admin写博客"></a>用Hexo Admin写博客</h2><h3 id="安装Hexo-Admin插件"><a href="#安装Hexo-Admin插件" class="headerlink" title="安装Hexo Admin插件"></a>安装Hexo Admin插件</h3><p>在博客根目录下右键打开Git Bash，键入“npm install –save hexo-admin”（若网络错误，则重试or搭梯）。</p>
+<h3 id="进入编辑界面"><a href="#进入编辑界面" class="headerlink" title="进入编辑界面"></a>进入编辑界面</h3><p>在Git Bash界面，键入<br>“hexo server -d”</p>
+<p>随后打开<a href="http://localhost:4000/admin/">http://localhost:4000/admin/</a> ，即进入Hexo Admin图形界面。</p>
+<p><img src="/images/pasted-0.png"><br>（整理自<a href="https://www.jianshu.com/p/925fa86ccc95">简书</a> ）</p>
+<h2 id="文章写作"><a href="#文章写作" class="headerlink" title="文章写作"></a>文章写作</h2><h3 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h3><p><em>图片素材按官方教程说法，可统一放置在source&#x2F;images目录中，并以 <code>![](/images/image.jpg)</code> 方式引用</em></p>
+<p>作者：Wavky<br>链接：<a href="https://www.jianshu.com/p/925fa86ccc95">https://www.jianshu.com/p/925fa86ccc95</a></p>
+<h3 id="各式文字"><a href="#各式文字" class="headerlink" title="各式文字"></a>各式文字</h3><p><img src="/images/%E6%A0%BC%E5%BC%8F.png"><br>（<del>截图</del>整理自CSDN作者梦里北极光的<a href="https://blog.csdn.net/weixin_42796909/article/details/81745271">文章</a> ）</p>
+<h2 id="看板娘"><a href="#看板娘" class="headerlink" title="看板娘"></a>看板娘</h2><h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><p>Git Bash -&gt; npm install –save hexo-helper-live2d<br>若出现 “run ‘npm audit fix”……的错误”，键入npm audit fix force<br>若成功，则在node_modules目录下出现live2d-widget目录</p>
+<h3 id="安装看板娘"><a href="#安装看板娘" class="headerlink" title="安装看板娘"></a>安装看板娘</h3><p>可用npm安装模型文件，e.g.:<br>npm install live2d-widget-model-shizuku<br>model名字可在live2d-widget-models中找到</p>
+<h3 id="看板娘登场"><a href="#看板娘登场" class="headerlink" title="看板娘登场"></a>看板娘登场</h3><p>在主题或全局的_config.yml中添加如下语句</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">## Live2D看板娘</span><br>live2d:<br>  <span class="hljs-built_in">enable</span>: <span class="hljs-literal">true</span><br>  pluginModelPath: assets/<br>  model:<br>    <span class="hljs-comment"># 模板目录，在node_modules里</span><br>    use: live2d-widget-model-shizuku  <br>  display:<br>    position: right<br>    width: 300 <br>    height: 600<br>  mobile:<br>    <span class="hljs-comment"># 在手机端显示</span><br>    show: <span class="hljs-literal">false</span>   <br>  rect:<br>    opacity:0.7<br></code></pre></td></tr></table></figure>
+
+<p>暂时先写到这里吧，有空更新。</p>
+<h2 id="插入音乐"><a href="#插入音乐" class="headerlink" title="插入音乐"></a>插入音乐</h2><h3 id="安装依赖-1"><a href="#安装依赖-1" class="headerlink" title="安装依赖"></a>安装依赖</h3><p>Git Bash -&gt; npm install –save hexo-tag-aplayer</p>
+<h3 id="启用Meting播放器"><a href="#启用Meting播放器" class="headerlink" title="启用Meting播放器"></a>启用Meting播放器</h3><p>在全局_config.yml中添加以下语句：<br>aplayer:<br>  meting: true</p>
+<h3 id="实际应用"><a href="#实际应用" class="headerlink" title="实际应用"></a>实际应用</h3><p>在网页md文件中加入如下语句</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">&#123;% meting <span class="hljs-string">&quot;3986040&quot;</span> <span class="hljs-string">&quot;netease&quot;</span> <span class="hljs-string">&quot;song&quot;</span> <span class="hljs-string">&quot;theme:#555&quot;</span> <span class="hljs-string">&quot;mutex:true&quot;</span> <span class="hljs-string">&quot;listmaxheight:340px&quot;</span> <span class="hljs-string">&quot;preload:auto&quot;</span> %&#125;<br></code></pre></td></tr></table></figure>
+<p>可选参数：<br><img src="/images/InsertMusic.png"><br>（整理自 <a href="https://blog.csdn.net/hushhw/article/details/88092728">https://blog.csdn.net/hushhw/article/details/88092728</a> ）<br>##个性化分割线</p>
+<h3 id="分割线的颜色"><a href="#分割线的颜色" class="headerlink" title="分割线的颜色"></a>分割线的颜色</h3><h4 id="红色分割线"><a href="#红色分割线" class="headerlink" title="红色分割线"></a>红色分割线</h4><hr>
+<h4 id="蓝色分割线"><a href="#蓝色分割线" class="headerlink" title="蓝色分割线"></a>蓝色分割线</h4><hr>
+<h4 id="半透明的黑色分割线"><a href="#半透明的黑色分割线" class="headerlink" title="半透明的黑色分割线"></a>半透明的黑色分割线</h4><hr>
+<h4 id="渐变色分割线"><a href="#渐变色分割线" class="headerlink" title="渐变色分割线"></a>渐变色分割线</h4><hr>
+<style>
+hr:nth-of-type(1) {
+  border-color: red !important;
+}
+hr:nth-of-type(2) {
+  border-color: #00F !important;
+}
+hr:nth-of-type(3) {
+  border-color: #0005 !important;
+}
+hr:nth-of-type(4) {
+  border-image: linear-gradient(to right, #F00, #0F0 20%, #00F 80%, #000) 1 !important;
+}
+</style>
+
+<head>
+    ..
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+    ...
+</head>
+<body>
+    ...
+    <div id="vcomments"></div>
+    <script>
+        new Valine({
+            el: '#vcomments',
+            appId: 'GCsn5FpJjA321PEIKTsutIaL-gzGzoHsz',
+            appKey: '6eRziGABgnGGK78lYAF3SYXO'
+        })
+    </script>
+</body>]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>博客</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>彩票</title>
+    <url>/2022/03/23/TheLottery/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>特地到这间从小熟悉的广发银行大堂看了一眼墙上的电子挂钟。8时10分。嗯，没有问题。</p>
+<p>此时此地，正是2008年的广州早晨。我回来了。<span id="more"></span></p>
+<p>走出银行，引入眼帘的，是CBD地带摩肩接踵的人群。从他们西装革履的着装看来，他们正为了按时上班而奔波着。“天下熙熙皆为利来，天下攘攘皆为利往。”大概就是如此吧。这样的景象，几十年间似乎未曾变过。</p>
+<p>身为全世界最先成功完成时空旅行的科学家之一，在将这一壮举公之于世之前，我还是决定让一直以来的狂想成为现实。</p>
+<p>轻车熟路地，我顺手拦下一辆的士，让司机把我送到一座写字楼。</p>
+<p>“靓仔，你穿这样去上班咩？”司机对我“完美契合”2008年款式的装扮抛出了疑问。的确，这身当时的休闲装不太像是一个上班族。</p>
+<p>“我在那里搞创业，没关系的。”我成功打了个圆场。</p>
+<p>“哇，后生可畏喔。”司机爽朗地感叹。</p>
+<p>就这样与司机有一搭没一搭地聊了一会天，那座写字楼就到了车窗外。</p>
+<p>“不用找了。”我递给他一张特地找的第四套50元。</p>
+<p>醉翁之意不在酒。待的士远去后，我径直走向街对面的那家彩票投注站。印象中，这家投注站开张几个月就关门了。“看来竟然是我导致的。”我心想着，欣喜之余涌上一丝负罪感。</p>
+<p>这里说的就是儿时记忆中彩票站那个憨厚的大胡子叔叔，此时正在全神贯注地盯着电脑打机——没看错的话，游戏是《地下城与勇士》。角落里，几个中年彩民，盯着开奖的屏幕，眼神空洞而又带有期待。</p>
+<p>“来张27选5。”我一面说着，一面从兜里翻出一包烟。</p>
+<p>“哪几个数？”大叔恋恋不舍地停下游戏，调出了选数字的界面。</p>
+<p>“3，4，11，19，26。”</p>
+<p>说这几个数字的过程，我已经在脑海中排练了许多遍。</p>
+<p>大叔没有言语，一番操作将这张彩票打印了下来。我递出10元，踱步至店门口，抽起了烟。</p>
+<p>我拿起那张彩票，反复确认了这几个数字，没有差错。</p>
+<p>我手中的不是彩票，是改变命运的凭证。</p>
+<p>身后键盘敲击声不知何时停了下来，想必是开奖了吧。过了一会，我听见大叔吆喝着“今日不开了”，将几个彩民“请”请出了店面。他们经过我身边时，望向我流露出了难以置信的神色。</p>
+<p>我用脚踩灭烟头，转过头，看见大叔挥手招呼我过去，然后转身开了背后的门。</p>
+<p>我的嘴角微微扬起了一个角度。</p>
+<p>我还是第一次知道，门的背后是一个长长的、遍布监控摄像头的走廊，跟着大叔走了好久，总算是到达了尽头一个上锁的房间。门牌上写着“道具室”。</p>
+<p>大叔用钥匙开门进了去，半晌，从里面拿着一个跳跳虎cos服和一块写着“特等奖”的大牌子走了出来。</p>
+<p>“一会媒体估计就要来了，你乔装打扮一下吧。”大叔的声音额外镇定。</p>
+<p>“真是周到啊。”一面想着，我一面把cos服往身上套。</p>
+<p>就在cos服遮住视线的一瞬间，我的双手被强有力地反剪到了背后。我听见了手铐上锁的声音。</p>
+<p>“等你好久了，大科学家。监守自盗可是不对的哦。”</p>
+<head>
+    ..
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+    ...
+</head>
+<body>
+    ...
+    <div id="vcomments"></div>
+    <script>
+        new Valine({
+            el: '#vcomments',
+            appId: 'GCsn5FpJjA321PEIKTsutIaL-gzGzoHsz',
+            appKey: '6eRziGABgnGGK78lYAF3SYXO'
+        })
+    </script>
+</body>]]></content>
+      <categories>
+        <category>小说</category>
+      </categories>
+      <tags>
+        <tag>科幻</tag>
       </tags>
   </entry>
   <entry>
@@ -186,125 +305,6 @@ hr:nth-of-type(1) {
       </tags>
   </entry>
   <entry>
-    <title>彩票</title>
-    <url>/2022/03/23/TheLottery/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>特地到这间从小熟悉的广发银行大堂看了一眼墙上的电子挂钟。8时10分。嗯，没有问题。</p>
-<p>此时此地，正是2008年的广州早晨。我回来了。<span id="more"></span></p>
-<p>走出银行，引入眼帘的，是CBD地带摩肩接踵的人群。从他们西装革履的着装看来，他们正为了按时上班而奔波着。“天下熙熙皆为利来，天下攘攘皆为利往。”大概就是如此吧。这样的景象，几十年间似乎未曾变过。</p>
-<p>身为全世界最先成功完成时空旅行的科学家之一，在将这一壮举公之于世之前，我还是决定让一直以来的狂想成为现实。</p>
-<p>轻车熟路地，我顺手拦下一辆的士，让司机把我送到一座写字楼。</p>
-<p>“靓仔，你穿这样去上班咩？”司机对我“完美契合”2008年款式的装扮抛出了疑问。的确，这身当时的休闲装不太像是一个上班族。</p>
-<p>“我在那里搞创业，没关系的。”我成功打了个圆场。</p>
-<p>“哇，后生可畏喔。”司机爽朗地感叹。</p>
-<p>就这样与司机有一搭没一搭地聊了一会天，那座写字楼就到了车窗外。</p>
-<p>“不用找了。”我递给他一张特地找的第四套50元。</p>
-<p>醉翁之意不在酒。待的士远去后，我径直走向街对面的那家彩票投注站。印象中，这家投注站开张几个月就关门了。“看来竟然是我导致的。”我心想着，欣喜之余涌上一丝负罪感。</p>
-<p>这里说的就是儿时记忆中彩票站那个憨厚的大胡子叔叔，此时正在全神贯注地盯着电脑打机——没看错的话，游戏是《地下城与勇士》。角落里，几个中年彩民，盯着开奖的屏幕，眼神空洞而又带有期待。</p>
-<p>“来张27选5。”我一面说着，一面从兜里翻出一包烟。</p>
-<p>“哪几个数？”大叔恋恋不舍地停下游戏，调出了选数字的界面。</p>
-<p>“3，4，11，19，26。”</p>
-<p>说这几个数字的过程，我已经在脑海中排练了许多遍。</p>
-<p>大叔没有言语，一番操作将这张彩票打印了下来。我递出10元，踱步至店门口，抽起了烟。</p>
-<p>我拿起那张彩票，反复确认了这几个数字，没有差错。</p>
-<p>我手中的不是彩票，是改变命运的凭证。</p>
-<p>身后键盘敲击声不知何时停了下来，想必是开奖了吧。过了一会，我听见大叔吆喝着“今日不开了”，将几个彩民“请”请出了店面。他们经过我身边时，望向我流露出了难以置信的神色。</p>
-<p>我用脚踩灭烟头，转过头，看见大叔挥手招呼我过去，然后转身开了背后的门。</p>
-<p>我的嘴角微微扬起了一个角度。</p>
-<p>我还是第一次知道，门的背后是一个长长的、遍布监控摄像头的走廊，跟着大叔走了好久，总算是到达了尽头一个上锁的房间。门牌上写着“道具室”。</p>
-<p>大叔用钥匙开门进了去，半晌，从里面拿着一个跳跳虎cos服和一块写着“特等奖”的大牌子走了出来。</p>
-<p>“一会媒体估计就要来了，你乔装打扮一下吧。”大叔的声音额外镇定。</p>
-<p>“真是周到啊。”一面想着，我一面把cos服往身上套。</p>
-<p>就在cos服遮住视线的一瞬间，我的双手被强有力地反剪到了背后。我听见了手铐上锁的声音。</p>
-<p>“等你好久了，大科学家。监守自盗可是不对的哦。”</p>
-<head>
-    ..
-    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
-    ...
-</head>
-<body>
-    ...
-    <div id="vcomments"></div>
-    <script>
-        new Valine({
-            el: '#vcomments',
-            appId: 'GCsn5FpJjA321PEIKTsutIaL-gzGzoHsz',
-            appKey: '6eRziGABgnGGK78lYAF3SYXO'
-        })
-    </script>
-</body>]]></content>
-      <categories>
-        <category>小说</category>
-      </categories>
-      <tags>
-        <tag>科幻</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>博客技术小记（1）</title>
-    <url>/2022/03/14/blog1/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>整理一下最近学到的博客技术吧。</p>
-<span id="more"></span>
-<h2 id="用Hexo-Admin写博客"><a href="#用Hexo-Admin写博客" class="headerlink" title="用Hexo Admin写博客"></a>用Hexo Admin写博客</h2><h3 id="安装Hexo-Admin插件"><a href="#安装Hexo-Admin插件" class="headerlink" title="安装Hexo Admin插件"></a>安装Hexo Admin插件</h3><p>在博客根目录下右键打开Git Bash，键入“npm install –save hexo-admin”（若网络错误，则重试or搭梯）。</p>
-<h3 id="进入编辑界面"><a href="#进入编辑界面" class="headerlink" title="进入编辑界面"></a>进入编辑界面</h3><p>在Git Bash界面，键入<br>“hexo server -d”</p>
-<p>随后打开<a href="http://localhost:4000/admin/">http://localhost:4000/admin/</a> ，即进入Hexo Admin图形界面。</p>
-<p><img src="/images/pasted-0.png"><br>（整理自<a href="https://www.jianshu.com/p/925fa86ccc95">简书</a> ）</p>
-<h2 id="文章写作"><a href="#文章写作" class="headerlink" title="文章写作"></a>文章写作</h2><h3 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h3><p><em>图片素材按官方教程说法，可统一放置在source&#x2F;images目录中，并以 <code>![](/images/image.jpg)</code> 方式引用</em></p>
-<p>作者：Wavky<br>链接：<a href="https://www.jianshu.com/p/925fa86ccc95">https://www.jianshu.com/p/925fa86ccc95</a></p>
-<h3 id="各式文字"><a href="#各式文字" class="headerlink" title="各式文字"></a>各式文字</h3><p><img src="/images/%E6%A0%BC%E5%BC%8F.png"><br>（<del>截图</del>整理自CSDN作者梦里北极光的<a href="https://blog.csdn.net/weixin_42796909/article/details/81745271">文章</a> ）</p>
-<h2 id="看板娘"><a href="#看板娘" class="headerlink" title="看板娘"></a>看板娘</h2><h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><p>Git Bash -&gt; npm install –save hexo-helper-live2d<br>若出现 “run ‘npm audit fix”……的错误”，键入npm audit fix force<br>若成功，则在node_modules目录下出现live2d-widget目录</p>
-<h3 id="安装看板娘"><a href="#安装看板娘" class="headerlink" title="安装看板娘"></a>安装看板娘</h3><p>可用npm安装模型文件，e.g.:<br>npm install live2d-widget-model-shizuku<br>model名字可在live2d-widget-models中找到</p>
-<h3 id="看板娘登场"><a href="#看板娘登场" class="headerlink" title="看板娘登场"></a>看板娘登场</h3><p>在主题或全局的_config.yml中添加如下语句</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">## Live2D看板娘</span><br>live2d:<br>  <span class="hljs-built_in">enable</span>: <span class="hljs-literal">true</span><br>  pluginModelPath: assets/<br>  model:<br>    <span class="hljs-comment"># 模板目录，在node_modules里</span><br>    use: live2d-widget-model-shizuku  <br>  display:<br>    position: right<br>    width: 300 <br>    height: 600<br>  mobile:<br>    <span class="hljs-comment"># 在手机端显示</span><br>    show: <span class="hljs-literal">false</span>   <br>  rect:<br>    opacity:0.7<br></code></pre></td></tr></table></figure>
-
-<p>暂时先写到这里吧，有空更新。</p>
-<h2 id="插入音乐"><a href="#插入音乐" class="headerlink" title="插入音乐"></a>插入音乐</h2><h3 id="安装依赖-1"><a href="#安装依赖-1" class="headerlink" title="安装依赖"></a>安装依赖</h3><p>Git Bash -&gt; npm install –save hexo-tag-aplayer</p>
-<h3 id="启用Meting播放器"><a href="#启用Meting播放器" class="headerlink" title="启用Meting播放器"></a>启用Meting播放器</h3><p>在全局_config.yml中添加以下语句：<br>aplayer:<br>  meting: true</p>
-<h3 id="实际应用"><a href="#实际应用" class="headerlink" title="实际应用"></a>实际应用</h3><p>在网页md文件中加入如下语句</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">&#123;% meting <span class="hljs-string">&quot;3986040&quot;</span> <span class="hljs-string">&quot;netease&quot;</span> <span class="hljs-string">&quot;song&quot;</span> <span class="hljs-string">&quot;theme:#555&quot;</span> <span class="hljs-string">&quot;mutex:true&quot;</span> <span class="hljs-string">&quot;listmaxheight:340px&quot;</span> <span class="hljs-string">&quot;preload:auto&quot;</span> %&#125;<br></code></pre></td></tr></table></figure>
-<p>可选参数：<br><img src="/images/InsertMusic.png"><br>（整理自 <a href="https://blog.csdn.net/hushhw/article/details/88092728">https://blog.csdn.net/hushhw/article/details/88092728</a> ）<br>##个性化分割线</p>
-<h3 id="分割线的颜色"><a href="#分割线的颜色" class="headerlink" title="分割线的颜色"></a>分割线的颜色</h3><h4 id="红色分割线"><a href="#红色分割线" class="headerlink" title="红色分割线"></a>红色分割线</h4><hr>
-<h4 id="蓝色分割线"><a href="#蓝色分割线" class="headerlink" title="蓝色分割线"></a>蓝色分割线</h4><hr>
-<h4 id="半透明的黑色分割线"><a href="#半透明的黑色分割线" class="headerlink" title="半透明的黑色分割线"></a>半透明的黑色分割线</h4><hr>
-<h4 id="渐变色分割线"><a href="#渐变色分割线" class="headerlink" title="渐变色分割线"></a>渐变色分割线</h4><hr>
-<style>
-hr:nth-of-type(1) {
-  border-color: red !important;
-}
-hr:nth-of-type(2) {
-  border-color: #00F !important;
-}
-hr:nth-of-type(3) {
-  border-color: #0005 !important;
-}
-hr:nth-of-type(4) {
-  border-image: linear-gradient(to right, #F00, #0F0 20%, #00F 80%, #000) 1 !important;
-}
-</style>
-
-<head>
-    ..
-    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
-    ...
-</head>
-<body>
-    ...
-    <div id="vcomments"></div>
-    <script>
-        new Valine({
-            el: '#vcomments',
-            appId: 'GCsn5FpJjA321PEIKTsutIaL-gzGzoHsz',
-            appKey: '6eRziGABgnGGK78lYAF3SYXO'
-        })
-    </script>
-</body>]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>博客</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hello World</title>
     <url>/2022/03/11/hello-world/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -341,11 +341,6 @@ hr:nth-of-type(4) {
       </categories>
   </entry>
   <entry>
-    <title>test2</title>
-    <url>/2022/05/21/test2/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script>]]></content>
-  </entry>
-  <entry>
     <title>十九岁生日纪念</title>
     <url>/2022/03/19/%E5%8D%81%E4%B9%9D%E5%B2%81%E7%94%9F%E6%97%A5%E7%BA%AA%E5%BF%B5/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>今天十九岁了。</p>
@@ -373,5 +368,10 @@ hr:nth-of-type(4) {
       <tags>
         <tag>生活</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>test2</title>
+    <url>/2022/05/21/test2/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script>]]></content>
   </entry>
 </search>

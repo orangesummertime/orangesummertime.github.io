@@ -1,55 +1,11 @@
-<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script>@font-face {
-  font-family: "iconfont"; /* Project id 3919721 */
-  src: url('//at.alicdn.com/t/c/font_3919721_7mk065dvx0u.woff2?t=1677489315865') format('woff2'),
-       url('//at.alicdn.com/t/c/font_3919721_7mk065dvx0u.woff?t=1677489315865') format('woff'),
-       url('//at.alicdn.com/t/c/font_3919721_7mk065dvx0u.ttf?t=1677489315865') format('truetype');
+<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script>.tocbot-active-link {
+	color: #de3030;
 }
 
-.iconfont {
-  font-family: "iconfont" !important;
-  font-size: 16px;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/*封面图片动画*/
+.index-img {
+  transition: .4s;           /*动画时间*/
 }
-
-.icon-tv:before {
-  content: "\e616";
+.index-card:hover .index-img {
+  transform: scale(1.05);    /*放大倍数*/
 }
-
-.icon-gonggao:before {
-  content: "\e612";
-}
-
-.icon-yu:before {
-  content: "\e63e";
-}
-
-.icon-duihuaqipao:before {
-  content: "\e61e";
-}
-
-.icon-yun_o:before {
-  content: "\ebb3";
-}
-
-.icon-airudiantubiaohuizhi-zhuanqu_youxi:before {
-  content: "\e69d";
-}
-
-.icon-aixin:before {
-  content: "\e8ab";
-}
-
-.icon-daohang:before {
-  content: "\e797";
-}
-
-.icon-suiji:before {
-  content: "\e88d";
-}
-
-.icon-biancheng-01:before {
-  content: "\e678";
-}
-

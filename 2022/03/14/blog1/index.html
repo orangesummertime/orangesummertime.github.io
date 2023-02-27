@@ -27,7 +27,7 @@
 <meta property="og:image" content="https://orangesummertime.github.io/images/%E6%A0%BC%E5%BC%8F.png">
 <meta property="og:image" content="https://orangesummertime.github.io/images/InsertMusic.png">
 <meta property="article:published_time" content="2022-03-14T14:23:00.000Z">
-<meta property="article:modified_time" content="2022-05-05T16:06:37.542Z">
+<meta property="article:modified_time" content="2023-02-27T15:53:23.791Z">
 <meta property="article:author" content="Chin-san">
 <meta property="article:tag" content="博客">
 <meta name="twitter:card" content="summary_large_image">
@@ -71,6 +71,7 @@
 
   
 <link rel="stylesheet" href="//at.alicdn.com/t/c/font_3919721_1cffff0toks.css">
+<link rel="stylesheet" href="/css/custom.css">
 
 
 
@@ -189,6 +190,18 @@
             </li>
           
         
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/comments/">
+                <i class="iconfont icon-duihuaqipao"></i>
+                <span>留言板</span>
+              </a>
+            </li>
+          
+        
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
@@ -241,7 +254,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k 字
+          1.9k 字
         
       </span>
     
@@ -252,7 +265,7 @@
         
         
         
-          14 分钟
+          17 分钟
         
       </span>
     
@@ -315,7 +328,7 @@
 <h3 id="实际应用"><a href="#实际应用" class="headerlink" title="实际应用"></a>实际应用</h3><p>在网页md文件中加入如下语句</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">&#123;% meting <span class="hljs-string">&quot;3986040&quot;</span> <span class="hljs-string">&quot;netease&quot;</span> <span class="hljs-string">&quot;song&quot;</span> <span class="hljs-string">&quot;theme:#555&quot;</span> <span class="hljs-string">&quot;mutex:true&quot;</span> <span class="hljs-string">&quot;listmaxheight:340px&quot;</span> <span class="hljs-string">&quot;preload:auto&quot;</span> %&#125;<br></code></pre></td></tr></table></figure>
 <p>可选参数：<br><img src="/images/InsertMusic.png" srcset="/img/loading.gif" lazyload><br>（整理自 <a target="_blank" rel="noopener" href="https://blog.csdn.net/hushhw/article/details/88092728">https://blog.csdn.net/hushhw/article/details/88092728</a> ）<br>##个性化分割线</p>
-<h3 id="分割线的颜色"><a href="#分割线的颜色" class="headerlink" title="分割线的颜色"></a>分割线的颜色</h3><h4 id="红色分割线"><a href="#红色分割线" class="headerlink" title="红色分割线"></a>红色分割线</h4><hr>
+<h3 id="分割线的颜色（注意，此处的代码是由上至下给分割线着色的，实际应用时需要自行调整）"><a href="#分割线的颜色（注意，此处的代码是由上至下给分割线着色的，实际应用时需要自行调整）" class="headerlink" title="分割线的颜色（注意，此处的代码是由上至下给分割线着色的，实际应用时需要自行调整）"></a>分割线的颜色（注意，此处的代码是由上至下给分割线着色的，实际应用时需要自行调整）</h3><h4 id="红色分割线"><a href="#红色分割线" class="headerlink" title="红色分割线"></a>红色分割线</h4><hr>
 <h4 id="蓝色分割线"><a href="#蓝色分割线" class="headerlink" title="蓝色分割线"></a>蓝色分割线</h4><hr>
 <h4 id="半透明的黑色分割线"><a href="#半透明的黑色分割线" class="headerlink" title="半透明的黑色分割线"></a>半透明的黑色分割线</h4><hr>
 <h4 id="渐变色分割线"><a href="#渐变色分割线" class="headerlink" title="渐变色分割线"></a>渐变色分割线</h4><hr>
@@ -333,7 +346,7 @@ hr:nth-of-type(4) {
   border-image: linear-gradient(to right, #F00, #0F0 20%, #00F 80%, #000) 1 !important;
 }
 </style>
-
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs bash">&lt;style&gt;<br>hr:nth-of-type(1) &#123;<br>  border-color: red !important;<br>&#125;<br>hr:nth-of-type(2) &#123;<br>  border-color: <span class="hljs-comment">#00F !important;</span><br>&#125;<br>hr:nth-of-type(3) &#123;<br>  border-color: <span class="hljs-comment">#0005 !important;</span><br>&#125;<br>hr:nth-of-type(4) &#123;<br>  border-image: linear-gradient(to right, <span class="hljs-comment">#F00, #0F0 20%, #00F 80%, #000) 1 !important;</span><br>&#125;<br>&lt;/style&gt;<br></code></pre></td></tr></table></figure>
 <head>
     ..
     <script src='//unpkg.com/valine/dist/Valine.min.js'></script>

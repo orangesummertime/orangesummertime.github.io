@@ -18,8 +18,8 @@
   
     <meta name="description" content="最后一块净土——在这里,QTMD“先审后发”与实名认证">
 <meta property="og:type" content="website">
-<meta property="og:title" content="标签 - 科幻">
-<meta property="og:url" content="https://orangesummertime.github.io/tags/%E7%A7%91%E5%B9%BB/index.html">
+<meta property="og:title" content="橙夏Blog">
+<meta property="og:url" content="https://orangesummertime.github.io/page/2/index.html">
 <meta property="og:site_name" content="橙夏Blog">
 <meta property="og:description" content="最后一块净土——在这里,QTMD“先审后发”与实名认证">
 <meta property="og:locale" content="zh_CN">
@@ -28,7 +28,7 @@
   
   
   
-  <title>标签 - 科幻 - 橙夏Blog</title>
+  <title>橙夏Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -88,7 +88,7 @@
   <header>
     
 
-<div class="header-inner" style="height: 80vh;">
+<div class="header-inner" style="height: 100vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -230,7 +230,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="标签 - 科幻"></span>
+            <span id="subtitle" data-typed-text="互联网远离审查制度的一隅，匿名万岁！"></span>
           
         </div>
 
@@ -254,36 +254,75 @@
     
       <div class="container nopadding-x-md">
         <div id="board"
-          >
+          style="margin-top: 0">
           
           <div class="container">
             <div class="row">
               <div class="col-12 col-md-10 m-auto">
                 
 
-<div class="list-group">
-  <p class="h4">共计 2 篇文章</p>
-  <hr>
-  
-  
+
+  <div class="row mx-auto index-card">
     
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/03/11/hello-world/" target="_self">
+          Hello World
+        </a>
+      </h1>
+
       
-      <p class="h5">2022</p>
-    
-    <a href="/2022/06/19/ReprintedNovel01/" class="list-group-item list-group-item-action">
-      <time>06-19</time>
-      <div class="list-group-item-title">【转载】她的爱已烧录进了电路板</div>
-    </a>
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/03/11/hello-world/" target="_self">
+        <div>
+          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-11 21:36" pubdate>
+              2022-03-11
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
   
     
-    <a href="/2022/03/23/TheLottery/" class="list-group-item list-group-item-action">
-      <time>03-23</time>
-      <div class="list-group-item-title">彩票</div>
-    </a>
+      <span class="category-chain">
+        
+  <a href="/categories/Hello-World/" class="category-chain-item">Hello World</a>
   
-</div>
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
 
 
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </span>
+  </nav>
 
 
 
@@ -375,7 +414,37 @@
       }
       var text = subtitle.getAttribute('data-typed-text');
       
-        typing(text);
+        jQuery.ajax({
+          type: 'GET',
+          url: 'https://v1.hitokoto.cn/',
+          headers: {},
+          dataType: 'json',
+          success: function(result) {
+            var apiText;
+            if (result) {
+              var keys = 'hitokoto'.split(',');
+              if (result instanceof Array) {
+                result = result[0];
+              }
+              for (const k of keys) {
+                var value = result[k];
+                if (typeof value === 'string') {
+                  apiText = value;
+                  break;
+                } else if (value instanceof Object) {
+                  result = value;
+                }
+              }
+            }
+            apiText ? typing(apiText) : typing(text);
+          },
+          error: function(xhr, status, error) {
+            if (error) {
+              console.error('Failed to request https://v1.hitokoto.cn/:', error);
+            }
+            typing(text);
+          }
+        })
       
     })(window, document);
   </script>

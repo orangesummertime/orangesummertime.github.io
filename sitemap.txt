@@ -1,6 +1,7 @@
+https://orangesummertime.github.io/bulletin/index.html
+https://orangesummertime.github.io/2022/03/23/TheLottery/
 https://orangesummertime.github.io/friends/index.html
 https://orangesummertime.github.io/links/index.html
-https://orangesummertime.github.io/bulletin/index.html
 https://orangesummertime.github.io/2022/03/14/blog1/
 https://orangesummertime.github.io/about/index.html
 https://orangesummertime.github.io/comments/index.html
@@ -15,7 +16,6 @@ https://orangesummertime.github.io/2022/05/21/test2/
 https://orangesummertime.github.io/tags/index.html
 https://orangesummertime.github.io/2022/04/08/OldTimeMemo/
 https://orangesummertime.github.io/2022/03/11/hello-world/
-https://orangesummertime.github.io/2022/03/23/TheLottery/
 https://orangesummertime.github.io/2022/03/11/New-one/
 https://orangesummertime.github.io/2022/03/19/%E5%8D%81%E4%B9%9D%E5%B2%81%E7%94%9F%E6%97%A5%E7%BA%AA%E5%BF%B5/
 https://orangesummertime.github.io/2022/03/15/CommentTest/

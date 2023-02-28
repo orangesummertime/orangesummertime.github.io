@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://orangesummertime.github.io/friends/index.html</loc>
+    
+    <lastmod>2023-02-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://orangesummertime.github.io/links/index.html</loc>
+    
+    <lastmod>2023-02-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://orangesummertime.github.io/bulletin/index.html</loc>
     
     <lastmod>2023-02-28</lastmod>
@@ -176,15 +194,6 @@
     <loc>https://orangesummertime.github.io/about/index0.html</loc>
     
     <lastmod>2022-03-15</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://orangesummertime.github.io/friends/index.html</loc>
-    
-    <lastmod>2022-03-13</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

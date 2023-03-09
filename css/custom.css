@@ -1,7 +1,10 @@
-<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script>.tocbot-active-link {
+<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script>a {
 	color: #de3030;
 }
 
+.icon-love{
+	color:red;
+}
 /*封面图片动画*/
 .index-img {
   transition: .4s;           /*动画时间*/
@@ -9,3 +12,18 @@
 .index-card:hover .index-img {
   transform: scale(1.05);    /*放大倍数*/
 }
+/* 萌icp变色 */
+#mengicp{
+  color:palevioletred;
+}
+/*.navbar-brand{
+  color:orange;
+}*/
+
+#subtitle{
+  font-style: italic;
+}
+/*.index-header{
+  font-family: 宋体, sans-serif;
+  font-weight: 700;
+}*/

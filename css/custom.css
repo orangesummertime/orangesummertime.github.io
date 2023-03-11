@@ -37,3 +37,15 @@
   src: url('../fonts/noto-serif-sc-v22-chinese-simplified-regular.woff2') format('woff2'), /* Chrome 36+, Opera 23+, Firefox 39+ */
        url('../fonts/noto-serif-sc-v22-chinese-simplified-regular.woff') format('woff'); /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
+*{
+  font-family: 'Noto Serif SC', Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+p{
+  font-family: 'Noto Serif SC', Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+span{
+  font-family: 'Noto Serif SC', Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+div{
+  font-family: 'Noto Serif SC', Arial, "Helvetica Neue", Helvetica, sans-serif;
+}

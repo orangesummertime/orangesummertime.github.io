@@ -49,3 +49,100 @@ span{
 div{
   font-family: 'Noto Serif SC', Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
+body, header, div.mask.flex-center, div.scroll-down-bar, #banner.banner, h1,h2,h3,h4,h5,h6 {
+  cursor: url(https://typora-gilgamesh.oss-cn-shanghai.aliyuncs.com/img1/a11.cur), auto;
+}
+
+/* 自定义鼠标风格 */
+a:hover, button:hover, i:hover {
+  cursor: url(https://typora-gilgamesh.oss-cn-shanghai.aliyuncs.com/img1/a22.cur), auto;
+}
+
+#rightside>div>button,
+#rightside>div>a {
+  display: block;
+  margin-bottom: 2px;
+  width: 30px;
+  height: 30px;
+  color: var(--btn-color);
+  text-align: center;
+  font-size: 16px;
+  cursor: url(https://typora-gilgamesh.oss-cn-shanghai.aliyuncs.com/img1/a22.cur), auto;
+}
+
+/* 文章标签 */
+.layout_post .tag_share .post-meta__tags {
+  cursor: url(https://typora-gilgamesh.oss-cn-shanghai.aliyuncs.com/img1/a22.cur), auto;
+}
+/* 评论区 */
+.vcol * {
+  cursor: url(https://typora-gilgamesh.oss-cn-shanghai.aliyuncs.com/img1/a22.cur), auto;
+}
+.v[data-class=v] .vicon {
+  cursor: url(https://typora-gilgamesh.oss-cn-shanghai.aliyuncs.com/img1/a22.cur), auto;
+}
+.v[data-class=v] .vbtn {
+  cursor: url(https://typora-gilgamesh.oss-cn-shanghai.aliyuncs.com/img1/a22.cur), auto;
+}
+/* 回复 */
+.vat {
+  cursor: url(https://typora-gilgamesh.oss-cn-shanghai.aliyuncs.com/img1/a22.cur), auto;
+}
+/*分页器*/
+#pagination .page-number:hover {
+  cursor: url(https://typora-gilgamesh.oss-cn-shanghai.aliyuncs.com/img1/a22.cur), auto;
+}
+/* 分页器的三个点(...) */
+.space {
+  color: #00c4b6;
+}
+
+
+/* 段首缩进 */
+p {
+  text-indent: 2em; /*首行缩进*/
+}
+li > p {
+  text-indent: 0; /*防止列表也被缩进*/
+}
+
+
+/* 修改目录样式 */
+.tocbot-active-link {
+  font-weight: bold;
+  /*color var(--link-hover-color)*/
+  color: #800000;
+  background: #FA807233;
+  border-radius: 5px;
+}
+.toc-list-item::before {
+  background: #800000;
+}
+
+
+/* Mac风格代码块 */
+figure.highlight { /* 控制代码框顶栏颜色、宽度、圆角等 */
+  /*
+  background: #21252b;
+  background: rgb(246,248,250);
+  */
+  background: rgb(246,248,250);
+  border-radius: 8px;
+  box-shadow: 1px 2px 22px 1px rgba(0, 0, 0, .3);
+  padding-top: 25px;
+  z-index:998;
+}
+
+figure.highlight::before { /* 绘制三个小圆点 */
+  background: #fc625d;
+  border-radius: 50%;
+  box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
+  content: ' ';
+  height: 12px;
+  left: 12px;
+  margin-top: -15px;
+  position: absolute;
+  width: 12px;
+  z-index:999;
+}
+

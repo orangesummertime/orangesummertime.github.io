@@ -1,0 +1,65 @@
+::-webkit-scrollbar {
+  width: 10px;
+  height: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #a6a6a6;
+  border-radius: 1rem;
+  min-height: 60px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #757575;
+}
+::-webkit-scrollbar-thumb:active {
+  background-color: #424242;
+}
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+[data-user-color-scheme='dark'] ::-webkit-scrollbar-thumb {
+  background-color: #687582;
+}
+[data-user-color-scheme='dark'] ::-webkit-scrollbar-thumb:hover {
+  background-color: #9da8b3;
+}
+[data-user-color-scheme='dark'] ::-webkit-scrollbar-thumb:active {
+  background-color: #c5d0db;
+}
+figure.highlight {
+  position: relative;
+}
+figure.highlight table {
+  border: 0;
+  margin: 0;
+  margin-top: -0.4em;
+  width: auto;
+  border-radius: 8px;
+  background-color: #f6f8fa;
+}
+td.gutter {
+  display: table-cell;
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+:not(.hljs) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  background-color: #f6f8fa;
+}
+pre {
+  text-align: right;
+  overflow-x: none;
+  overflow-y: none;
+  padding: 0 0.75rem;
+  line-height: 1.45;
+  background-color: inherit;
+  border-radius: initial;
+  border-right: 1px solid #999;
+}
+td.code > pre {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-style: 3px solid #f6f8fa;
+  background-color: #f6f8fa;
+}

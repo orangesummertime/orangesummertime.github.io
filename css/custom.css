@@ -98,15 +98,6 @@ a:hover, button:hover, i:hover {
 }
 
 
-/* 段首缩进 */
-p {
-  text-indent: 2em; /*首行缩进*/
-}
-li > p {
-  text-indent: 0; /*防止列表也被缩进*/
-}
-
-
 /* 修改目录样式 */
 .tocbot-active-link {
   font-weight: bold;

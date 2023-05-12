@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理员主页</title>
+</head>
+
+
+<script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4.6.1/dist/av-min.js"></script>
+<script src="initialize.js"></script>
+<script>
+
+var userObjectId;
+    function updateObjectId(){
+        const queryString = window.location.search;
+        const urlParas=new URLSearchParams(queryString);
+        const objid=urlParas.get('user');
+        userObjectId=objid;
+        console.log(objid);
+    }
+
+    window.onload = () => {
+            updateObjectId();
+        }
+
+
+    var searchedID;
+    // 利用用户id修改用户信息
+    function setInfo(user_id, user_name, user_password, user_department, user_type) {
+        const userQuery = new AV.Query("Account");
+        userQuery.equalTo("userId", user_id);
+        userQuery.find().then((usersGet) => {
+            if (usersGet.length == 0) {
+                // 用户id输错的情况
+                console.log("用户不存在");
+            } else {
+                // 找到用户
+                console.log("找到用户.");
+                userGet = usersGet[0]
+
+                // 重置信息
+                const userUpdate = AV.Object.createWithoutData("Account", userGet.get('objectId'));
+                if(user_password.length>0)
+                userUpdate.set("userPassword", user_password);
+                if(user_name.length>0)
+                userUpdate.set("userName", user_name);
+                if(user_department.length>0)
+                userUpdate.set("userDepartment", user_department);
+                if(user_type.length>0)
+                userUpdate.set("userType", user_type);
+                userUpdate.save().then(() => {
+                    console.log("修改成功.");
+                });
+            }
+        });
+    }
+
+    //11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+    function getInfo(user_id) {//获取并更新用户信息
+        const userQuery = new AV.Query("Account");
+        userQuery.equalTo("userId", user_id);
+        userQuery.find().then((usersGet) => {
+            if (usersGet.length === 0) {
+                // 用户id输错的情况
+                console.log("用户不存在");
+            } else {
+                // 找到用户
+                searchedID=user_id;
+                console.log("找到用户.");
+                const user = usersGet[0];
+
+                // 将获取到的值填入页面各个 div 中
+                document.getElementById("searchName").innerText = user.get("userName");
+                document.getElementById("searchDepartment").innerText = user.get(
+                    "userDepartment"
+                );
+                document.getElementById("searchType").innerText = user.get("userType");
+                if(user.get("userType")==0)
+                document.getElementById("searchType").innerText = '用户';
+                else if (user.get("userType")==1)
+                document.getElementById("searchType").innerText = '管理员';
+      
+
+            }
+        });
+    }
+
+    //11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+
+    function goSetInfo(){
+        var name=document.getElementById('setName').value;
+        var pw=document.getElementById('setPw').value;
+        var dep=document.getElementById('setDep').value;
+        var type=parseInt(document.getElementById('setType').value);
+        setInfo(searchedID,name,pw,dep,type);
+        console.log('修改个人信息');
+    }
+
+
+    function releaseBulletin() {
+
+    }
+
+    function searchById(Id) {
+        getInfo(Id);
+    }
+
+    function showManageModule() {
+        console.log('0');
+        var a = document.getElementsByClassName("module");
+        for (let i = 0; i < a.length; i++) {
+            a[i].style.display = "none";
+            console.log('1');
+        }
+        document.getElementById("manageModule").style.display = "block";
+        console.log('2');
+    }
+
+</script>
+<style>
+    h1 {
+        font-family: '楷体';
+    }
+
+    #mainWindow {
+        margin: 0 auto;
+        background-color: azure;
+
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .module {
+        background-color: azure;
+        height: 700px;
+        font-family: '楷体';
+        padding: 2%;
+        float: left;
+        display: none;
+        width: 100%;
+        /* width: 600px; */
+    }
+    span{
+        font-size: 30px;
+    }
+    button{
+        font-size: 20px;
+    }
+</style>
+
+<body>
+    <div id="mainWindow">
+        <h1 align="center" id="title">
+            <b>SeatZen</b>图书馆自习室座位预约系统(管理端)
+        </h1>
+        <br>
+        <nav>
+            <a href="#"> <img src="icons/logout.png" alt="" width="16px"> 用户登出</a>
+            <a href="javascript:showManageModule()"><img src="icons/apps.png" alt="" width="16px">管理操作</a>
+            <!-- <a href="#"><img src="icons/stats.png" alt="" width="16px">信息统计</a> -->
+            <!-- <a href="#"><img src="icons/system.png" alt="" width="16px">系统管理</a> -->
+            <a href="javascript:releaseBulletin"><img src="./icons/bulletin.png" width="16px">发布公告</a>
+            <a href="#"><img src="icons/help.png" alt="" width="16px">帮助</a>
+        </nav>
+        <br>
+        <hr>
+        <div class="module" id="manageModule">
+            <span>按ID搜索用户：</span><input type="text" id="inputId"><button
+                onclick="javascript:searchById(document.getElementById('inputId').value)">搜索</button>
+            <br>
+            <span>搜索结果：</span>
+            <br>
+            <span>姓名：</span><span id="searchName"></span>
+            <br>
+            <span>部门：</span><span id="searchDepartment"></span>
+            <br>
+            <span>类型：</span><span id="searchType"></span>
+            <br>
+            <button>设为/取消管理员</button>
+            <button>查看/修改其预约信息</button>
+            <br>
+            <span>修改其个人信息：</span>
+            <br>
+            <span>姓名修改为：</span>
+            <input type="text" id="setName">
+            <br>
+            <span>密码修改为：</span>
+            <input type="text" id="setPw">
+            <br>
+            <span>所属部门修改为：</span>
+            <input type="text" id="setDep">
+            <br>
+            <span>类型修改为：</span>
+            <select name="" id="setType">
+                <option value="0">学生</option>
+                <option value="1">管理员</option>
+            </select>
+            <br>
+            <button onclick="javascript:goSetInfo()">修改个人信息</button>
+
+        </div>
+
+
+    </div>
+</body>
+
+</html>

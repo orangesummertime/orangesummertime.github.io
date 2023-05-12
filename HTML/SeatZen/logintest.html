@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录页</title>
+    <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4.6.1/dist/av-min.js"></script>
+<script>
+    const { Query, User } = AV;
+    AV.init({
+        appId: "Wbd8KGCPsnTmychbXwSTxriI-gzGzoHsz",
+        appKey: "sMEYJaBGyoNbsfa6L5XGGECJ",
+        serverURL: "https://wbd8kgcp.lc-cn-n1-shared.com"
+    });
+    function goLogin(){
+        var id=document.getElementById("username").value;
+        var pw=document.getElementById("password").value;
+        login(id,pw);
+    }
+    function login(user_id, user_password) {
+        console.log("id"+user_id + "\npw:"+user_password);
+        const userQuery = new AV.Query("Account");
+        userQuery.equalTo("userId", user_id);
+        userQuery.find().then((usersGet) => {
+            if (usersGet==undefined || usersGet.length == 0) {
+                // 用户id输错的情况
+                console.log("用户不存在");
+                alert("用户不存在！");
+            } else {
+                console.log(usersGet.length);
+                if (usersGet[0].get("userPassword") != user_password) {
+                    // 用户密码输入错误的情况
+                    console.log("密码错误");
+                } else {
+                    // 用户id和密码一致的情况
+                    console.log("登录成功");
+
+                    // 登陆成功应该执行的代码
+                    location.assign("./MainPage_Student.html")
+                }
+            }
+        });
+    }
+    $(document).ready(function () {
+    $("input").keydown(function (event) {
+        if (event.keyCode == 13) {
+            //这里写事件，例如写个 a();
+            goLogin();
+        }
+    });
+});
+</script>
+</head>
+<!--  -->
+<style>
+    #loginWindow {
+        text-align: center;
+        background-color: azure;
+        border-radius: 20px;
+        width: 600px;
+        height: 350px;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        font-family: '楷体';
+        font-size: 20px;
+    }
+
+    #loginTitle {
+        font-family: '楷体';
+    }
+
+    #forget {
+        font-size: 16px;
+    }
+
+    a {
+        text-decoration: none;
+    }
+    #loginWindow span {
+        display: inline-block;
+        width: 150px;
+        text-align: center;
+    }
+
+    #loginWindow input {
+        width: 200px;
+    }
+
+</style>
+
+<body>
+    <div id="loginWindow">
+        <h1 id="loginTitle" align="center">
+            登录SeatZen
+        </h1>
+        <div>
+            <span>用户名</span>
+            <input type="text" placeholder="用户名" id="username">
+
+        </div>
+        <br>
+        <br>
+        <div> 
+            <span>密 码</span>
+            <input type="password" name="" id="password" placeholder="密码">
+        </div>
+        <br>
+        <br>
+        <a href="./ForgetPage.html" id="forget">忘记密码？</a>
+        <br>
+        <br>
+        <button type="submit" id="loginButton" onclick="goLogin()">登录</button>
+        <button type="submit" id="regButton" onclick="turnToRegister()">教职工注册</button>
+
+    </div>
+</body>
+
+
+</html>

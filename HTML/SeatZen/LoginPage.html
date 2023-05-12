@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录页 - SeatZen</title>
+    <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4.6.1/dist/av-min.js"></script>
+    <script src="./login.js"></script>
+<script>
+
+    function turnToRegister(){
+        window.open('./RegPage.html',self);
+    }
+
+</script>
+</head>
+<style>
+body {
+    background-image: url("./src/backgrounds/bgc002.jpg");
+    background-size: cover;
+}
+
+    #loginWindow {
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 0 15px 30px rgba(0,0,0,0.5);
+
+        border-radius: 20px;
+        width: 400px;
+        height: 300px;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        font-family: '楷体';
+        font-size: 20px;
+    }
+
+    #loginTitle {
+        font-family: '楷体';
+        font-size: 35px;
+        padding-top: 10px;
+    }
+
+    #forget {
+        font-size: 16px;
+    }
+
+    a {
+        text-decoration: none;
+    }
+    #loginWindow span {
+        display: inline-block;
+        width: 100px;
+        text-align: center;
+    }
+
+    #loginWindow input {
+        width: 200px;
+        height: 30px;
+
+        border-radius: 5px;
+        text-indent: 5px;
+        border: 1px solid #000;
+        font-size: 16px;
+
+        letter-spacing: 1px;
+        font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+    }
+
+    /* 修改按键部分 */
+    .loginBtn {
+        font-size: 20px;
+        text-align: center;
+
+        padding: 5px;
+        padding-left: 15px;
+        padding-right: 15px;
+        width: 150px;
+
+        border-radius: 10px;
+        border: 1px solid #aaa;
+        transition: all 300ms ease-in-out;
+    }
+    .loginBtn:hover {
+        cursor: pointer;
+        background-color: rgb(34,138,220);
+        border: 0;
+        color: #fff;
+    }
+
+    /* 忘记密码部分 */
+    .forget_box {
+        padding: 10px;
+    }
+</style>
+
+<body>
+    <div id="loginWindow">
+        <h1 id="loginTitle" align="center">
+            登录
+        </h1>
+        <div class="attributePair">
+            <span>用户名</span>
+            <input type="text" placeholder="用户名" id="username">
+        </div>
+        <br>
+        <div class="attributePair"> 
+            <span>密 码</span>
+            <input type="password" name="" id="password" placeholder="密码">
+        </div>
+        <div class="forget_box">
+            <a href="./ForgetPage.html" id="forget">忘记密码？</a>
+        </div>
+        <div class="btn_box">
+            <button type="submit" class="loginBtn" id="loginButton" onclick="goLogin()">
+                登 录
+            </button>
+            <button type="submit" class="loginBtn" id="regButton" onclick="turnToRegister()">
+                管理员注册
+            </button>    
+        </div>
+    </div>
+</body>
+
+
+</html>

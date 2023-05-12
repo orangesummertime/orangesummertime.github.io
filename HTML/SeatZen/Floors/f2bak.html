@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选座系统</title>
+    <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4.6.1/dist/av-min.js"></script>
+    <script>
+        const { Query, User } = AV;
+        AV.init({
+            appId: "Wbd8KGCPsnTmychbXwSTxriI-gzGzoHsz",
+            appKey: "sMEYJaBGyoNbsfa6L5XGGECJ",
+            serverURL: "https://wbd8kgcp.lc-cn-n1-shared.com"
+        });
+
+        var userObjectId;
+        var selectedFloorId;
+
+        function updateTitle() {
+            const queryString = window.location.search;
+            const urlParas = new URLSearchParams(queryString);
+            const fId = Number(urlParas.get('floorId'));
+            console.log('楼层编号', fId);
+            if (fId == 0)
+                document.getElementById('titleText').innerText = '图书馆二楼选座';
+            else if (fId == 1)
+                document.getElementById('titleText').innerText = '图书馆三楼选座';
+            else if (fId == 2)
+                document.getElementById('titleText').innerText = '图书馆四楼选座';
+            else if (fId == 3)
+                document.getElementById('titleText').innerText = '图书馆五楼选座';
+            else
+                document.getElementById('titleText').innerText = '异世界选座';
+            console.log('已定位');
+
+        }
+
+        function updateObjectId() {
+            const queryString = window.location.search;
+            const urlParas = new URLSearchParams(queryString);
+            const objid = urlParas.get('userObjectId');
+            userObjectId = objid;
+            console.log(objid);
+        }
+
+        function updateFloorId() {
+            const queryString = window.location.search;
+            const urlParas = new URLSearchParams(queryString);
+            const fid = urlParas.get('floorId');
+            selectedFloorId = Number(fid);
+            console.log(fid);
+
+        }
+
+        var date_selected = new Date();
+
+        // 初始化座位
+        function initSeats() {
+            var person_objectid = userObjectId;
+            if (document.getElementById('dateSelection').value == '') {
+                alert("请输入日期。");
+                return;
+            }
+            date_selected = new Date(
+                document.getElementById('dateSelection').value + ' ' +
+                document.getElementById('durationSelection').value);
+
+            getReservations(person_objectid, date_selected, selectedFloorId, generateTables);
+        }
+
+        // 获取预定座位信息
+        function getReservations(person_objectid, reservation_date, reservation_building, seats_init_function) {
+            const dateQuery = new AV.Query("Reservation");
+            // new Date("2016-12-03 00:00:00")
+            dateQuery.equalTo("reservationDate", reservation_date);
+
+            const addressQuery = new AV.Query("Reservation");
+            addressQuery.equalTo("seatBuilding", reservation_building);
+
+            const reservationQuery = AV.Query.and(dateQuery, addressQuery);
+
+            reservationQuery.find().then((reservationsGet) => {
+                if (reservationsGet.length == 0) {
+                    // 还未有人预定的情况
+                    console.log("创建预定表.");
+                    // 
+                    // 声明 class
+                    const reservationClass = AV.Object.extend("Reservation");
+
+                    // 构建对象
+                    const reservationList = new reservationClass();
+
+                    // 为属性赋值
+                    reservationList.set("reservationDate", reservation_date);
+                    reservationList.set("seatBuilding", reservation_building);
+                    reservationList.set("roomShape", [10, 4]);
+
+                    // 将对象保存到云端
+                    reservationList.save().then(
+                        (list_to_save) => {
+                            // 成功保存之后，执行其他逻辑
+                            console.log(`保存成功。objectId：${list_to_save.id}`);
+
+                            // 进行随后的操作
+                            room_shape = list_to_save.get('roomShape'); // 房间的形状
+                            seat_reserved = [] // 已经预定了的座位
+                            my_reservation = null;
+                            seats_init_function(room_shape, seat_reserved, my_reservation);
+                        },
+                        (error) => {
+                            // 异常处理
+                            console.log("出现异常.", error);
+                        }
+                    );
+                } else {
+                    // 找到预定表
+                    console.log("找到预定表.");
+                    reservationGet = reservationsGet[0];
+
+                    // 获取信息
+                    var room_shape = reservationGet.get("roomShape");
+                    var seat_reserved_history = reservationGet.get('seatsReservedPosition');
+                    var seat_empty = reservationGet.get('seatOff');
+                    var seats_person_reserved = reservationGet.get("seatReservedPerson");
+                    var seat_reserved = []
+                    var my_reservation = null;
+                    for (let i = 0; i < seat_reserved_history.length; i++) {
+                        if (!seat_empty[i]) {
+                            // console.log("person_id: ", seats_person_reserved[i]);
+                            if (seats_person_reserved[i] == person_objectid) {
+                                my_reservation = seat_reserved_history[i];
+                            } else seat_reserved.push(seat_reserved_history[i]);
+                        }
+                    }
+
+                    console.log("my_reservation ", my_reservation);
+                    // 接下来的操作
+                    seats_init_function(room_shape, seat_reserved, my_reservation);
+                }
+            });
+        }
+
+        // 预定座位
+        // reservation_date 8：30上午场 13:00下午场 18:00夜间场
+        function reserveSeat(person_objectid, reservation_date, reservation_building, seat_position) {
+            const dateQuery = new AV.Query("Reservation");
+            // new Date("2016-12-03 00:00:00")
+            dateQuery.equalTo("reservationDate", reservation_date);
+
+            const addressQuery = new AV.Query("Reservation");
+            addressQuery.equalTo("seatBuilding", Number(reservation_building));
+
+            const reservationQuery = AV.Query.and(dateQuery, addressQuery);
+
+            reservationQuery.find().then((reservationsGet) => {
+                console.log("reser_building:", reservation_building);
+                console.log("find_", reservationsGet.length);
+                reservationGet = reservationsGet[0];
+
+                var seat_off_array = reservationGet.get("seatOff");
+                var seats_position = reservationGet.get("seatsReservedPosition");
+                var seats_checked = reservationGet.get("seatChecked");
+                var seats_reserved_date = reservationGet.get("seatsReservedDate");
+                var seats_person_reserved = reservationGet.get("seatReservedPerson");
+
+                // 检查是否要删除原有选择
+                if (seats_person_reserved.indexOf(person_objectid)) {
+                    array_idx = seats_person_reserved.indexOf(person_objectid);
+                    for (let i = seats_person_reserved.length - 1; i >= 0; i--) {
+                        if (seats_person_reserved[i] == person_objectid &&
+                            !seat_off_array[i]) {
+                            array_idx = i;
+                            seat_off_array.splice(array_idx, 1);
+                            seats_position.splice(array_idx, 1);
+                            seats_checked.splice(array_idx, 1);
+                            seats_reserved_date.splice(array_idx, 1)
+                            seats_person_reserved.splice(array_idx, 1);
+                        }
+                    }
+
+                }
+                // 检查是要删除还是预定
+                if (seat_position != null) {
+                    seat_off_array.push(false);
+                    seats_position.push(seat_position);
+                    seats_checked.push(false);
+
+                    var now_date = new Date();
+                    if (now_date < reservation_date) now_date = reservation_date;
+                    seats_reserved_date.push(reservation_date);
+
+                    seats_person_reserved.push(person_objectid);
+                }
+
+
+                const reservation_to_update = AV.Object.createWithoutData("Reservation", reservationGet.get('objectId'));
+                reservation_to_update.set("seatOff", seat_off_array);
+                reservation_to_update.set("seatsReservedPosition", seats_position);
+                reservation_to_update.set("seatChecked", seats_checked);
+                reservation_to_update.set("seatsReservedDate", seats_reserved_date);
+                reservation_to_update.set("seatReservedPerson", seats_person_reserved);
+                reservation_to_update.save().then(() => {
+                    console.log('预定成功.');
+                }, (error) => {
+                    // 异常处理
+                    console.log("出现异常.", error);
+                });
+            });
+        }
+
+
+        var posArray;
+        function updatePosArray() {
+            var posNum;
+            if (seatpos == 'upper')
+                posNum = 0;
+            else
+                posNum = 1;
+            posArray = '[' + String(selectedseat)[1] + ',' + String(selectedseat)[3] + ',' + posNum + ']';
+            console.log('seatx:' + String(selectedseat)[1]);
+            console.log('seaty:' + String(selectedseat)[3]);
+            console.log(posArray);
+
+        }
+        function goReserveSeat() {
+            // var s;
+            // var d = document.getElementById('dateSelection').value;
+            // console.log('d:' + d);
+            // s = selectedseat;
+            // console.log("date_:", date_selected);
+            console.log("selectedFloorId:", selectedFloorId);
+            reserveSeat(userObjectId, date_selected, selectedFloorId, posArray);
+            window.confirm('预定成功！');
+
+        }
+
+
+        var objectid;
+
+        function turnBack() {
+            window.history.back(-1);
+        }
+
+        function generateTables(room_shape, seat_reserved, my_reservation) {
+
+            var row = room_shape[0];
+            var column = room_shape[1];
+            console.log("roomshape: ", room_shape);
+            var roomid
+            for (let i = 0; i < row; i++) {
+                var rowTables = document.createElement("div");
+                rowTables.classList.add("rowTables");
+                for (let j = 0; j < column; j++) {
+                    var table = document.createElement("div");
+                    table.classList.add("table");
+                    table.innerHTML = '<span class="tableHalf available' + ' upper' + '" onclick="select(this)">Available</span><br><span class="tableHalf available' + ' lower' + '" onclick="select(this)">Avalaible</span>';
+                    table.setAttribute("id", '(' + i + ',' + j + ')');
+                    console.log(table.getAttribute("id"));
+                    rowTables.appendChild(table);
+                }
+                document.getElementById('room1').appendChild(rowTables);
+            }
+
+            var half_tables = document.getElementsByClassName("tableHalf");
+            for (let i = 0; i < half_tables.length; i++) {
+                half_tables[i].setAttribute("title", "编号：" + i);
+            }
+
+            // 导入预定了的座位
+            for (let i = 0; i < seat_reserved.length; i++) {
+                half_tables[seat_reserved[i]].classList.remove("available");
+                half_tables[seat_reserved[i]].classList.add("unavailable");
+            }
+
+            if (my_reservation != null) {
+                half_tables[my_reservation].classList.add("selected");
+                posArray = my_reservation;
+            }
+
+            // 关闭窗口
+            document.getElementById('dateChooseDialog').style.display = 'none';
+
+        }
+
+        // 测试选座功能
+        function select(selectedSeat) {
+            var seats = document.querySelectorAll('.tableHalf');
+            for (var j = 0; j < seats.length; j++) {
+                seats[j].classList.remove('selected');
+            }
+            selectedSeat.classList.add('selected');
+
+            posArray = parseInt(selectedSeat.getAttribute("title").substring(3));
+            console.log("posArray: ", posArray);
+            // renewSelectedSeat(selectedSeat.parentNode.getAttribute('id'), selectedSeat.classList[2]);
+        }
+
+        var selectedseat;
+        var seatpos;
+
+        // function renewSelectedSeat(selectedSeatId, pos) {
+        //     document.getElementById('seatInfo').innerHTML = 'Selected Seat:' + selectedSeatId + pos;
+        //     selectedseat = selectedSeatId;
+        //     seatpos = pos;
+        //     console.log('selected:' + selectedseat + seatpos);
+        //     updatePosArray()
+        // }
+
+
+
+        function submitSeatAndTime() {
+            document.getElementById('dateSelection').value;
+        }
+        //测试结束
+
+
+        window.onload = () => {
+            updateObjectId();
+            updateFloorId();
+            updateTitle();
+
+        }
+    </script>
+</head>
+
+<style>
+    h1 {
+        font-family: '楷体';
+    }
+
+    * {
+        font-family: 'Courier New', Courier, monospace;
+    }
+
+    div,
+    span,
+    button,
+    select,
+    input {
+        font-family: '楷体';
+    }
+
+    #preserveWindow {
+        display: block;
+        text-align: center;
+        position: relative;
+
+        height: 100%;
+    }
+
+    .address {
+        padding: 50px;
+        margin: 0;
+    }
+
+    .rowTables {
+        padding: 10px;
+    }
+
+
+    .table {
+        background-color: wheat;
+        display: inline-block;
+        height: 150px;
+        width: 220px;
+
+        text-align: center;
+        font-size: 25px;
+        display: inline-block;
+        border-radius: 5px;
+
+        margin: 20px;
+    }
+
+    .tableHalf {
+        border: 1px solid brown;
+        display: inline-block;
+        padding: 10px;
+        width: 160px;
+        margin: 10px;
+        height: 30px;
+        border-radius: 5px;
+    }
+
+    .tableHalf:hover {
+        cursor: pointer;
+        filter: brightness(0.8);
+    }
+
+    .available {
+        background-color: rgb(96, 171, 96);
+    }
+
+    .unavailable {
+        background-color: rgb(182, 33, 33);
+        color: white;
+
+    }
+
+    .selected {
+        background-color: rgb(95, 95, 255);
+    }
+</style>
+
+<body>
+    <div id="preserveWindow">
+        <h1 class="address" id="titleText">少女祈祷中……</h1>
+        <div class="" id="room1">
+
+        </div>
+
+        <button onclick="goReserveSeat()">提交预约</button>
+
+        <div id="seatInfo">
+
+        </div>
+        <br><br>
+    </div>
+
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+
+            margin: 0;
+        }
+
+        .window_block {
+            width: 100%;
+            height: 100%;
+
+            background-color: rgba(255, 255, 255, 0.6);
+            display: block;
+
+            position: absolute;
+            top: 0;
+            left: 0;
+            text-align: center;
+        }
+
+        .window_dialog {
+            width: 300px;
+            height: 300px;
+
+            text-align: center;
+            margin: auto;
+            margin-top: 15%;
+
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 键值对修改 */
+        .window_block .attributePair {
+            width: 200px;
+            margin-left: auto;
+            margin-right: auto;
+
+        }
+        .window_block .attributePair .attributeKey {
+            width: 100%;
+            font-size: 18px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+        }
+        .window_block .attributePair .attributeVal {
+            width: 100%;
+            height: 25px;
+            font-size: 20px;
+
+            text-decoration: none;
+        }
+    </style>
+    <div class="window_block" id="dateChooseDialog">
+        <div class="window_dialog">
+            <br><br>
+            <h1>时间</h1>
+
+            <div class="attributePair">
+                <div class="attributeKey">选择时间</div>
+                <input type="date" name="" id="dateSelection" class="attributeVal">
+            </div>
+            <div class="attributePair">
+                <div class="attributeKey">选择场次</div>
+                <select name="duration" id="durationSelection" class="attributeVal">
+                    <option value="08:00">上午场(8:30AM-12:30PM)</option>
+                    <option value="13:00">下午(1:30PM-6:30PM)</option>
+                    <option value="18:00">晚上(7:00PM-10:30PM)</option>
+                </select>
+            </div>
+            <br>
+            <button onclick="initSeats()">进入</button>
+        </div>
+    </div>
+</body>
+<script>
+    //自动填充今天的日期
+    const today = new Date().toISOString().substr(0, 10); // 获取当天日期并转换为 ISO 格式
+    document.getElementById("dateSelection").value = today; // 设置日期选择框的值
+</script>
+
+</html>

@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Title</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h1>Heeeeeeellllllo, World</h1>
+  </body>
+<script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4.6.1/dist/av-min.js"></script>
+<script>
+const { Query, User } = AV;
+AV.init({
+    appId: "Wbd8KGCPsnTmychbXwSTxriI-gzGzoHsz",
+    appKey: "sMEYJaBGyoNbsfa6L5XGGECJ",
+    serverURL: "https://wbd8kgcp.lc-cn-n1-shared.com"
+});
+
+//1段放在选座页面
+//1111111111111111111111111111111111111111111111111111
+var userObjectId;
+var selectedFloorId;
+var time= new Date();
+var loc = new Array();
+var floor;
+var sid;
+var userObjectId;
+    function updateObjectId(){
+        const queryString = window.location.search;
+        const urlParas=new URLSearchParams(queryString);
+        const objid=urlParas.get('user');
+        userObjectId=objid;
+        console.log(objid);
+    }
+    function updateLocation(){
+      //在选座时执行
+      //TODO, floorId and seatId
+      floor=0;
+      sid=0;
+      loc[0]=floor;
+      loc[1]=selectedSeatId;
+    }
+    function updateTime(){
+
+    }
+
+    window.onload = () => {
+            updateObjectId();
+        }
+function updateReservationLake(){
+  const reservationQuery=new AV.Query("reservationLake");
+  reservationQuery.equalTo("userObjectId",userId);
+  reservationQuery.find().then((reservationsGet)=>{
+    if(reservationsGet.length==0){
+      console.log("无记录，创建下一次预订");
+      const reservationLakeClass=AV.Object.extend(reservationLake);
+      const nextReservationLake=new reservationLakeClass();
+      nextReservationLake.set("exactLocation",loc);
+      nextReservationLake.set("exactTime",time);
+      nextReservationLake.set("userId",userObjectId);
+      nextReservationLake.save().then((newestReservation)=>{
+        console.log("location:",newestReservation.get("exactLocation"));
+        console.log("time:",newestReservation.get("exactTime"));
+        console.log("userObjectId:",newestReservation.get("userObjectId"));
+    },(error)=>{
+          console.log("生成下一次预约失败！");
+        })
+    }else//如果已有则更新
+    {
+      reservationsGet[0].set("exactLocation",loc);
+      reservationsGet[0].set("exactTime",loc);
+      reservationsGet[0].save();
+      reservationGet.save((newestReservation)=>{
+        console.log("location:",newestReservation.get("exactLocation"));
+        console.log("time:",newestReservation.get("exactTime"));
+        console.log("userObjectId:",newestReservation.get("userObjectId"));
+        },(error)=>{
+          console.log("更新下一次预约失败！");})
+    }
+  })
+}
+//1111111111111111111111111111111111111111111111111111
+//2段放在学生端主页
+//2222222222222222222222222222222222222222222222222222
+function updateNextReservation(){
+            const queryString = window.location.search;
+            const urlParas = new URLSearchParams(queryString);
+            const oid = urlParas.get('user');
+            console.log(oid);
+        const reservationQuery = new AV.Query("reservationLake");
+        reservationQuery.equalTo("userObjectId", oid);
+        reservationQuery.find().then((reservationGet) => {
+            if (reservationsGet.length == 0) {
+                // 用户id输错的情况
+                console.log("用户不存在");
+            } else {
+                // 找到用户
+                console.log("找到用户.");
+                const user = reservationsGet[0];
+
+                // 将获取到的值填入页面各个 div 中
+                document.getElementById("reservedLocation").innerText = user.get("exactLocation");
+                document.getElementById("reservedTime").innerText = user.get("exactTime");      
+
+            }
+        });
+    }
+//2222222222222222222222222222222222222222222222222222
+
+
+</script>
+</html>

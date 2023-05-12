@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册页</title>
+</head>
+<style>
+    #regWindow {
+        text-align: center;
+        background-color: azure;
+        border-radius: 20px;
+        width: 600px;
+        height: 400px;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        font-family: '楷体';
+        font-size: 20px;
+    }
+
+    #loginTitle {
+        font-family: '楷体';
+    }
+
+    #forget {
+        font-size: 16px;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    #regWindow span {
+        display: inline-block;
+        width: 150px;
+        text-align: center;
+    }
+
+    #regWindow input {
+        width: 200px;
+    }
+</style>
+
+<body>
+    <div id="regWindow">
+        <h1 id="loginTitle" align="center">
+            注册SeatZen
+        </h1>
+        <span>ID</span>
+        <input type="text" id="ID">
+        <br>
+        <br>
+        <span>姓名</span>
+        <input type="text" id="name">
+        <br>
+        <br>
+        <span>密 码</span>
+        <input type="password" name="" id="password" placeholder="密码">
+        <br>
+        <br>
+        <span>所属部门</span>
+        <select name="" id="department">
+            <option value="网络信息部">网络信息部</option>
+            <option value="图书馆管理部">图书馆</option>
+            <option value="教务处">教务处</option>
+            <option value="党委">党委</option>
+        </select>
+        <br>
+        <br>
+        <span>确认密码</span>
+        <input type="password" name="" id="passwordAgain" placeholder="密码">
+        <br>
+        <br>
+        <button type="submit" id="regButton" onclick="goRegister()">注册</button>
+
+    </div>
+
+
+    
+</body>
+<script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4.6.1/dist/av-min.js"></script>
+<script>
+    
+    const { Query, User } = AV;
+    AV.init({
+        appId: "Wbd8KGCPsnTmychbXwSTxriI-gzGzoHsz",
+        appKey: "sMEYJaBGyoNbsfa6L5XGGECJ",
+        serverURL: "https://wbd8kgcp.lc-cn-n1-shared.com"
+    });
+
+    function goRegister(){
+        var n=document.getElementById('name').value;
+        console.log(n);
+        var id=document.getElementById('ID').value;
+        console.log(id);
+
+        var pw=document.getElementById('password').value;
+        console.log(pw);
+
+        var dep=document.getElementById('department').value;
+        console.log(dep);
+
+        register(id,pw,n,1,dep)
+
+    }
+
+    function register(user_id, user_password, user_name, user_type, user_department) {
+        // 声明 class
+        const userClass = AV.Object.extend("Account");
+
+        // 构建对象
+        const userNew = new userClass();
+
+        // 为属性赋值
+        userNew.set("userName", user_name);
+        userNew.set("userId", user_id);
+        userNew.set("userPassword", user_password);
+        userNew.set("userType", user_type);
+        userNew.set("userDepartment", user_department);
+
+        // 将对象保存到云端
+        userNew.save().then(
+        (userNew) => {
+            // 成功保存之后，执行其他逻辑
+            console.log(`注册成功.objectId：${userNew.id}`);
+        },
+        (error) => {
+            // 异常处理
+            console.log("注册失败.", error);
+        }
+        );
+    }
+
+</script>
+
+</html>

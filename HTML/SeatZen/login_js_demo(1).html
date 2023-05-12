@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ceshi</title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4.6.1/dist/av-min.js"></script>
+<script>
+    const { Query, User } = AV;
+    AV.init({
+        appId: "Wbd8KGCPsnTmychbXwSTxriI-gzGzoHsz",
+        appKey: "sMEYJaBGyoNbsfa6L5XGGECJ",
+        serverURL: "https://wbd8kgcp.lc-cn-n1-shared.com"
+    });
+
+    function login(user_id, user_password) {
+        const userQuery = new AV.Query("Account");
+        userQuery.equalTo("userId", user_id);
+        userQuery.find().then((usersGet) => {
+            if (usersGet.length == 0) {
+                // 用户id输错的情况
+                console.log("用户不存在");
+            } else {
+                if (usersGet[0].get("userPassword") != user_password) {
+                    // 用户密码输入错误的情况
+                    console.log("密码错误");
+                } else {
+                    // 用户id和密码一致的情况
+                    console.log("登录成功");
+
+                    // 登陆成功应该执行的代码
+                    // 检查是否是管理员
+                    var userGet = usersGet[0];
+                    if (userGet.get("userType") == 0) {
+                        // 学生
+                        location.assign("MainPage_Student.html?user=" + userGet.get("objectId"))
+                    } else {
+                        // 管理员
+                        location.assign("MainPage_Admin.html?user=" + userGet.get("objectId"))
+
+                    }
+                    
+                }
+            }
+        });
+    }
+
+    // userType 0学生 1管理员
+    function register(user_id, user_password, user_name, user_type, user_department) {
+        // 声明 class
+        const userClass = AV.Object.extend("Account");
+
+        // 构建对象
+        const userNew = new userClass();
+
+        // 为属性赋值
+        userNew.set("userName", user_name);
+        userNew.set("userId", user_id);
+        userNew.set("userPassword", user_password);
+        userNew.set("userType", user_type);
+
+        // 将对象保存到云端
+        userNew.save().then(
+        (userNew) => {
+            // 成功保存之后，执行其他逻辑
+            console.log(`注册成功.objectId：${todo.id}`);
+        },
+        (error) => {
+            // 异常处理
+            console.log("注册失败.", error);
+        }
+        );
+    }
+
+    // 利用用户id修改用户信息
+    function setInfo(user_id, user_name , user_password, user_department, user_type) {
+        const userQuery = new AV.Query("Account");
+        userQuery.equalTo("userId", user_id);
+        userQuery.find().then((usersGet) => {
+            if (usersGet.length == 0) {
+                // 用户id输错的情况
+                console.log("用户不存在");
+            } else {
+                // 找到用户
+                console.log("找到用户.");
+                userGet = usersGet[0]
+
+                // 重置信息
+                const userUpdate = AV.Object.createWithoutData("Account", userGet.get('objectId'));
+                userUpdate.set("userPassword", user_password);
+                userUpdate.set("userName", user_name);
+                userUpdate.set("userDepartment", user_department);
+                userUpdate.set("userType", user_type);
+                userUpdate.save().then(()=>{
+                    console.log("修改成功.");
+                });
+            }
+        });
+    }
+
+    // 利用id修改密码
+    function resetPassword(user_id, user_password) {
+        const userQuery = new AV.Query("Account");
+        userQuery.equalTo("userId", user_id);
+        userQuery.find().then((usersGet) => {
+            if (usersGet.length == 0) {
+                // 用户id输错的情况
+                console.log("用户不存在");
+            } else {
+                // 找到用户
+                console.log("找到用户.");
+                userGet = usersGet[0]
+
+                // 重置信息
+                const userUpdate = AV.Object.createWithoutData("Account", userGet.get('objectId'));
+                userUpdate.set("userPassword", user_password);
+                userUpdate.save().then(()=>{
+                    console.log("修改成功.");
+                });
+            }
+        });
+    }
+
+    // 获取预定座位信息
+    function getReservations(person_objectid, reservation_date, reservation_building, seats_init_function) {
+        const dateQuery = new AV.Query("Reservation");
+        // new Date("2016-12-03 00:00:00")
+        startDateQuery.equalTo("reservationDate", reservation_date);
+
+        const addressDateQuery = new AV.Query("Reservation");
+        endDateQuery.lessThan("seatBuilding", reservation_building);
+
+        const reservationQuery = AV.Query.and(startDateQuery, endDateQuery);
+
+        reservationQuery.find().then((reservationsGet) => {
+            if (reservationsGet.length == 0) {
+                // 还未有人预定的情况
+                console.log("创建预定表.");
+                // 
+                // 声明 class
+                const reservationClass = AV.Object.extend("Reservation");
+
+                // 构建对象
+                const reservationList = new reservationClass();
+
+                // 为属性赋值
+                reservationList.set("reservationDate", reservation_date);
+                reservationList.set("seatBuilding", reservation_building);
+                reservationList.set("roomShape", [4, 50]);
+
+                // 将对象保存到云端
+                reservationList.save().then(
+                    (list_to_save) => {
+                        // 成功保存之后，执行其他逻辑
+                        console.log(`保存成功。objectId：${todo.id}`);
+
+                        // 进行随后的操作
+                        room_shape = [4, 50] // 房间的形状
+                        seat_reserved = [] // 已经预定了的座位
+                        my_reservation = null;
+                        seats_init_function(room_shape, seat_reserved, my_reservation);
+                    },
+                    (error) => {
+                        // 异常处理
+                        console.log("出现异常.", error);
+                    }
+                );
+            } else {
+                // 找到预定表
+                console.log("找到预定表.");
+                reservationGet = reservationsGet[0];
+
+                // 获取信息
+                var room_shape = reservationGet.get("roomShape");
+                var seat_reserved_history = reservationGet.get('seatsReservedPosition');
+                var seat_empty = reservationGet.get('seatOff');
+                var seats_person_reserved = reservationGet.get("seatReservedPerson");
+                var seat_reserved = []
+                var my_reservation = null;
+                for (let i=0; i<seat_reserved.length; i++) {
+                    if (!seat_empty[i]) {
+                        if (seats_person_reserved[i] == person_objectid) {
+                            my_reservation = seat_reserved_history[i];
+                        } else seat_reserved.push(seat_reserved_history[i]);
+                    }
+                }
+
+                // 接下来的操作
+                seats_init_function(room_shape, seat_reserved);
+            }
+        });
+    }
+    
+
+    // 预定座位
+    function reserveSeat(person_objectid, reservation_date, reservation_building, seat_position) {
+        const dateQuery = new AV.Query("Reservation");
+        // new Date("2016-12-03 00:00:00")
+        startDateQuery.equalTo("reservationDate", reservation_date);
+
+        const addressDateQuery = new AV.Query("Reservation");
+        endDateQuery.lessThan("seatBuilding", reservation_building);
+
+        const reservationQuery = AV.Query.and(startDateQuery, endDateQuery);
+
+        reservationQuery.find().then((reservationsGet) => {
+            reservationGet = reservationsGet[0];
+
+            var seat_off_array = reservationGet.get("seatOff");
+            var seats_position = reservationGet.get("seatsReservedPosition");
+            var seats_checked = reservationGet.get("seatChecked");
+            var seats_reserved_date = reservationGet.get("seatReservedDate");
+            var seats_person_reserved = reservationGet.get("seatReservedPerson");
+
+            // 检查是否要删除原有选择
+            if (seats_person_reserved.indexOf(person_objectid)) {
+                array_idx = seats_person_reserved.indexOf(person_objectid);
+                for (let i=seats_person_reserved.length-1; i>=0; i--) {
+                    if (seats_person_reserved[i] == person_objectid &&
+                    !seat_off_array[i]) {
+                        array_idx = i;                
+                        seat_off_array.splice(array_idx, 1);
+                        seats_position.splice(array_idx, 1);
+                        seats_checked.splice(array_idx, 1);
+                        seats_reserved_date.splice(array_idx, 1)
+                        seats_person_reserved.splice(array_idx, 1);
+                    }
+                }
+
+            }
+            // 检查是要删除还是预定
+            if (seat_position != null) {
+                seat_off_array.push(false);
+                seats_position.push(seat_position);
+                seats_checked.push(false);
+                
+                var now_date = new Date();
+                if (now_date < reservation_date) now_date = reservation_date;
+                seats_reserved_date.push(reservation_date);
+
+                seats_person_reserved.push(person_objectid);
+            }
+
+            const reservation_to_update = AV.Object.createWithoutData("Reservation", reservationGet.get('id'));
+            reservation_to_update.get("seatOff", seat_off_array);
+            reservation_to_update.get("seatsReservedPosition", seats_position);
+            reservation_to_update.get("seatChecked", seats_checked);
+            reservation_to_update.get("seatReservedDate", seats_reserved_date);
+            reservation_to_update.get("seatReservedPerson", seats_person_reserved);
+            reservation_to_update.save().then(()=>{
+                console.log('预定成功.');
+            },(error) => {
+                // 异常处理
+                console.log("出现异常.", error);
+            });
+        });
+    }
+    //签退
+    function reserveQuit(person_objectid, reservation_date, reservation_building) {
+        const dateQuery = new AV.Query("Reservation");
+        // new Date("2016-12-03 00:00:00")
+        startDateQuery.equalTo("reservationDate", reservation_date);
+
+        const addressDateQuery = new AV.Query("Reservation");
+        endDateQuery.lessThan("seatBuilding", reservation_building);
+
+        const reservationQuery = AV.Query.and(startDateQuery, endDateQuery);
+
+        reservationQuery.find().then((reservationsGet) => {
+            reservationGet = reservationsGet[0];
+
+            var seat_off_array = reservationGet.get("seatOff");
+            var seats_position = reservationGet.get("seatsReservedPosition");
+            var seats_checked = reservationGet.get("seatChecked");
+            var seats_reserved_date = reservationGet.get("seatReservedDate");
+            var seats_person_reserved = reservationGet.get("seatReservedPerson");
+
+            // 检查是否要删除原有选择
+            if (seats_person_reserved.indexOf(person_objectid)) {
+                for (let i=seats_person_reserved.length; i>=0; i--) {
+                    seat_off_array[i] = true;
+                    break;
+                }
+            }
+
+            const reservation_to_update = AV.Object.createWithoutData("Reservation", reservationGet.get('id'));
+            reservation_to_update.get("seatOff", seat_off_array);
+            reservation_to_update.save().then(()=>{
+                console.log('签退成功.');
+            },(error) => {
+                // 异常处理
+                console.log("出现异常.", error);
+            });
+        });
+    }
+    //签到
+    function reserveCheck(person_objectid, reservation_date, reservation_building) {
+        const dateQuery = new AV.Query("Reservation");
+        // new Date("2016-12-03 00:00:00")
+        startDateQuery.equalTo("reservationDate", reservation_date);
+
+        const addressDateQuery = new AV.Query("Reservation");
+        endDateQuery.lessThan("seatBuilding", reservation_building);
+
+        const reservationQuery = AV.Query.and(startDateQuery, endDateQuery);
+
+        reservationQuery.find().then((reservationsGet) => {
+            reservationGet = reservationsGet[0];
+
+            var seat_off_array = reservationGet.get("seatOff");
+            var seats_position = reservationGet.get("seatsReservedPosition");
+            var seats_checked = reservationGet.get("seatChecked");
+            var seats_reserved_date = reservationGet.get("seatReservedDate");
+            var seats_person_reserved = reservationGet.get("seatReservedPerson");
+
+            // 检查是否要删除原有选择
+            if (seats_person_reserved.indexOf(person_objectid)) {
+                for (let i=seats_person_reserved.length; i>=0; i--) {
+                    seats_checked[i] = true;
+                    break;
+                }
+            }
+
+            const reservation_to_update = AV.Object.createWithoutData("Reservation", reservationGet.get('id'));
+            reservation_to_update.get("seatChecked", seats_checked);
+            reservation_to_update.save().then(()=>{
+                console.log('签到成功.');
+            },(error) => {
+                // 异常处理
+                console.log("出现异常.", error);
+            });
+        });
+    }
+</script>
+<body>
+    
+</body>
+</html>

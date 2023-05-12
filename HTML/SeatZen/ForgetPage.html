@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>找回密码</title>
+</head>
+<style>
+    #forgetWindow {
+        text-align: center;
+        background-color: azure;
+        border-radius: 20px;
+        width: 600px;
+        height: 400px;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        font-family: '楷体';
+        font-size: 20px;
+    }
+
+    #loginTitle {
+        font-family: '楷体';
+    }
+
+    #forget {
+        font-size: 16px;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    #forgetWindow span {
+        display: inline-block;
+        width: 150px;
+        text-align: center;
+    }
+
+    #forgetWindow input {
+        width: 200px;
+    }
+</style>
+
+<body>
+    <div id="forgetWindow">
+            <h1 id="forgetTitle" align="center">
+                SeatZen找回密码
+            </h1>
+            <div>
+                <span>教职工号或学号</span>
+                <input type="text" id="ID">
+            </div>
+            <br>
+            <span>新密码</span>
+            <input type="password" name="" id="neoPw">
+            <br>
+            <br>
+            <span>确认密码</span>
+            <input type="password" name="" id="neoPwAgain">
+            <br>
+            <br>
+            <button onclick="javascript:resetPassword(document.getElementById('ID').value,document.getElementById('neoPw').value)">提交</button>
+        </div>
+    </div>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4.6.1/dist/av-min.js"></script>
+<script src="./initialize.js"></script>
+<script>
+
+    // TODO:为每个用户生成一个唯一的ID（复杂）
+    var former = document.getElementsByClassName("former_content")[0];
+    var after = document.getElementsByClassName("after_content")[0];
+
+    function resetPassword(user_id, user_password) {
+        const userQuery = new AV.Query("Account");
+        userQuery.equalTo("userId", user_id);
+        userQuery.find().then((usersGet) => {
+            if (usersGet.length == 0) {
+                // 用户id输错的情况
+                console.log("用户不存在");
+            } else {
+                // 找到用户
+                console.log("找到用户.");
+                userGet = usersGet[0]
+
+                // 重置信息
+                const userUpdate = AV.Object.createWithoutData("Account", userGet.get('objectId'));
+                userUpdate.set("userPassword", user_password);
+                userUpdate.save().then(()=>{
+                    alert('修改成功');
+                    location.href='./LoginPage.html';
+                    console.log("修改成功.");
+                });
+            }
+        });
+    }
+
+
+    function getUsername() {
+        return document.getElementById("name").value;
+    }
+    function getID() {
+        return document.getElementById("ID").value;
+    }
+    function getTel() {
+        return document.getElementById("tel").value;
+    }
+
+    function checkInfo(param1, param2, param3) {
+        if (true) {
+            former.style.display = 'none';
+            after.style.display = 'block';
+            document.getElementById("forgetWindow").style.height = "250px";
+        }
+    }
+    function submitInfo() {
+
+    }
+</script>
+
+</html>

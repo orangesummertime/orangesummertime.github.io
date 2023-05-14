@@ -9,8 +9,7 @@
     <link rel="stylesheet" href="./src/styles/header_style.css">
 </head>
 <style>
-    html,
-    body {
+    html, body {
         height: 100%;
         width: 100%;
         margin: 0;
@@ -18,13 +17,12 @@
         text-align: center;
         background-color: #f7f7f7;
     }
-
     * {
         text-decoration: none;
         vertical-align: top;
     }
 
-    /* div{
+        /* div{
             font-size: 30px;
         }
         span{
@@ -33,7 +31,7 @@
         h1 {
             font-family: '楷体';
         } */
-    /* 
+/* 
     #mainWindow {
         margin: 0 auto;
         background-color: azure;
@@ -138,7 +136,6 @@
         margin-right: auto;
         text-align: left;
     }
-
     .content_nav_links {
         text-decoration: none;
         width: 80%;
@@ -149,7 +146,6 @@
         font-size: 20px;
         color: #000;
     }
-
     .content_nav_links li {
         height: 45px;
         display: inline-block;
@@ -159,13 +155,11 @@
         margin-bottom: 5px;
         transition: all 300ms ease-in-out;
     }
-
     .content_nav_links li:hover {
         background-color: #f5f5f5;
     }
-
-    .content_nav_links li,
-    .content_nav_links li a {
+    .content_nav_links li, 
+    .content_nav_links li a{
         text-decoration: none;
         color: #4a4a4a;
 
@@ -173,12 +167,10 @@
         display: inline-block;
         width: 100%;
     }
-
     .menu_selected {
         color: #3273dc;
         background-color: #eef3fc;
     }
-
     .content_nav_links .menu_selected a {
         color: #3273dc;
     }
@@ -197,9 +189,8 @@
 
         padding: 20px;
     }
-
     #reserveSeat #buildingChoose,
-    #reserveSeat #Floor {
+    #reserveSeat #Floor{
         width: 200px;
         height: 30px;
         font-size: 20px;
@@ -208,28 +199,24 @@
         display: block;
         cursor: pointer;
     }
-
     #reserveSeat .attributePair {
         width: 200px;
         margin: 20px;
         margin-left: auto;
         margin-right: auto;
     }
-
-    #reserveSeat .attributePair .attributeKey {
+    #reserveSeat .attributePair .attributeKey{
         width: 100%;
         font-size: 18px;
         text-align: left;
 
         color: #4a4a4a;
     }
-
     /* 预定信息 */
     #viewReservation .attributePair {
         padding: 10px;
     }
-
-    #viewReservation .attributePair .attributeKey {
+    #viewReservation .attributePair .attributeKey{
         font-size: 18px;
         width: 150px;
         margin-left: auto;
@@ -238,8 +225,7 @@
         text-align: left;
         color: #888;
     }
-
-    #viewReservation .attributePair .attributeVal {
+    #viewReservation .attributePair .attributeVal{
         font-size: 22px;
         width: 150px;
         margin-left: auto;
@@ -247,7 +233,6 @@
 
         text-align: left;
     }
-
     #viewReservation .Notice {
         font-size: 20px;
         color: #4a4a4a;
@@ -261,24 +246,22 @@
         margin-left: auto;
         margin-right: auto;
     }
-
-    #viewProfile .attributePair .attributeKey {
+    #viewProfile .attributePair .attributeKey{
         font-size: 18px;
         width: 100%;
         text-align: left;
         color: #4a4a4a;
     }
-
-    #viewProfile .attributePair .attributeVal {
+    #viewProfile .attributePair .attributeVal{
         font-size: 20px;
         width: 100%;
         text-align: left;
     }
-
     /* 默认情况 */
     .content_right_in_content {
         display: none;
     }
+
 </style>
 
 <body>
@@ -303,10 +286,10 @@
                     <a href="">自习室信息</a>
                 </li>
                 <li class="content_nav_link">
-                    <a href="javascript:showReserveSeat()">座位预约</a>
+                    <a href="javascript:showPreserveSeat()">座位预约</a>
                 </li>
                 <li class="content_nav_link">
-                    <a href="javascript:showViewReservation()">查看预约信息</a>
+                    <a href="javascript:showViewPreservation()">查看预约信息</a>
                 </li>
                 <li class="content_nav_link">
                     <a href="javascript:showViewProfile()">查看个人信息</a>
@@ -368,7 +351,7 @@
                     <br>
                 </div>
             </div>
-
+            
             <div id="viewProfile" class="content_right_in_content">
                 <div class="right_content_title">
                     个人信息
@@ -388,7 +371,7 @@
                 </button>
                 <br>
             </div>
-
+            
             <br id="right_content_lastline">
         </div>
     </div>
@@ -398,12 +381,11 @@
 <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4.6.1/dist/av-min.js"></script>
 <script src="./initialize.js"></script>
 <script>
-    function updateProfile() {
-        //更新个人信息
-        const queryString = window.location.search;
-        const urlParas = new URLSearchParams(queryString);
-        const oid = urlParas.get('user');
-        console.log(oid);
+    function updateProfile(){
+            const queryString = window.location.search;
+            const urlParas = new URLSearchParams(queryString);
+            const oid = urlParas.get('user');
+            console.log(oid);
         const userQuery = new AV.Query("Account");
         userQuery.equalTo("objectId", oid);
         userQuery.find().then((usersGet) => {
@@ -417,76 +399,47 @@
 
                 // 将获取到的值填入页面各个 div 中
                 document.getElementById("profileName").innerText = user.get("userName");
-                document.getElementById("profileId").innerText = user.get("userId");
+                document.getElementById("profileId").innerText = user.get("userId");      
 
             }
         });
     }
-
+    
     var userObjectId;
-    function updateObjectId() {
-        //把网址的参数获取到userObjectId这个全局变量
+    function updateObjectId(){
         const queryString = window.location.search;
-        const urlParas = new URLSearchParams(queryString);
-        const objid = urlParas.get('user');
-        userObjectId = objid;
+        const urlParas=new URLSearchParams(queryString);
+        const objid=urlParas.get('user');
+        userObjectId=objid;
         console.log(objid);
     }
 
     window.onload = () => {
-        //进入页面自动更新userObjectId
-        updateObjectId();
-    }
+            updateObjectId();
+        }
 
-    function showReserveSeat() {
-        //显示“座位预约”模块
+    function showPreserveSeat() {
         var a = document.getElementsByClassName("content_right_in_content");
         for (let i = 0; i < a.length; i++) {
             a[i].style.display = "none";
         }
         var links = document.getElementsByClassName("content_nav_link");
-        for (let i = 0; i < links.length; i++) {
+        for (let i=0; i<links.length; i++) {
             links[i].classList.remove("menu_selected");
         }
         links[1].classList.add("menu_selected");
 
         document.getElementById("reserveSeat").style.display = "block";
         document.getElementsByClassName("content_article")[0].style.display = "none";
-    }
-    function showViewReservation() {
-        //显示下一次预约的座位
-        const reservationQuery = new AV.Query("reservationLake");
-        reservationQuery.equalTo('userObjectId', userObjectId);
-        reservationQuery.find().then((reservationsGet) => {
-            if (reservationsGet.length != 0) {//此用户存在下一次预约
-                console.log('找到了下一次预约');
-                var floor;
-                var floorText;
-                reservationGet = reservationsGet[0];
-                floor = reservationGet.get("exactLocation")[0];
-                if (floor == 0)
-                    floorText = '图书馆二楼';
-                else if (floor == 1)
-                    floorText = '图书馆三楼';
-                else if (floor == 2)
-                    floorText = '图书馆四楼';
-                else if (floor == 3)
-                    floorText = '图书馆五楼';
-                var seatnumber;
-                seatnumber = reservationGet.get("exactLocation")[1];
-                document.getElementById("reservedLocation").innerText = floorText + seatnumber + '号座位';
-                var resDate = new Date();
-                resDate = reservationGet.get("exactTime");
-                document.getElementById("reservedTime").innerText = resDate;
 
-            }
-        })
+    }
+    function showViewPreservation() {
         var a = document.getElementsByClassName("content_right_in_content");
         for (let i = 0; i < a.length; i++) {
             a[i].style.display = "none";
         }
         var links = document.getElementsByClassName("content_nav_link");
-        for (let i = 0; i < links.length; i++) {
+        for (let i=0; i<links.length; i++) {
             links[i].classList.remove("menu_selected");
         }
         links[2].classList.add("menu_selected");
@@ -495,17 +448,21 @@
         document.getElementsByClassName("content_article")[0].style.display = "none";
     }
 
+    function renewProfile(){
+        document.getElementById('profileName').innerHTML='';
+        document.getElementById('profileId').innerHTML='';
+
+    }
 
     function showViewProfile() {
-        //显示“查看个人信息”模块
-        updateProfile();//先更新一次个人信息
+        updateProfile();
         var a = document.getElementsByClassName("content_right_in_content");
         for (let i = 0; i < a.length; i++) {
             a[i].style.display = "none";
         }
 
         var links = document.getElementsByClassName("content_nav_link");
-        for (let i = 0; i < links.length; i++) {
+        for (let i=0; i<links.length; i++) {
             links[i].classList.remove("menu_selected");
         }
         links[3].classList.add("menu_selected");
@@ -514,15 +471,25 @@
         document.getElementsByClassName("content_article")[0].style.display = "none";
     }
 
+    function showStats() {
+        var a = document.getElementsByClassName("module");
+        for (let i = 0; i < a.length; i++) {
+            a[i].style.display = "none";
+        }
+        document.getElementById("Stats").style.display = "block";
+
+    }
+
     function logOut() {
-        //登出
         location.href = "./LoginPage.html"
     }
-    function viewSelectedFloor() {
-        //去往选定的楼层选座
+    function getHelp() {
+
+    }
+    function viewSelectedFloor(){
         var selectedFloor = document.getElementById('Floor').value;
-        console.log('selected:' + selectedFloor);
-        window.open('./Floors/f2.html?userObjectId=' + userObjectId + '&floorId=' + selectedFloor);
+        console.log('selected:'+selectedFloor);
+        window.open('./Floors/f2.html?userObjectId='+userObjectId+'&floorId='+selectedFloor);
     }
 </script>
 

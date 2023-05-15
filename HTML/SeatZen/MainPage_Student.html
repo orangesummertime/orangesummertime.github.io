@@ -279,6 +279,20 @@
     .content_right_in_content {
         display: none;
     }
+    body{
+        /* 渐变色背景 */
+        background: linear-gradient(200deg,#0c3483,#a2b6df);
+    }
+    header{
+        background-color: rgba(255, 255, 255, 0.5);
+        
+    }
+    .content_left_nav{
+        background-color: rgba(255, 255, 255, 0.9);
+    }
+    .content_right_content{
+        background-color: rgba(255, 255, 255, 0.9);       
+    }
 </style>
 
 <body>
@@ -392,6 +406,12 @@
                 <br>
             </div>
 
+            <style>
+                #bulletinContent{
+                    font-size: 25px;
+                    font-family: '宋体';
+                }
+            </style>
             <div id="bulletin" class="content_right_in_content">
                 <div class="right_content_title" >
                     公告
@@ -403,7 +423,7 @@
                     <span class="attributeKey">来自：</span>
                     <span class="attributeVal" id="bulletinAuthorName"></span>
                 </div>
-                <div class="bulletinContent" id="bulletinContent" style="text-align: left; padding-left: 5%;text-indent: 2em;"></div>
+                <div class="bulletinContent" id="bulletinContent" style="text-align: left; padding-left: 5%;padding-right: 5%;text-indent: 2em;"></div>
             </div>
 
 

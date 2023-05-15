@@ -284,7 +284,7 @@
 <body>
     <!-- 头部导航栏 -->
     <header>
-        <img src="./src/logo/SeatZen.png" alt="" class="logo" alt="logo" height="60px">
+        <img src="./src/logo/SeatZen3.png" alt="" class="logo" alt="logo" height="60px">
         <nav>
             <ul class="nav_links">
                 <li><a href="">首页</a></li>
@@ -310,6 +310,9 @@
                 </li>
                 <li class="content_nav_link">
                     <a href="javascript:showViewProfile()">查看个人信息</a>
+                </li>
+                <li class="content_nav_link">
+                    <a href="javascript:showBulletin()">查看公告</a>
                 </li>
             </ul>
             <br>
@@ -388,6 +391,21 @@
                 </button>
                 <br>
             </div>
+
+            <div id="bulletin" class="content_right_in_content">
+                <div class="right_content_title" >
+                    公告
+                </div>
+                <h1 id="bulletinTitle" style="text-align: center;">
+
+                </h1>
+                <div class="attributePair">
+                    <span class="attributeKey">来自：</span>
+                    <span class="attributeVal" id="bulletinAuthorName"></span>
+                </div>
+                <div class="bulletinContent" id="bulletinContent" style="text-align: left; padding-left: 5%;text-indent: 2em;"></div>
+            </div>
+
 
             <br id="right_content_lastline">
         </div>
@@ -511,6 +529,35 @@
         links[3].classList.add("menu_selected");
 
         document.getElementById("viewProfile").style.display = "block";
+        document.getElementsByClassName("content_article")[0].style.display = "none";
+    }
+    function updateBulletin(){//更新公告
+        const bulletinQuery=new AV.Query("Bulletin");
+        bulletinQuery.descending("createdAt");
+        bulletinQuery.find().then((bulletsGet)=>{
+            if(bulletsGet.length!=0){
+            bulletGet=bulletsGet[0];
+            document.getElementById("bulletinTitle").innerHTML=bulletGet.get('title');
+            document.getElementById("bulletinAuthorName").innerHTML=bulletGet.get('authorName');
+            document.getElementById("bulletinContent").innerHTML=bulletGet.get('content');          
+            }
+        })
+        
+    }
+    function showBulletin(){
+        updateBulletin();
+        var a = document.getElementsByClassName("content_right_in_content");
+        for (let i = 0; i < a.length; i++) {
+            a[i].style.display = "none";
+        }
+
+        var links = document.getElementsByClassName("content_nav_link");
+        for (let i = 0; i < links.length; i++) {
+            links[i].classList.remove("menu_selected");
+        }
+        links[4].classList.add("menu_selected");
+
+        document.getElementById("bulletin").style.display = "block";
         document.getElementsByClassName("content_article")[0].style.display = "none";
     }
 

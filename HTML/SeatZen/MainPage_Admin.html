@@ -5,26 +5,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>管理员主页</title>
+    <title>管理员主页 - SeatZen</title>
+    <link rel="stylesheet" href="./src/styles/header_style.css">
 </head>
 
 
 <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4.6.1/dist/av-min.js"></script>
 <script src="initialize.js"></script>
 <script>
-
-var userObjectId;
-    function updateObjectId(){
+    var userObjectId=new String;
+    function updateObjectId() {
         const queryString = window.location.search;
-        const urlParas=new URLSearchParams(queryString);
-        const objid=urlParas.get('user');
-        userObjectId=objid;
+        const urlParas = new URLSearchParams(queryString);
+        const objid = urlParas.get('user');
+        userObjectId = objid;
+        if(userObjectId!=null)  
         console.log(objid);
+        else
+        userObjectId='645a63c9c48240148927e22a';
+        console.log(userObjectId);
+
+    }
+    function switchStudent(){
+        location.assign("./MainPage_Student.html?user="+userObjectId);
     }
 
     window.onload = () => {
-            updateObjectId();
-        }
+        updateObjectId();
+    }
 
 
     var searchedID;
@@ -43,14 +51,14 @@ var userObjectId;
 
                 // 重置信息
                 const userUpdate = AV.Object.createWithoutData("Account", userGet.get('objectId'));
-                if(user_password.length>0)
-                userUpdate.set("userPassword", user_password);
-                if(user_name.length>0)
-                userUpdate.set("userName", user_name);
-                if(user_department.length>0)
-                userUpdate.set("userDepartment", user_department);
-                if(user_type.length>0)
-                userUpdate.set("userType", user_type);
+                if (user_password.length > 0)
+                    userUpdate.set("userPassword", user_password);
+                if (user_name.length > 0)
+                    userUpdate.set("userName", user_name);
+                if (user_department.length > 0)
+                    userUpdate.set("userDepartment", user_department);
+                if (user_type.length > 0)
+                    userUpdate.set("userType", user_type);
                 userUpdate.save().then(() => {
                     console.log("修改成功.");
                 });
@@ -66,9 +74,10 @@ var userObjectId;
             if (usersGet.length === 0) {
                 // 用户id输错的情况
                 console.log("用户不存在");
+                alert("用户不存在，请输入正确的用户编号！");
             } else {
                 // 找到用户
-                searchedID=user_id;
+                searchedID = user_id;
                 console.log("找到用户.");
                 const user = usersGet[0];
 
@@ -78,50 +87,93 @@ var userObjectId;
                     "userDepartment"
                 );
                 document.getElementById("searchType").innerText = user.get("userType");
-                if(user.get("userType")==0)
-                document.getElementById("searchType").innerText = '用户';
-                else if (user.get("userType")==1)
-                document.getElementById("searchType").innerText = '管理员';
-      
+                if (user.get("userType") == 0)
+                    document.getElementById("searchType").innerText = '用户';
+                else if (user.get("userType") == 1)
+                    document.getElementById("searchType").innerText = '管理员';
 
+                // 正式进入界面内容
+                var a = document.getElementsByClassName("content_center_in_content");
+                for (let i = 0; i < a.length; i++) {
+                    a[i].style.display = "none";
+                }
+                document.getElementById("manageModule").style.display = "block";
+                // 填入到对话框中 避免无需修改内容的重复填写
+                document.getElementById("setName").value = user.get("userName");
+                document.getElementById("setPw").value = user.get("userPassword");
+                document.getElementById("setDep").value = user.get("userDepartment");
+                // 关闭搜索窗口
+                returnToMain(0);
             }
         });
     }
 
-    //11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+    function displayReservationInfoById() {
+        console.log();
+    }
 
-    function goSetInfo(){
-        var name=document.getElementById('setName').value;
-        var pw=document.getElementById('setPw').value;
-        var dep=document.getElementById('setDep').value;
-        var type=parseInt(document.getElementById('setType').value);
-        setInfo(searchedID,name,pw,dep,type);
+    // 修改信息最外层函数
+    function goSetInfo(setOption) {
+        var name = document.getElementById('setName').value;
+        var pw = document.getElementById('setPw').value;
+        var dep = document.getElementById('setDep').value;
+        var type = parseInt(document.getElementById('setType').value);
+
+        if (setOption == 0) {
+            type = "";
+            returnToMain(1);
+        } else if (setOption == 1) {
+            name = "";
+            pw = "";
+            dep = "";
+            returnToMain(2);
+        }
+        setInfo(searchedID, name, pw, dep, type);
         console.log('修改个人信息');
     }
 
 
-    function releaseBulletin() {
-
-    }
-
+    // 最外层搜索函数
     function searchById(Id) {
         getInfo(Id);
     }
 
+    // 用户管理界面
     function showManageModule() {
-        console.log('0');
-        var a = document.getElementsByClassName("module");
-        for (let i = 0; i < a.length; i++) {
-            a[i].style.display = "none";
-            console.log('1');
-        }
-        document.getElementById("manageModule").style.display = "block";
-        console.log('2');
+        document.getElementsByClassName("window_block")[0].classList.add('window_in_anime');
+        // document.getElementById('manageModule').style.display = "block";
+    }
+
+    // 回到主页，针对于用户管理对话框
+    function returnToMain(window_idx) {
+        document.getElementsByClassName("window_block")[window_idx].classList.remove('window_in_anime');
+        return;
+    }
+    // 打开对话框
+    function openDialog(window_idx) {
+        document.getElementsByClassName("window_block")[window_idx].classList.add('window_in_anime');
+        return;
     }
 
 </script>
 <style>
-    h1 {
+    html,
+    body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+
+        text-align: center;
+        background-color: #f7f7f7;
+    }
+
+    * {
+        text-decoration: none;
+        vertical-align: top;
+    }
+
+    /* 原来的内容 */
+    #mainWindow h1 {
         font-family: '楷体';
     }
 
@@ -131,11 +183,11 @@ var userObjectId;
 
     }
 
-    a {
+    #mainWindow a {
         text-decoration: none;
     }
 
-    .module {
+    #mainWindow .module {
         background-color: azure;
         height: 700px;
         font-family: '楷体';
@@ -145,68 +197,585 @@ var userObjectId;
         width: 100%;
         /* width: 600px; */
     }
-    span{
+
+    #mainWindow span {
         font-size: 30px;
     }
-    button{
+
+    #mainWindow button {
         font-size: 20px;
+    }
+
+    /* 修改后的内容 */
+    /* 主要信息 */
+    .main_content {
+        width: 80%;
+        min-width: 800px;
+        /* height: 100%; */
+        margin-top: 30px;
+
+        margin-left: auto;
+        margin-right: auto;
+
+        background-color: #eee;
+    }
+
+    .main_content .mainpage_btn {
+        font-size: 20px;
+        padding: 5px;
+        padding-left: 20px;
+        padding-right: 20px;
+        cursor: pointer;
+
+        border-radius: 10px;
+        border: 1px solid #000;
+        background-color: #eee;
+        letter-spacing: 1px;
+        transition: all 200ms ease-in-out;
+
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .main_content .mainpage_btn:hover {
+        background-color: #3273dc;
+        color: #fff;
+    }
+
+    /* 中央信息 */
+    .content_center_content {
+        width: 100%;
+        /* height: 100%; */
+        padding: 10px;
+        margin-right: 10px;
+        box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);
+
+        background-color: #fff;
+        border-radius: 10px;
+        display: inline-block;
+        text-align: center;
+    }
+
+    /* 中央信息标题 */
+    .contentCenterTitle {
+        width: 80%;
+        padding: 10px;
+        font-size: 25px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    /* 中央信息键值对 */
+    #manageModule .attributePair {
+        width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px;
+    }
+
+    #manageModule .attributePair .attributeKey {
+        width: 100%;
+        font-size: 15px;
+        font-weight: 600;
+        text-align: left;
+        padding: 2px;
+    }
+
+    #manageModule .attributePair .attributeVal {
+        width: 100%;
+        font-size: 25px;
+        font-weight: 300;
+        text-align: left;
+        padding: 2px;
+    }
+
+    /* 中央信息按钮 */
+    .contentCenterBtnbox {
+        width: 90%;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px;
+    }
+
+    .contentCenterBtnbox .contentCenterBtn {
+        margin: 10px;
+        font-size: 18px;
+        border-radius: 5px;
+        border: 1px solid #000;
+        letter-spacing: 2px;
+        padding: 5px;
+        padding-left: 15px;
+        padding-right: 15px;
+        cursor: pointer;
+        transition: all 200ms ease-in-out;
+    }
+
+    .contentCenterBtnbox .contentCenterBtn:hover {
+        background-color: #3273dc;
+        color: #fff;
+        border: 1px solid #f7f7f7;
     }
 </style>
 
 <body>
-    <div id="mainWindow">
-        <h1 align="center" id="title">
-            <b>SeatZen</b>图书馆自习室座位预约系统(管理端)
-        </h1>
-        <br>
+    <!-- 头部导航栏 -->
+    <header>
+        <img src="./src/logo/SeatZen3.png" alt="" class="logo" alt="logo" height="60px">
         <nav>
-            <a href="#"> <img src="icons/logout.png" alt="" width="16px"> 用户登出</a>
-            <a href="javascript:showManageModule()"><img src="icons/apps.png" alt="" width="16px">管理操作</a>
-            <!-- <a href="#"><img src="icons/stats.png" alt="" width="16px">信息统计</a> -->
-            <!-- <a href="#"><img src="icons/system.png" alt="" width="16px">系统管理</a> -->
-            <a href="javascript:releaseBulletin"><img src="./icons/bulletin.png" width="16px">发布公告</a>
-            <a href="#"><img src="icons/help.png" alt="" width="16px">帮助</a>
+            <ul class="nav_links">
+                <li><a href="">首页</a></li>
+                <li><a href="javascript:showManageModule()">用户管理</a></li>
+                <li><a href="javascript:openDialog(4);">发布公告</a></li>
+                <li><a href="" onclick="alert('敬请期待！')">帮助中心</a></li>
+                <li><a href="javascript:switchStudent()">去学生端</a></li>
+            </ul>
         </nav>
-        <br>
-        <hr>
-        <div class="module" id="manageModule">
-            <span>按ID搜索用户：</span><input type="text" id="inputId"><button
-                onclick="javascript:searchById(document.getElementById('inputId').value)">搜索</button>
-            <br>
-            <span>搜索结果：</span>
-            <br>
-            <span>姓名：</span><span id="searchName"></span>
-            <br>
-            <span>部门：</span><span id="searchDepartment"></span>
-            <br>
-            <span>类型：</span><span id="searchType"></span>
-            <br>
-            <button>设为/取消管理员</button>
-            <button>查看/修改其预约信息</button>
-            <br>
-            <span>修改其个人信息：</span>
-            <br>
-            <span>姓名修改为：</span>
-            <input type="text" id="setName">
-            <br>
-            <span>密码修改为：</span>
-            <input type="text" id="setPw">
-            <br>
-            <span>所属部门修改为：</span>
-            <input type="text" id="setDep">
-            <br>
-            <span>类型修改为：</span>
-            <select name="" id="setType">
-                <option value="0">学生</option>
-                <option value="1">管理员</option>
-            </select>
-            <br>
-            <button onclick="javascript:goSetInfo()">修改个人信息</button>
+        <a class="cta" href="./LoginPage.html"><button>登出</button></a>
+    </header>
+
+    <!-- 主要内容 -->
+    <div class="main_content">
+        <div class="content_center_content">
+            <div class="content_center_in_content" id="homePageModule">
+                <!-- 主页内容 -->
+                主页内容
+                <br>
+            </div>
+            <div class="content_center_in_content" id="manageModule" style="display: none;">
+                <div class="contentCenterTitle">
+                    用户信息
+                </div>
+                <div class="attributePair">
+                    <div class="attributeKey">
+                        姓名
+                    </div>
+                    <div class="attributeVal" id="searchName">
+                        用户姓名
+                    </div>
+                </div>
+
+                <div class="attributePair">
+                    <div class="attributeKey">
+                        部门
+                    </div>
+                    <div class="attributeVal" id="searchDepartment">
+                        用户所属的部门
+                    </div>
+                </div>
+
+                <div class="attributePair">
+                    <div class="attributeKey">
+                        类型
+                    </div>
+                    <div class="attributeVal" id="searchType">
+                        用户的类型
+                    </div>
+                </div>
+
+                <div class="contentCenterBtnbox">
+                    <button class="contentCenterBtn" onclick="openDialog(1);" title="个人信息修改">
+                        个人信息修改
+                    </button>
+                    <button class="contentCenterBtn" onclick="openDialog(2);" title="设为/取消管理员">
+                        权限更改
+                    </button>
+                    <button class="contentCenterBtn" onclick="updateReservationInfo();openDialog(3);"
+                        title="查看/修改其预约信息">
+                        预约信息
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <!-- 查询用户对话框 -->
+    <style>
+        .window_block {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            min-height: 200px;
+
+            background-color: rgba(0, 0, 0, 0.5);
+            text-align: center;
+
+            transition: all 0.5s ease-in-out;
+            transform: translateY(100%);
+            opacity: 0;
+        }
+
+        .window_in_anime {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        #searchUserDialog {
+            background-color: #fff;
+            width: 400px;
+            height: 190px;
+
+            position: absolute;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            border-radius: 10px;
+        }
+
+        /* 标题 */
+        .dialogTitle {
+            padding: 20px;
+            font-family: '楷体';
+            font-size: 30px;
+        }
+
+        /* 输入内容 */
+        .window_block .attributePair {
+            width: 300px;
+            padding: 20px;
+            padding-top: 0;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .window_block .attributePair .attributeKey {
+            width: 100%;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: left;
+        }
+
+        .window_block .attributePair .attributeVal {
+            width: 100%;
+            height: 30px;
+            font-size: 18px;
+            text-indent: 10px;
+            letter-spacing: 1px;
+
+            border-radius: 5px;
+            border: 1px solid #000;
+        }
+
+        /* 按键 */
+        .window_block .btnBox {
+            width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .window_block .btnBox .dialogBtn {
+            width: 120px;
+            height: 30px;
+            font-size: 18px;
+            text-align: center;
+            cursor: pointer;
+            margin: 10px;
+            border-radius: 5px;
+
+            text-decoration: none;
+            border: 1px solid #000;
+            transition: all 200ms ease-in-out;
+        }
+
+        .window_block .btnBox .dialogBtn:hover {
+            background-color: #3273dc;
+            color: #fff;
+            border: 1px solid #f7f7f7;
+        }
+    </style>
+    <div class="window_block">
+        <div id="searchUserDialog">
+            <div class="dialogTitle">
+                请输入用户号码
+            </div>
+            <div class="attributePair">
+                <input class="attributeVal" placeholder="用户号码" title="用户ID" id="inputId"></input>
+            </div>
+            <div class="btnBox">
+                <button class="dialogBtn" onclick="searchById(document.getElementById('inputId').value);">搜 索</button>
+                <button class="dialogBtn" onclick="returnToMain(0);">取 消</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 修改信息对话框 -->
+    <style>
+        #updateUserInfoDialog {
+            background-color: #fff;
+            width: 400px;
+            height: 350px;
+
+            position: absolute;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            border-radius: 10px;
+        }
+    </style>
+    <div class="window_block">
+        <div id="updateUserInfoDialog" title="默认为空的信息不修改">
+            <div class="dialogTitle">
+                请输入更新后的信息
+            </div>
+            <div class="attributePair">
+                <div class="attributeKey">
+                    姓名
+                </div>
+                <input class="attributeVal" placeholder="修改后的姓名" title="修改后的姓名" id="setName"></input>
+            </div>
+            <div class="attributePair">
+                <div class="attributeKey">
+                    密码
+                </div>
+                <input class="attributeVal" placeholder="新密码" title="新密码" id="setPw"></input>
+            </div>
+            <div class="attributePair">
+                <div class="attributeKey">
+                    所属部门
+                </div>
+                <input class="attributeVal" placeholder="修改后的部门" title="修改后的部门" id="setDep"></input>
+            </div>
+            <div class="btnBox">
+                <button class="dialogBtn" onclick="goSetInfo(0)">确 定</button>
+                <button class="dialogBtn" onclick="returnToMain(1);">取 消</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 修改权限对话框 -->
+    <style>
+        #updateUserTypeDialog {
+            background-color: #fff;
+            width: 400px;
+            height: 210px;
+
+            position: absolute;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            border-radius: 10px;
+        }
+
+        #updateUserTypeDialog select,
+        #updateUserTypeDialog select option {
+            cursor: pointer;
+            transition: all 200mx ease-in-out;
+            text-align: center;
+        }
+    </style>
+    <div class="window_block">
+        <div id="updateUserTypeDialog">
+            <div class="dialogTitle">
+                请输入修改后的权限
+            </div>
+            <div class="attributePair">
+                <div class="attributeKey">
+                    用户类型
+                </div>
+                <select name="" id="setType" class="attributeVal">
+                    <option value="0">学生</option>
+                    <option value="1">管理员</option>
+                </select>
+            </div>
+            <div class="btnBox">
+                <button class="dialogBtn" onclick="goSetInfo(1)">确 定</button>
+                <button class="dialogBtn" onclick="returnToMain(2);">取 消</button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        #updateUserReservationInfo {
+            background-color: #fff;
+            width: 400px;
+            height: 300px;
+
+            position: absolute;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            border-radius: 10px;
+        }
+
+        #reservedLocation,
+        #reservedTime {
+            border: none;
+        }
+    </style>
+
+
+    <div class="window_block">
+        <div id="updateUserReservationInfo">
+            <div class="dialogTitle">
+                ta的下一次预约：
+            </div>
+            <div class="attributePair">
+                <div class="attributeKey">
+                    地点：
+                </div>
+                <div class="attributeVal" id="reservedLocation">
+
+                </div>
+            </div>
+            <div class="attributePair">
+                <div class="attributeKey">
+                    时间：
+                </div>
+                <div class="attributeVal" id="reservedTime">
+
+                </div>
+            </div>
+
+            <div class="btnBox">
+                <button class="dialogBtn" onclick="returnToMain(3);">关 闭</button>
+            </div>
+
 
         </div>
+    </div>
+
+    <style>
+        #releaseBulletin {
+            background-color: #fff;
+            width: 400px;
+            height: 500px;
+
+            position: absolute;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            border-radius: 10px;
+        }
+    </style>
 
 
+
+    <div class="window_block">
+        <div id="releaseBulletin">
+            <div class="dialogTitle">
+                发布公告
+            </div>
+            <div class="attributePair">
+                <div class="attributeKey">标题</div>
+                <input type="text" class="attributeVal" id="bulletinTitle">
+            </div>
+            <div class="attributePair">
+                <div class="attributeKey">内容</div>
+                <textarea name="" id="bulletinContent" cols="30" rows="15"></textarea>
+            </div>
+            <div class="btnBox">
+                <button class="dialogBtn" onclick="uploadBulletin()">发布</button>
+                <button class="dialogBtn" onclick="returnToMain(4)">关闭</button>
+            </div>
+        </div>
     </div>
 </body>
+<script>
+    function updateReservationInfo() {
+        //显示下一次预约的座位
+        console.log(searchedID);
+        console.log('尝试更新预约信息...');
+        const idQuery = new AV.Query("Account");
+        idQuery.equalTo('userId', searchedID);
+        var oid;
+        idQuery.find().then((AccountGet) => {
+            if (AccountGet.length != 0)
+                oid = AccountGet[0].get("objectId");
+            const reservationQuery = new AV.Query("reservationLake");
+            reservationQuery.equalTo('userObjectId', oid);
+            reservationQuery.find().then((reservationsGet) => {
+                if (reservationsGet.length != 0) {//此用户存在下一次预约
+                    console.log('找到了下一次预约');
+                    var floor;
+                    var floorText;
+                    reservationGet = reservationsGet[0];
+                    floor = reservationGet.get("exactLocation")[0];
+                    if (floor == 0)
+                        floorText = '图书馆二楼';
+                    else if (floor == 1)
+                        floorText = '图书馆三楼';
+                    else if (floor == 2)
+                        floorText = '图书馆四楼';
+                    else if (floor == 3)
+                        floorText = '图书馆五楼';
+                    var seatnumber;
+                    seatnumber = reservationGet.get("exactLocation")[1];
+                    document.getElementById("reservedLocation").innerText = floorText + seatnumber + '号座位';
+                    var resDate = new Date();
+                    resDate = reservationGet.get("exactTime");
+                    document.getElementById("reservedTime").innerText = resDate;
+
+                }
+            }), (error) => { console.log('未知错误！！！'); }
+
+        }
+
+        )
+    }
+
+</script>
+<script>
+    function uploadBulletin() {
+        const queryString = window.location.search;
+        const urlParas = new URLSearchParams(queryString);
+        const objid = urlParas.get('user');
+        var title;
+        var content;
+        var authorName;
+        const userQuery = new AV.Query("Account");
+        userQuery.equalTo("objectId", objid);
+        userQuery.find().then((userGet) => {
+            if (userGet.length != 0) {
+                console.log('更新管理员名字...');
+                authorName = userGet[0].get("userName");
+                title = document.getElementById("bulletinTitle").value;
+                content = document.getElementById("bulletinContent").value;
+                const bulletinQuery = new AV.Query("Bulletin");
+                bulletinQuery.equalTo("authorObjectId", objid);
+                bulletinQuery.find().then((bulletinGet) => {
+                    if (bulletinGet.length == 0) {
+                        console.log('目前管理员账户尚未发布公告');
+                        const temp = AV.Object.extend("Bulletin");
+                        newBulletin = new temp();
+                        newBulletin.set("title", title);
+                        newBulletin.set("authorName", authorName);
+                        newBulletin.set("authorObjectId", objid);
+                        newBulletin.set("content", content);
+                        newBulletin.save().then((eee) => {
+                            confirm('发布成功');
+                            console.log("发布成功.");
+                        });
+                    }
+                    else {
+                        console.log('更新公告...');
+                        neoBulletin=bulletinGet[0];
+                        neoBulletin.set("title", title);
+                        neoBulletin.set("authorName", authorName);
+                        neoBulletin.set("authorObjectId", objid);
+                        neoBulletin.set("content", content);
+                        neoBulletin.save().then((qqq) => {
+                            confirm('发布成功');
+                            console.log("发布成功.");
+                        });
+                    }
+                })
+            }
+        })
+
+    }
+</script>
 
 </html>

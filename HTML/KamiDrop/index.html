@@ -19,9 +19,11 @@
 </style>
 <body>
     <h1>KamiDrop</h1>
+    <div>匿名传输文字！</div>
     <textarea name="" id="input" cols="30" rows="10" placeholder="Type anything here!"></textarea>
     <br>
     <button onclick="update()">更新/清除</button>
+    <button onclick="refresh()">刷新</button>
     <br>
     <div style="font-size: larger; font-weight: 700;">内容</div>
     <div id="content"></div>
@@ -35,7 +37,15 @@
         }
         )
 
-
+    function refresh(){
+        const dataQuery=new AV.Query('data');
+        dataQuery.descending("createdAt");
+        dataQuery.find().then((dataGet)=>{
+            const data=dataGet[0];
+            document.getElementById("content").innerHTML=data.get('content');
+        }
+        )
+    }
 
     function update(){
         var c=new String;

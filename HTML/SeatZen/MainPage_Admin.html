@@ -753,6 +753,7 @@
                 authorName = userGet[0].get("userName");
                 title = document.getElementById("bulletinTitle").value;
                 content = document.getElementById("bulletinContent").value;
+                content=content.replace(/\n/g,"<br>");
                 const bulletinQuery = new AV.Query("Bulletin");
                 bulletinQuery.equalTo("authorObjectId", objid);
                 bulletinQuery.find().then((bulletinGet) => {

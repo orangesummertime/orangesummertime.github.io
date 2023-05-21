@@ -1,3 +1,4 @@
+https://orangesummertime.github.io/2023/05/21/KamiDrop/
 https://orangesummertime.github.io/2023/05/09/SeatZen/
 https://orangesummertime.github.io/2023/05/05/%E6%96%B0%E6%B5%8B%E8%AF%95%E9%A1%B5%E9%9D%A2/
 https://orangesummertime.github.io/2023/04/14/yamadaryou/
@@ -27,8 +28,8 @@ https://orangesummertime.github.io/about/index0.html
 https://orangesummertime.github.io/friends/index-2.html
 https://orangesummertime.github.io/friends/index-1.html
 https://orangesummertime.github.io/categories/index.html
-https://orangesummertime.github.io/2048/README.html
 https://orangesummertime.github.io/2048/index.html
+https://orangesummertime.github.io/2048/README.html
 https://orangesummertime.github.io/
 https://orangesummertime.github.io/tags/%E5%8D%9A%E5%AE%A2/
 https://orangesummertime.github.io/tags/BBS/

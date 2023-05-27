@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>选座系统</title>
     <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4.6.1/dist/av-min.js"></script>
+    <link rel="stylesheet" href="../src/styles/header_style.css">
     <script>
         const { Query, User } = AV;
         AV.init({
@@ -316,14 +317,6 @@
         }
         //测试结束
 
-
-        window.onload = () => {
-            updateObjectId();
-            updateFloorId();
-            updateTitle();
-
-        }
-
         var exLoc = new Array();//楼层，座位x,座位y，上下
 
         function updateReservationLake() {
@@ -363,11 +356,21 @@
         }
 
 
+        // 初始化函数
+        window.onload = ()=>{
+            updateObjectId();
+            updateFloorId();
+            updateTitle();
 
+            initSeats();
+        }
     </script>
 </head>
 
 <style>
+    body {
+        background-color: #f7f7f7;
+    }
     h1 {
         font-family: '楷体';
     }
@@ -384,12 +387,23 @@
         font-family: '楷体';
     }
 
+    /* 中央信息栏 */
     #preserveWindow {
         display: block;
         text-align: center;
         position: relative;
 
-        height: 100%;
+        /* height: 100%; */
+        width: 80%;
+        min-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+
+        background-color: #fff;
+        border-radius: 10px;
+        margin-top: 30px;
+        padding: 10px;
+        box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);
     }
 
     .address {
@@ -403,27 +417,27 @@
 
 
     .table {
-        background-color: wheat;
+        background-image: url(../src/materials/seat001.png);
         display: inline-block;
-        height: 150px;
-        width: 220px;
+        height: 90px;
+        width: 120px;
 
         text-align: center;
-        font-size: 25px;
+        font-size: 15px;
         display: inline-block;
-        border-radius: 5px;
+        border-radius: 2px;
 
-        margin: 20px;
+        margin: 10px;
     }
 
     .tableHalf {
         border: 1px solid brown;
         display: inline-block;
-        padding: 10px;
-        width: 160px;
-        margin: 10px;
+        padding: 2px;
+        width: 100px;
+        margin: 5px;
         height: 30px;
-        border-radius: 5px;
+        border-radius: 2px;
     }
 
     .tableHalf:hover {
@@ -432,34 +446,65 @@
     }
 
     .available {
-        background-color: rgb(96, 171, 96);
+        background-color: rgba(96, 171, 96, 0.5);
     }
 
     .unavailable {
-        background-color: rgb(182, 33, 33);
+        background-color: rgba(182, 33, 33, 0.5);
         color: white;
 
     }
 
     .selected {
-        background-color: rgb(95, 95, 255);
+        background-color: rgba(95, 95, 255, 0.5);
+    }
+
+    /* 按键样式 */
+    .windowBtn {
+        font-size: 20px;
+        background-color: #fff;
+        color: #000;
+        border: #000 solid 1px;
+        padding: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 10px;
+        transition: all 200ms ease-in-out;
+    }
+    .windowBtn:hover {
+        background-color: #43A2EB;
+        cursor: pointer;
+        color: #fff;
+        border-color: #fff;
     }
 </style>
 
 <body>
+    <!-- 头部导航栏 -->
+    <header>
+        <img src="../src/logo/SeatZen.png" alt="" class="logo" alt="logo" height="60px">
+        <nav>
+            <ul class="nav_links">
+                <li><a href="../MainPage_Student.html">首页</a></li>
+                <li><a href="" onclick="alert('敬请期待！')">帮助中心</a></li>
+                <li><a href="" onclick="alert('敬请期待！')">我的信息</a></li>
+            </ul>
+        </nav>
+        <a class="cta" href="../LoginPage.html"><button onclick="logOut();">登出</button></a>
+    </header>
+
     <div id="preserveWindow">
         <h1 class="address" id="titleText">少女祈祷中……</h1>
         <div class="" id="room1">
-
         </div>
-
-        <button onclick="goReserveSeat()">提交预约</button>
+        <button class="windowBtn" onclick="goReserveSeat()">提交预约</button>
 
         <div id="seatInfo">
 
         </div>
         <br><br>
     </div>
+    <br>
 
     <style>
         html,
@@ -482,7 +527,11 @@
             left: 0;
             text-align: center;
         }
-
+        /* 进入动画 */
+        @keyframes dialog_in {
+            0% {opacity: 0;}
+            100% {opacity: 1;}
+        }
         .window_dialog {
             width: 300px;
             height: 300px;
@@ -493,37 +542,74 @@
 
             background-color: #fff;
             border-radius: 10px;
-            box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 5px 5px rgba(240, 240, 240, 0.6);
+
+            opacity: 0;
+            transition: all 500ms ease-in-out;
+            animation: dialog_in 1s ease-in-out 100ms 1 normal forwards;
         }
 
+        /* 标题 */
+        .dialogTitle {
+            font-size: 25px;
+            font-family: '楷体';
+            text-align: center;
+            font-weight: 600;
+            padding: 30px;
+        }
         /* 键值对修改 */
         .window_block .attributePair {
             width: 200px;
             margin-left: auto;
             margin-right: auto;
-
+            padding: 10px;
         }
 
         .window_block .attributePair .attributeKey {
             width: 100%;
-            font-size: 18px;
+            font-size: 15px;
+            font-weight: 600;
             margin-left: auto;
             margin-right: auto;
             text-align: left;
         }
 
         .window_block .attributePair .attributeVal {
-            width: 100%;
+            width: 200px;
             height: 25px;
-            font-size: 20px;
+            font-size: 18px;
+            font-weight: 300;
 
+            border: 0;
+            border-radius: 5px;
+            box-shadow: 0 0 1px 1px #000;
+            cursor: pointer;
             text-decoration: none;
+        }
+        /* 按钮 */
+        .dialogBtn {
+            padding: 3px;
+            padding-left: 20px;
+            padding-right: 20px;
+            font-size: 18px;
+            border: 1px solid #000;
+
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 200ms ease-in-out;
+            font-family: '华文细黑', serif;
+        }
+        .dialogBtn:hover {
+            background-color: #43A2EB;
+            border-color: aliceblue;
+            color: #fff;
         }
     </style>
     <div class="window_block" id="dateChooseDialog">
         <div class="window_dialog">
-            <br><br>
-            <h1>时间</h1>
+            <div class="dialogTitle">
+                请选择时间
+            </div>
 
             <div class="attributePair">
                 <div class="attributeKey">选择时间</div>
@@ -538,7 +624,7 @@
                 </select>
             </div>
             <br>
-            <button onclick="initSeats()">进入</button>
+            <button class="dialogBtn" id="initSeatsBtn" onclick="initSeats()">进 入</button>
         </div>
     </div>
 </body>

@@ -1,0 +1,162 @@
+<!-- markup structure
+article, wrapping container
+    figure, wrapping the image
+    div, wrapping container for a quote and  the name of the testimonial
+-->
+<article>
+  <figure>
+      <img alt="A rather marvellous macaw, opening one of its wings to support the cause." src="https://images.pexels.com/photos/2317904/pexels-photo-2317904.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
+  </figure>
+
+  <div>
+      <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti repellat, consequuntur doloribus voluptate esse iure?
+      </p>
+      <h1>
+          Marvellous Macaw
+      </h1>
+  </div>
+</article>
+<style>
+  @import url("https://fonts.googleapis.com/css?family=Lato:700|Noticia+Text:400i&display=swap");
+
+* {
+box-sizing: border-box;
+padding: 0;
+margin: 0;
+}
+body {
+/* center the article in the viewport */
+display: flex;
+min-height: 100vh;
+justify-content: center;
+align-items: center;
+/* include an off-white background */
+background: hsl(250, 85%, 97%);
+/* add perspective for the rotation of the article, added through the script */
+perspective: 500px;
+}
+
+article {
+/* limit the width of the article container */
+width: 350px;
+/* display the contents in a column */
+display: flex;
+flex-direction: column;
+align-items: center;
+background: hsl(0, 0%, 100%);
+line-height: 2;
+border-radius: 10px;
+margin: 0.5rem;
+/* transition for the transform property, updated in the script */
+transition: transform 0.2s ease-out;
+box-shadow: 0 0 5px -2px hsla(0, 0%, 0%, 0.1);
+right:0;
+}
+article figure {
+/* limit the width and height of the figure to show the image in a circle */
+width: 120px;
+height: 120px;
+border-radius: 50%;
+/* specify negative margin matching half the height of the element */
+margin-top: -60px;
+/* position relative for the pseudo element */
+position: relative;
+
+}
+article figure:before {
+/* add a border around the figure matching the color of the background, faking the clip */
+content: "";
+border-radius: inherit;
+position: absolute;
+top: 50%;
+left: 50%;
+width: 100%;
+height: 100%;
+transform: translate(-50%, -50%);
+border: 1rem solid hsl(250, 85%, 97%);
+box-shadow: 0 1px hsla(0, 0%, 0%, 0.1);
+}
+article figure img {
+/* stretch the image to cover the size of the wrapping container */
+border-radius: inherit;
+width: 100%;
+height: 100%;
+/* object fit to maintain the aspect ratio and fit the width/height */
+object-fit: cover;
+}
+
+article div {
+/* center the text in the div container */
+text-align: center;
+margin: 2rem;
+}
+article div p {
+color: hsl(250, 5%, 45%);
+font-weight: 400;
+font-style: italic;
+margin: 1rem 0 3rem;
+font-family: "Noticia Text", serif;
+/* position relative for the pseudo element */
+position: relative;
+z-index: 5;
+}
+article div p:before {
+/* with SVG elements include two icons for the quote */
+content: "";
+position: absolute;
+top: 50%;
+left: 50%;
+width: 100%;
+height: 100%;
+transform: translate(-50%, -50%);
+z-index: -5;
+opacity: 0.05;
+/* position the icons at either end of the paragraph, rotate the second to have a mirrorer image */
+background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 70" width="70" height="70"><rect x="0" y="40" width="30" height="30"></rect><path d="M 0 40 q 0 -40 30 -40 v 15 q -15 0 -15 25"></path><rect x="40" y="40" width="30" height="30"></rect><path d="M 40 40 q 0 -40 30 -40 v 15 q -15 0 -15 25"></path></svg>'),
+  url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 70" width="70" height="70" transform="rotate(180)"><rect x="0" y="40" width="30" height="30"></rect><path d="M 0 40 q 0 -40 30 -40 v 15 q -15 0 -15 25"></path><rect x="40" y="40" width="30" height="30"></rect><path d="M 40 40 q 0 -40 30 -40 v 15 q -15 0 -15 25"></path></svg>');
+background-position: 20% 20%, 80% 80%;
+background-repeat: no-repeat;
+}
+article div h1 {
+/* considerably reduce the size of the heading */
+color: hsl(260, 5%, 55%);
+font-family: "Lato", sans-serif;
+font-size: 0.75rem;
+text-transform: uppercase;
+letter-spacing: 0.05rem;
+}
+
+</style>
+
+<script>
+  const article = document.querySelector('article');
+
+// to compute the center of the card retrieve its coordinates and dimensions
+const {
+x, y, width, height,
+} = article.getBoundingClientRect();
+const cx = x + width / 2;
+const cy = y + height / 2;
+
+// following the mousemove event compute the distance betwen the cursor and the center of the card
+function handleMove(e) {
+const { pageX, pageY } = e;
+
+// ! consider the relative distance in the [-1, 1] range
+const dx = (cx - pageX) / (width / 2);
+const dy = (cy - pageY) / (height / 2);
+
+// rotate the card around the x axis, according to the vertical distance, and around the y acis, according to the horizontal gap 
+this.style.transform = `rotateX(${1 * dy * -1}deg) rotateY(${1 * dx}deg)`;
+}
+
+// following the mouseout event reset the transform property
+function handleOut() {
+this.style.transform = 'initial';
+}
+
+article.addEventListener('mousemove', handleMove);
+article.addEventListener('mouseout', handleOut);
+
+</script>

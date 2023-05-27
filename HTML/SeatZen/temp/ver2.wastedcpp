@@ -1,0 +1,79 @@
+//#include <QApplication>
+//#include <QFileDialog>
+//#include <QGraphicsPixmapItem>
+//#include <QGraphicsScene>
+//#include <QGraphicsView>
+//#include <QVBoxLayout>
+//#include <QPushButton>
+//#include <opencv2/imgproc.hpp>
+//#include <opencv2/highgui.hpp>
+
+//int main(int argc, char *argv[])
+//{
+//    QApplication a(argc, argv);
+
+//    // 创建主窗口
+//    QWidget* mainWidget = new QWidget();
+//    mainWidget->setWindowTitle("Image Viewer");
+
+//    // 创建垂直布局
+//    QVBoxLayout* layout = new QVBoxLayout();
+
+//    // 创建 Graphics View 用于显示图片
+//    QGraphicsView* graphicsView = new QGraphicsView();
+//    graphicsView->setRenderHint(QPainter::Antialiasing);
+//    graphicsView->setDragMode(QGraphicsView::ScrollHandDrag);
+//    graphicsView->setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
+//    layout->addWidget(graphicsView);
+
+//    // 创建按钮用于选择图片
+//    QPushButton* selectButton = new QPushButton("Select Image");
+//    layout->addWidget(selectButton);
+
+//    // 创建按钮用于处理图片
+//    QPushButton* processButton = new QPushButton("Process");
+//    layout->addWidget(processButton);
+
+//    // 将布局设置为主窗口的布局
+//    mainWidget->setLayout(layout);
+
+//    // 处理选择图片的信号
+//    QObject::connect(selectButton, &QPushButton::clicked, [=]() {
+//        QString fileName = QFileDialog::getOpenFileName(mainWidget, "Select Image", ".", "Image Files (*.png *.jpg *.bmp)");
+//        if (!fileName.isEmpty()) {
+//            QImage image(fileName);
+//            QGraphicsScene* scene = new QGraphicsScene();
+//            QGraphicsPixmapItem* pixmapItem = new QGraphicsPixmapItem(QPixmap::fromImage(image));
+//            scene->addItem(pixmapItem);
+//            graphicsView->setScene(scene);
+//            graphicsView->fitInView(pixmapItem, Qt::KeepAspectRatio);
+//        }
+//    });
+
+//    // 处理处理按钮的信号
+//    QObject::connect(processButton, &QPushButton::clicked, [=]() {
+//        if (!graphicsView->scene() || graphicsView->scene()->items().isEmpty()) {
+//            return;
+//        }
+
+//        // 将图片转换为 OpenCV 格式
+//        QGraphicsPixmapItem* pixmapItem = dynamic_cast<QGraphicsPixmapItem*>(graphicsView->scene()->items().first());
+//        QImage image = pixmapItem->pixmap().toImage();
+//        cv::Mat mat(image.height(), image.width(), CV_8UC4, const_cast<uchar*>(image.bits()), image.bytesPerLine());
+//        cv::cvtColor(mat, mat, cv::COLOR_BGRA2BGR);
+
+//        // 使用双边滤波处理图片
+//        cv::Mat result;
+//        cv::bilateralFilter(mat, result, 15, 80, 80);
+
+//        // 将处理后的图片转换为 Qt 格式并显示
+//        QImage processedImage(result.data, result.cols, result.rows, result.step, QImage::Format_RGB888);
+//        pixmapItem->setPixmap(QPixmap::fromImage(processedImage));
+//        graphicsView->fitInView(pixmapItem, Qt::KeepAspectRatio);
+//    });
+
+//    // 显示主窗口
+//    mainWidget->show();
+
+//    return a.exec();
+//}

@@ -5,15 +5,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>找回密码</title>
+    <title>找回密码 - SeatZen</title>
 </head>
 <style>
+    html, body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+    body {
+        background-image: url("./src/backgrounds/bgc003.png");
+        background-size: cover;
+    }
+
     #forgetWindow {
         text-align: center;
-        background-color: azure;
         border-radius: 20px;
-        width: 600px;
-        height: 400px;
+        width: 400px;
+        height: 300px;
         margin: auto;
         position: absolute;
         top: 0;
@@ -22,10 +31,14 @@
         bottom: 0;
         font-family: '楷体';
         font-size: 20px;
+
+        background-color: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 0 15px 30px rgba(0,0,0,0.1);
     }
 
     #loginTitle {
         font-family: '楷体';
+        font-size: 35px;
     }
 
     #forget {
@@ -36,36 +49,105 @@
         text-decoration: none;
     }
 
-    #forgetWindow span {
+
+    /* 对话框部分 */
+    .attributePair {
+        width: 350px;
+        text-align: center;
+        padding: 10px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .attributePair span {
         display: inline-block;
-        width: 150px;
+        width: 80px;
         text-align: center;
     }
-
-    #forgetWindow input {
+    .attributePair input {
         width: 200px;
+        height: 30px;
+
+        border-radius: 5px;
+        text-indent: 5px;
+        border: 1px solid #000;
+        font-size: 16px;
+
+        letter-spacing: 1px;
+        font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+    }
+
+    /* 修改按键部分 */
+    .inBtn {
+        font-size: 20px;
+        text-align: center;
+
+        padding: 5px;
+        padding-left: 15px;
+        padding-right: 15px;
+        width: 150px;
+
+        border-radius: 10px;
+        border: 1px solid #aaa;
+        transition: all 300ms ease-in-out;
+    }
+    .inBtn:hover {
+        cursor: pointer;
+        background-color: rgb(34,138,220);
+        border: 0;
+        color: #fff;
+    }
+
+    /* 轮转窗口 */
+    .forget_steps_box {
+        width: 100%;
+        height: 170px;
+        overflow: hidden;
+    }
+    #forget_step1, #forget_step2{
+        transition: all 1s ease-in-out;
+    }
+    .window_move_class {
+        transform: translateY(-190px);
     }
 </style>
 
 <body>
     <div id="forgetWindow">
-            <h1 id="forgetTitle" align="center">
-                SeatZen找回密码
-            </h1>
-            <div>
-                <span>教职工号或学号</span>
-                <input type="text" id="ID">
+        <h1 id="forgetTitle" align="center">
+            找回密码
+        </h1>
+        <div class="forget_steps_box">
+            <div id="forget_step1">
+                <div class="attributePair" title="教职工号或学号">
+                    <span>账户号码</span>
+                    <input type="text" id="ID">
+                </div>
+                <div class="attributePair" title="测试版本验证码默认为000000">
+                    <span>验证码</span>
+                    <input type="text" id="confirmCode">
+                </div>
+                <br>
+                <div class="btn_box">
+                    <button class="inBtn" id="confirmCodeBtn" onclick="sendConfirmation();">发送验证码</button>
+                    <button class="inBtn" onclick="goSetPassword()">确定</button>
+                </div>
             </div>
             <br>
-            <span>新密码</span>
-            <input type="password" name="" id="neoPw">
-            <br>
-            <br>
-            <span>确认密码</span>
-            <input type="password" name="" id="neoPwAgain">
-            <br>
-            <br>
-            <button onclick="javascript:resetPassword(document.getElementById('ID').value,document.getElementById('neoPw').value)">提交</button>
+            <div id="forget_step2">
+                <div class="attributePair">
+                    <span>新密码</span>
+                    <input type="password" name="" id="neoPw">
+                </div>
+                <div class="attributePair">
+                    <span>确认密码</span>
+                    <input type="password" name="" id="neoPwAgain">
+                </div>
+                <br>
+                <button onclick="javascript:resetPassword(document.getElementById('ID').value,document.getElementById('neoPw').value)"
+                    class="inBtn">
+                    提交
+                </button>
+            </div>
         </div>
     </div>
 </body>
@@ -122,6 +204,51 @@
     }
     function submitInfo() {
 
+    }
+
+    // 确定验证码
+    function goSetPassword() {
+        if (document.getElementById('confirmCode').value == '') {
+            alert("未填写验证码！");
+        } else if (document.getElementById('confirmCode').value != '000000') {
+            alert("验证码错误！");
+        } else if (document.getElementById('ID').value == '') {
+            alert('用户名未填写！')
+        } else {
+            const userQuery = new AV.Query("Account");
+            userQuery.equalTo("userId",
+                document.getElementById('ID').value);
+            userQuery.find().then((usersGet) => {
+                if (usersGet.length == 0) {
+                    // 用户id输错的情况
+                    console.log("用户不存在");
+                    alert("用户不存在！");
+                } else {
+                    // 找到用户
+                    document.getElementById("forget_step1").classList.add("window_move_class");
+                    document.getElementById("forget_step2").classList.add("window_move_class");
+                }
+            });
+        }
+    }
+
+    // 发送验证码
+    function sendConfirmation() {
+        var confirmCodeBtn = document.getElementById('confirmCodeBtn');
+        confirmCodeBtn.onclick = ()=>{
+            alert("请在一分钟后重试！");
+        };
+        let time_last = 60;
+        let timeLimit = setInterval(()=>{
+            time_last-=1;
+            if (time_last == 0) {
+                confirmCodeBtn.innerText = "重新发送";
+                clearInterval(timeLimit);
+                confirmCodeBtn.onclick = sendConfirmation();
+            } else {
+                confirmCodeBtn.innerText = "重新发送" + "(" + time_last + ")";
+            }
+        }, 1000);
     }
 </script>
 

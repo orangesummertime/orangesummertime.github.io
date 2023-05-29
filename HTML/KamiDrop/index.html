@@ -50,6 +50,8 @@
     function update(){
         var c=new String;
         c=document.getElementById('input').value;
+        c = c.replace(/</g, '&lt;');
+        c = c.replace(/>/g, '&gt;');
         c=c.replace(/\n/g,"<br>");
         const temp=AV.Object.extend("data");
         newData=new temp();

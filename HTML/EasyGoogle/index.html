@@ -30,24 +30,24 @@
         <br>
         <span class="keyValPair">
             <span>搜索内容</span>
-            <input type="text" id="searchContent">
+            <input type="text" id="searchContent" onkeydown="if(event.keyCode==13){search();}">
         </span>
-        <span id="keyValPair">
+        <!-- <span id="keyValPair">
             <span>页码</span>
             <input type="text" id="pageNum" value="1">
-        </span>
+        </span> -->
         <button onclick="search()">搜索</button>
         <br><br>
-        <span style="font-style: italic;">开发中……目前只能以此方式翻页</span>
-        <br>
+        <!-- <span style="font-style: italic;">开发中……目前只能以此方式翻页</span>
+        <br> -->
         <div style="font-weight: bolder;">Tips:本人不对非法使用本页面所可能产生的任何风险负责！</div>
     </div>
 </body>
 <script>
     function search(){
         content=document.getElementById('searchContent').value;
-        page=(document.getElementById('pageNum').value-1)*10;
-        window.open('https://proxy.orangesummertime.com/proxy/www.google.com/search?q='+content+'&start='+page,'_blank');
+        // page=(document.getElementById('pageNum').value-1)*10;
+        window.open('https://proxy.orangesummertime.com/proxy/www.google.com/search?q='+content,'_blank');
     }
 </script>
 </html>

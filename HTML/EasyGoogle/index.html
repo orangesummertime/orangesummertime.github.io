@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EasyGoogle</title>
+</head>
+<style>
+    #mainContent{
+        padding: auto;
+    }
+    body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    }
+    #pageNum{
+        width: 50px;
+    }
+    #searchContent{
+        width: 300px;
+    }
+
+</style>
+<body>
+    <div id="mainContent">
+        <h1 id="title">EasyGoogle</h1>
+        <br>
+        <span class="keyValPair">
+            <span>搜索内容</span>
+            <input type="text" id="searchContent">
+        </span>
+        <span id="keyValPair">
+            <span>页码</span>
+            <input type="text" id="pageNum" value="1">
+        </span>
+        <button onclick="search()">搜索</button>
+        <br><br>
+        <span style="font-style: italic;">开发中……目前只能以此方式翻页</span>
+        <br>
+        <div style="font-weight: bolder;">Tips:本人不对非法使用本页面所可能产生的任何风险负责！</div>
+    </div>
+</body>
+<script>
+    function search(){
+        content=document.getElementById('searchContent').value;
+        page=(document.getElementById('pageNum').value-1)*10;
+        window.open('https://proxy.orangesummertime.com/proxy/www.google.com/search?q='+content+'&start='+page,'_blank');
+    }
+</script>
+</html>

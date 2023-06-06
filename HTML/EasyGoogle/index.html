@@ -36,6 +36,11 @@
             <span>页码</span>
             <input type="text" id="pageNum" value="1">
         </span> -->
+        <span class="keyValPair">
+            <input type="checkbox" id="academicSearch" name="searchType">
+            <label for="academicSearch">学术搜索</label>
+        </span>
+        
         <button onclick="search()">搜索</button>
         <br><br>
         <!-- <span style="font-style: italic;">开发中……目前只能以此方式翻页</span>
@@ -44,10 +49,15 @@
     </div>
 </body>
 <script>
-    function search(){
-        content=document.getElementById('searchContent').value;
-        // page=(document.getElementById('pageNum').value-1)*10;
-        window.open('https://proxy.orangesummertime.com/proxy/www.google.com/search?q='+content,'_blank');
+function search() {
+    content = document.getElementById('searchContent').value;
+    let url = '';
+    if (document.getElementById('academicSearch').checked) {
+        url = 'https://proxy.orangesummertime.com/proxy/scholar.google.com/scholar?q=' + content;
+    } else {
+        url = 'https://proxy.orangesummertime.com/proxy/www.google.com/search?q=' + content;
     }
+    window.open(url,'_blank');
+}
 </script>
 </html>

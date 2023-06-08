@@ -53,10 +53,10 @@ body, header, div.mask.flex-center, div.scroll-down-bar, #banner.banner, h1,h2,h
   cursor: url(https://typora-gilgamesh.oss-cn-shanghai.aliyuncs.com/img1/a11.cur), auto;
 }
 
-/* 自定义鼠标风格 */
+/* 自定义鼠标风格
 a:hover, button:hover, i:hover {
   cursor: url(https://typora-gilgamesh.oss-cn-shanghai.aliyuncs.com/img1/a22.cur), auto;
-}
+} */
 
 #rightside>div>button,
 #rightside>div>a {

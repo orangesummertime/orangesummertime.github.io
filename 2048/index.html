@@ -67,7 +67,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"orangesummertime.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"dHgJFY86Q2qdoCpJ9OLSVWSW-MdYXbMMI","app_key":"cHB7iPQ2OK07dpnuYQiuRHbS","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"orangesummertime.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -363,36 +363,10 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div> <a href="https://icp.gov.moe/?keyword=20232123" target="_blank" id="mengicp">萌ICP备20232123号</a> </div> <div> 此网站自2023.6起共有<span id="siteView">载入访问量...</span>人次访问 </div> <script src="//cdn.jsdelivr.net/npm/leancloud-storage@4.13.1/dist/av-min.js"></script> <script> var count; AV.initialize("5uevnLGhzzCsEjXwZu2fnvNP-MdYXbMMI", "73eMF19b4K1nUTBW9A3Of00O"); // 替换成你的 App ID 和 App Key
-// 在 SiteView 表中查询记录 var query = new AV.Query("SiteView"); query.first().then(function(siteView) { if (siteView) { // 如果记录存在，更新访问量 siteView.increment("count"); count = siteView.get("count"); document.getElementById("siteView").innerHTML = count; siteView.save(); console.log("更新成功"); } else { // 如果记录不存在，创建新记录 var SiteView = AV.Object.extend("SiteView"); var newSiteView = new SiteView(); newSiteView.set("count", 1); newSiteView.save(); console.log("创建成功"); } }); </script>
+       <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div> <a href="https://icp.gov.moe/?keyword=20232123" target="_blank" id="mengicp">萌ICP备20232123号</a> </div> <div> 此网站自2023.6起共有<span id="siteView">载入访问量...</span>人次访问 </div> <script src="http://cdn.jsdelivr.net/npm/leancloud-storage@4.13.1/dist/av-min.js"></script> <script> var count; const { Query, User } = AV; AV.init({ appId: "5uevnLGhzzCsEjXwZu2fnvNP-MdYXbMMI", appKey: "73eMF19b4K1nUTBW9A3Of00O", }); // 在 SiteView 表中查询记录 var query = new AV.Query("SiteView"); console.log("开始查询"); query.first().then(function(siteView) { if (siteView) { // 如果记录存在，更新访问量 siteView.increment("count"); count = siteView.get("count"); document.getElementById("siteView").innerHTML = count; siteView.save(); console.log("更新成功"); } else { // 如果记录不存在，创建新记录 var SiteView = AV.Object.extend("SiteView"); var newSiteView = new SiteView(); newSiteView.set("count", 1); newSiteView.save(); console.log("创建成功"); } }); </script>
 
     </div>
   
-  
-    <div class="statistics">
-  
-  
-
-  
-    
-      <span id="leancloud-site-pv-container" style="display: none">
-        总访问量 
-        <span id="leancloud-site-pv"></span>
-         次
-      </span>
-    
-    
-      <span id="leancloud-site-uv-container" style="display: none">
-        总访客数 
-        <span id="leancloud-site-uv"></span>
-         人
-      </span>
-    
-    
-
-  
-</div>
-
   
   
   
@@ -446,8 +420,6 @@
 
 
   <script  src="/js/local-search.js" ></script>
-
-  <script defer src="/js/leancloud.js" ></script>
 
 
 

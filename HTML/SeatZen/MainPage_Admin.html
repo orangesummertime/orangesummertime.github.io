@@ -24,8 +24,21 @@
         else
         userObjectId='645a63c9c48240148927e22a';
         console.log(userObjectId);
-
+        updateCurrentInfo();
     }
+
+    function updateCurrentInfo(){
+        const userQuery = new AV.Query("Account");
+        userQuery.equalTo("objectId", userObjectId);
+        userQuery.find().then((userGet) => {
+            if (userGet.length != 0) {
+                console.log('更新管理员信息...');
+                document.getElementById("curId").innerText = userGet[0].get("userId");
+                document.getElementById("curName").innerText = userGet[0].get("userName");
+            }
+        })
+    }
+
     function switchStudent(){
         location.assign("./MainPage_Student.html?user="+userObjectId);
     }
@@ -49,6 +62,9 @@
                 console.log("找到用户.");
                 userGet = usersGet[0]
 
+                console.log("user_type:",user_type);
+                console.log("objectId:", userGet.get('objectId'));
+
                 // 重置信息
                 const userUpdate = AV.Object.createWithoutData("Account", userGet.get('objectId'));
                 if (user_password.length > 0)
@@ -57,7 +73,7 @@
                     userUpdate.set("userName", user_name);
                 if (user_department.length > 0)
                     userUpdate.set("userDepartment", user_department);
-                if (user_type.length > 0)
+                if (user_type == 0 || user_type == 1)
                     userUpdate.set("userType", user_type);
                 userUpdate.save().then(() => {
                     console.log("修改成功.");
@@ -352,6 +368,15 @@
                 <!-- 主页内容 -->
                 主页内容
                 <br>
+                <div>管理员信息</div>
+                <div id="keyValPair">
+                    <span>您的ID：</span>
+                    <span id="curId"></span>
+                </div>
+                <div id="keyValPair">
+                    <span>您的姓名：</span>
+                    <span id="curName"></span>
+                </div>
             </div>
             <div class="content_center_in_content" id="manageModule" style="display: none;">
                 <div class="contentCenterTitle">
@@ -592,7 +617,7 @@
                     用户类型
                 </div>
                 <select name="" id="setType" class="attributeVal">
-                    <option value="0">学生</option>
+                    <option value="0" selected>学生</option>
                     <option value="1">管理员</option>
                 </select>
             </div>

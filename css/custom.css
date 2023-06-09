@@ -49,9 +49,9 @@ span{
 div{
   font-family: 'Noto Serif SC', Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
-body, header, div.mask.flex-center, div.scroll-down-bar, #banner.banner, h1,h2,h3,h4,h5,h6 {
+/* body, header, div.mask.flex-center, div.scroll-down-bar, #banner.banner, h1,h2,h3,h4,h5,h6 {
   cursor: url(https://typora-gilgamesh.oss-cn-shanghai.aliyuncs.com/img1/a11.cur), auto;
-}
+} */
 
 /* 自定义鼠标风格
 a:hover, button:hover, i:hover {
@@ -67,31 +67,31 @@ a:hover, button:hover, i:hover {
   color: var(--btn-color);
   text-align: center;
   font-size: 16px;
-  cursor: url(https://typora-gilgamesh.oss-cn-shanghai.aliyuncs.com/img1/a22.cur), auto;
+  /* cursor: url(https://typora-gilgamesh.oss-cn-shanghai.aliyuncs.com/img1/a22.cur), auto; */
 }
 
 /* 文章标签 */
-.layout_post .tag_share .post-meta__tags {
+/* .layout_post .tag_share .post-meta__tags {
   cursor: url(https://typora-gilgamesh.oss-cn-shanghai.aliyuncs.com/img1/a22.cur), auto;
-}
+} */
 /* 评论区 */
-.vcol * {
+/* .vcol * {
   cursor: url(https://typora-gilgamesh.oss-cn-shanghai.aliyuncs.com/img1/a22.cur), auto;
-}
-.v[data-class=v] .vicon {
+} */
+/* .v[data-class=v] .vicon {
   cursor: url(https://typora-gilgamesh.oss-cn-shanghai.aliyuncs.com/img1/a22.cur), auto;
-}
-.v[data-class=v] .vbtn {
+} */
+/* .v[data-class=v] .vbtn {
   cursor: url(https://typora-gilgamesh.oss-cn-shanghai.aliyuncs.com/img1/a22.cur), auto;
-}
+} */
 /* 回复 */
-.vat {
+/* .vat {
   cursor: url(https://typora-gilgamesh.oss-cn-shanghai.aliyuncs.com/img1/a22.cur), auto;
-}
+} */
 /*分页器*/
-#pagination .page-number:hover {
+/* #pagination .page-number:hover {
   cursor: url(https://typora-gilgamesh.oss-cn-shanghai.aliyuncs.com/img1/a22.cur), auto;
-}
+} */
 /* 分页器的三个点(...) */
 .space {
   color: #00c4b6;

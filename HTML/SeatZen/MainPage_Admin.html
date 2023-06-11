@@ -45,6 +45,7 @@
 
     window.onload = () => {
         updateObjectId();
+        showFormerBulletins();
     }
 
 
@@ -369,14 +370,19 @@
                 主页内容
                 <br>
                 <div>管理员信息</div>
-                <div id="keyValPair">
+                <div id="attributePair">
                     <span>您的ID：</span>
                     <span id="curId"></span>
                 </div>
-                <div id="keyValPair">
+                <div id="attributePair">
                     <span>您的姓名：</span>
                     <span id="curName"></span>
                 </div>
+                <h1>您发布过的公告</h1>
+                <div id="formerBulletins">
+                    
+                </div>
+                
             </div>
             <div class="content_center_in_content" id="manageModule" style="display: none;">
                 <div class="contentCenterTitle">
@@ -696,7 +702,7 @@
         }
     </style>
 
-
+    
 
     <div class="window_block">
         <div id="releaseBulletin">
@@ -778,6 +784,11 @@
                 authorName = userGet[0].get("userName");
                 title = document.getElementById("bulletinTitle").value;
                 content = document.getElementById("bulletinContent").value;
+                //把尖括号变成转义字符
+                content = content.replace(/</g, "&lt;");
+                content = content.replace(/>/g, "&gt;");
+                //把回车替换为<br>
+                content = content.replace(/\n/g, "<br>");
                 const bulletinQuery = new AV.Query("Bulletin");
                 bulletinQuery.equalTo("authorObjectId", objid);
                 bulletinQuery.find().then((bulletinGet) => {
@@ -811,6 +822,70 @@
         })
 
     }
+
 </script>
 
+<script>
+    //显示当前账号之前发布的公告的标题，并在每个标题旁边附上一个“删除”按钮
+    function showFormerBulletins(){
+        const bulletinQuery = new AV.Query("Bulletin");
+        bulletinQuery.equalTo("authorObjectId", userObjectId);
+        bulletinQuery.find().then((bulletinsGet)=>{
+            for(let i=0;i<bulletinsGet.length;i++){
+                var bulletinTitle=bulletinsGet[i].get("title");
+                var bulletinObjectId=bulletinsGet[i].get("objectId");
+                var bulletinContent=bulletinsGet[i].get("content");
+                var bulletinAuthorName=bulletinsGet[i].get("authorName");
+                var bulletinAuthorObjectId=bulletinsGet[i].get("authorObjectId");
+                var bulletinTime=bulletinsGet[i].get("createdAt");
+                var bulletinTimeText=bulletinTime.getFullYear()+'-'+(bulletinTime.getMonth()+1)+'-'+bulletinTime.getDate()+' '+bulletinTime.getHours()+':'+bulletinTime.getMinutes()+':'+bulletinTime.getSeconds();
+                var bulletinText=bulletinTitle+'  '+bulletinTimeText;
+                var bulletinDiv=document.createElement("div");
+                bulletinDiv.setAttribute("class","bulletinDiv");
+                bulletinDiv.setAttribute("id",bulletinObjectId);
+                bulletinDiv.setAttribute("onclick","showBulletinContent(this.id)");
+                bulletinDiv.innerText=bulletinText;
+                var deleteBtn=document.createElement("button");
+                deleteBtn.setAttribute("class","deleteBtn");
+                deleteBtn.setAttribute("onclick","deleteBulletin(this.parentNode.id)");
+                deleteBtn.innerText="删除";
+                bulletinDiv.appendChild(deleteBtn);
+                document.getElementById("formerBulletins").appendChild(bulletinDiv);
+            }
+        })
+    }
+    //显示公告的内容
+    function showBulletinContent(bulletinObjectId){
+        const bulletinQuery = new AV.Query("Bulletin");
+        bulletinQuery.equalTo("objectId", bulletinObjectId);
+        bulletinQuery.find().then((bulletinsGet)=>{
+            var bulletinTitle=bulletinsGet[0].get("title");
+            var bulletinContent=bulletinsGet[0].get("content");
+            var bulletinAuthorName=bulletinsGet[0].get("authorName");
+            var bulletinAuthorObjectId=bulletinsGet[0].get("authorObjectId");
+            var bulletinTime=bulletinsGet[0].get("createdAt");
+            var bulletinTimeText=bulletinTime.getFullYear()+'-'+(bulletinTime.getMonth()+1)+'-'+bulletinTime.getDate()+' '+bulletinTime.getHours()+':'+bulletinTime.getMinutes()+':'+bulletinTime.getSeconds();
+            var bulletinText=bulletinTitle+'  '+bulletinTimeText+'\n'+bulletinContent;
+            alert(bulletinText);
+        })
+    }
+    //删除公告
+    function deleteBulletin(bulletinObjectId){
+        const bulletinQuery = new AV.Query("Bulletin");
+        bulletinQuery.equalTo("objectId", bulletinObjectId);
+        bulletinQuery.find().then((bulletinsGet)=>{
+            var bulletin=bulletinsGet[0];
+            bulletin.destroy().then((success)=>{
+                alert("删除成功");
+                location.reload();
+            })
+        })
+    }
+</script>
+<!-- 鼠标移到bulletinDiv时变成手 -->
+<style>
+    .bulletinDiv{
+        cursor: pointer;
+    }
+</style>
 </html>

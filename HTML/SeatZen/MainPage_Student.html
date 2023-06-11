@@ -413,7 +413,7 @@
                 }
             </style>
             <div id="bulletin" class="content_right_in_content">
-                <div class="right_content_title" >
+                <!-- <div class="right_content_title" >
                     公告
                 </div>
                 <h1 id="bulletinTitle" style="text-align: center;">
@@ -423,7 +423,8 @@
                     <span class="attributeKey">来自：</span>
                     <span class="attributeVal" id="bulletinAuthorName"></span>
                 </div>
-                <div class="bulletinContent" id="bulletinContent" style="text-align: left; padding-left: 5%;padding-right: 5%;text-indent: 2em;"></div>
+                <div class="bulletinContent" id="bulletinContent" style="text-align: left; padding-left: 5%;padding-right: 5%;text-indent: 2em;"></div> -->
+                
             </div>
 
 
@@ -554,12 +555,31 @@
     function updateBulletin(){//更新公告
         const bulletinQuery=new AV.Query("Bulletin");
         bulletinQuery.descending("createdAt");
-        bulletinQuery.find().then((bulletsGet)=>{
-            if(bulletsGet.length!=0){
-            bulletGet=bulletsGet[0];
-            document.getElementById("bulletinTitle").innerHTML=bulletGet.get('title');
-            document.getElementById("bulletinAuthorName").innerHTML=bulletGet.get('authorName');
-            document.getElementById("bulletinContent").innerHTML=bulletGet.get('content');          
+        bulletinQuery.find().then((bulletinsGet)=>{
+            if(bulletinsGet.length!=0){
+                //添加获取到的所有公告分别填入各自的div中并加到#bulletin中
+                for(let i=0;i<bulletinsGet.length;i++){
+                    var bulletinGet=bulletinsGet[i];
+                    var bulletinTitle=bulletinGet.get("title");
+                    var bulletinAuthorName=bulletinGet.get("authorName");
+                    var bulletinContent=bulletinGet.get("content");
+                    var bulletinDiv=document.createElement("div");
+                    bulletinDiv.setAttribute("class","bulletin");
+                    bulletinDiv.setAttribute("id","bulletin"+i);
+                    var bulletinTitleDiv=document.createElement("h1");
+                    bulletinTitleDiv.setAttribute("id","bulletinTitle"+i);
+                    bulletinTitleDiv.innerText=bulletinTitle;
+                    var bulletinAuthorNameDiv=document.createElement("div");
+                    bulletinAuthorNameDiv.setAttribute("id","bulletinAuthorName"+i);
+                    bulletinAuthorNameDiv.innerText=bulletinAuthorName;
+                    var bulletinContentDiv=document.createElement("div");
+                    bulletinContentDiv.setAttribute("id","bulletinContent"+i);
+                    bulletinContentDiv.innerText=bulletinContent;
+                    bulletinDiv.appendChild(bulletinTitleDiv);
+                    bulletinDiv.appendChild(bulletinAuthorNameDiv);
+                    bulletinDiv.appendChild(bulletinContentDiv);
+                    document.getElementById("bulletin").appendChild(bulletinDiv);
+                }
             }
         })
         

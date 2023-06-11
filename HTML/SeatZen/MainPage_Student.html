@@ -517,7 +517,21 @@
                 var resDate = new Date();
                 resDate = reservationGet.get("exactTime");
                 document.getElementById("reservedTime").innerText = resDate;
-
+                //签到按钮，按下后删除此次预约
+                var signInBtn = document.createElement("button");
+                signInBtn.setAttribute("class", "mainpage_btn");
+                signInBtn.setAttribute("id", "signInBtn");
+                signInBtn.innerText = "签到";
+                signInBtn.onclick = function () {
+                    reservationGet.destroy().then((success) => {
+                        if (success) {
+                            console.log("删除成功");
+                            alert("签到成功");
+                            showViewReservation();
+                        }
+                    })
+                }
+                document.getElementById("reservationInfo").appendChild(signInBtn);
             }
         })
         var a = document.getElementsByClassName("content_right_in_content");

@@ -15,11 +15,13 @@ function login(user_id, user_password) {
     userQuery.find().then((usersGet) => {
         if (usersGet.length == 0) {
             // 用户id输错的情况
-            console.log("用户不存在");
+            console.log("用户不存在！");
+            alert("用户不存在，请重新输入！");
         } else {
             if (usersGet[0].get("userPassword") != user_password) {
                 // 用户密码输入错误的情况
                 console.log("密码错误");
+                alert("密码错误，请重新输入！");
             } else {
                 // 用户id和密码一致的情况
                 console.log("登录成功");

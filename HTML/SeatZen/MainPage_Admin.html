@@ -293,14 +293,16 @@
     }
 
     /* 中央信息键值对 */
-    #manageModule .attributePair {
+    #manageModule .attributePair,
+    #homePageModule .attributePair{
         width: 300px;
         margin-left: auto;
         margin-right: auto;
         padding: 10px;
     }
 
-    #manageModule .attributePair .attributeKey {
+    #manageModule .attributePair .attributeKey,
+    #homePageModule .attributePair .attributeKey{
         width: 100%;
         font-size: 15px;
         font-weight: 600;
@@ -308,7 +310,8 @@
         padding: 2px;
     }
 
-    #manageModule .attributePair .attributeVal {
+    #manageModule .attributePair .attributeVal,
+    #homePageModule .attributePair .attributeVal{
         width: 100%;
         font-size: 25px;
         font-weight: 300;
@@ -347,6 +350,41 @@
         /* 半透明 */
         background-color: rgba(255, 255, 255, 0.5);
     }
+
+    /* 公告style */
+    .formerBulletinCase {
+        margin-left: 10px;
+        margin-right: 10px;
+        padding: 10px;
+        width: calc(100% - 40px);
+        border-top: #eeeeee50 1px solid;
+        border-bottom: #eeeeee50 1px solid;
+
+        font-size: 20px;
+        cursor: pointer;
+    }
+    .formerBulletinCase .formerBulletinTitle{
+        display: inline-block;
+        width: calc(70% - 80px);
+    }
+    .formerBulletinCase .formerBulletinTime{
+        display: inline-block;
+        width: 25%;
+    }
+    .formerBulletinCase .formerBulletinDelete{
+        text-decoration: none;
+        display: inline-block;
+        width: 80px;
+        font-size: 20px;
+        background-color: #eeeeee50;
+        cursor: pointer;
+        border-radius: 5px;
+        border: 1px #aaa solid;
+        transition: all 200ms ease-in-out;
+    }
+    .formerBulletinCase .formerBulletinDelete:hover {
+        filter: invert(80%);
+    }
 </style>
 
 <body>
@@ -373,17 +411,16 @@
                 
                 <br>
                 <div><h1>管理员信息</h1></div>
-                <div id="attributePair">
-                    <span>您的ID：</span>
-                    <span id="curId"></span>
+                <div class="attributePair">
+                    <div class="attributeKey">您的ID：</div>
+                    <div class="attributeVal" id="curId"></div>
                 </div>
-                <div id="attributePair">
-                    <span>您的姓名：</span>
-                    <span id="curName"></span>
+                <div class="attributePair">
+                    <div class="attributeKey">您的姓名：</div>
+                    <div class="attributeVal" id="curName"></div>
                 </div>
                 <h1>您发布过的公告</h1>
                 <div id="formerBulletins">
-                    
                 </div>
                 
             </div>
@@ -706,7 +743,7 @@
     </style>
 
     
-
+    <!-- 发布公告对话框 -->
     <div class="window_block">
         <div id="releaseBulletin">
             <div class="dialogTitle">
@@ -718,7 +755,7 @@
             </div>
             <div class="attributePair">
                 <div class="attributeKey">内容</div>
-                <textarea name="" id="bulletinContent" cols="30" rows="15"></textarea>
+                <textarea class="attributeVal" style="height: 250px; font-size: 20px;" name="" id="bulletinContent" cols="30" rows="15"></textarea>
             </div>
             <div class="btnBox">
                 <button class="dialogBtn" onclick="uploadBulletin()">发布</button>
@@ -792,35 +829,32 @@
                 // content = content.replace(/>/g, "&gt;");
                 //把回车替换为<br>
                 content = content.replace(/\n/g, "<br>");
-                const bulletinQuery = new AV.Query("Bulletin");
-                bulletinQuery.equalTo("authorObjectId", objid);
-                bulletinQuery.find().then((bulletinGet) => {
-                    if (bulletinGet.length == 0) {
-                        console.log('目前管理员账户尚未发布公告');
-                        const temp = AV.Object.extend("Bulletin");
-                        newBulletin = new temp();
-                        newBulletin.set("title", title);
-                        newBulletin.set("authorName", authorName);
-                        newBulletin.set("authorObjectId", objid);
-                        newBulletin.set("content", content);
-                        newBulletin.save().then((eee) => {
-                            confirm('发布成功');
-                            console.log("发布成功.");
-                        });
-                    }
-                    else {
-                        console.log('更新公告...');
-                        neoBulletin=bulletinGet[0];
-                        neoBulletin.set("title", title);
-                        neoBulletin.set("authorName", authorName);
-                        neoBulletin.set("authorObjectId", objid);
-                        neoBulletin.set("content", content);
-                        neoBulletin.save().then((qqq) => {
-                            confirm('发布成功');
-                            console.log("发布成功.");
-                        });
-                    }
-                })
+                // 新增公告到数据库
+                // 声明 class
+                const BulletinClass = AV.Object.extend("Bulletin");
+                // 构建对象
+                const newBulletin= new BulletinClass();
+
+                // 为属性赋值
+                newBulletin.set("authorName", authorName);
+                newBulletin.set("authorObjectId", objid);
+                newBulletin.set("content", content);
+                newBulletin.set("title", title);
+
+
+                // 将对象保存到云端
+                newBulletin.save().then(
+                (newBulletin) => {
+                    alert("发布成功！")
+                    // 成功保存之后，执行其他逻辑
+                    console.log(`保存成功。objectId: ${newBulletin.id}`);
+                },(error) => {
+                    // 异常处理
+                    alert("产生异常！");
+                    console.log("保存失败。", error);
+                }
+                );
+
             }
         })
 
@@ -829,6 +863,17 @@
 </script>
 
 <script>
+    //Date 转换 字符串 yyyy-MM-dd HH:mm:ss
+    function dateTimeToString(date) {
+        var y = date.getFullYear();
+        var M = date.getMonth() + 1;
+        var d = date.getDate();
+        var H = date.getHours();
+        var m = date.getMinutes();
+        var s = date.getSeconds();
+        return y + '-' + (M < 10 ? ('0' + M) : M) + '-' + (d < 10 ? ('0' + d) : d) + " " + (H < 10 ? ('0' + H) : H) + ":" + (m < 10 ? ('0' + m) : m) + ":" + (s < 10 ? ('0' + s) : s);
+    }
+
     //显示当前账号之前发布的公告的标题，并在每个标题旁边附上一个“删除”按钮
     function showFormerBulletins(){
         const bulletinQuery = new AV.Query("Bulletin");
@@ -843,20 +888,39 @@
                 var bulletinTime=bulletinsGet[i].get("createdAt");
                 var bulletinTimeText=bulletinTime.getFullYear()+'-'+(bulletinTime.getMonth()+1)+'-'+bulletinTime.getDate()+' '+bulletinTime.getHours()+':'+bulletinTime.getMinutes()+':'+bulletinTime.getSeconds();
                 var bulletinText=bulletinTitle+'  '+bulletinTimeText;
+
+                // 单条通知信息
                 var bulletinDiv=document.createElement("div");
-                bulletinDiv.setAttribute("class","bulletinDiv");
+                bulletinDiv.setAttribute("class","formerBulletinCase");
                 bulletinDiv.setAttribute("id",bulletinObjectId);
                 bulletinDiv.setAttribute("onclick","showBulletinContent(this.id)");
-                bulletinDiv.innerText=bulletinText;
+                // bulletinDiv.innerText=bulletinText;
+                // 设定标题
+                var bulletinTitleContainer=document.createElement("span");
+                bulletinTitleContainer.setAttribute("class","formerBulletinTitle");
+                bulletinTitleContainer.innerText=bulletinTitle;
+                // 设定时间
+                var bulletinTimeContainer=document.createElement("span");
+                bulletinTimeContainer.setAttribute("class","formerBulletinTime");
+                bulletinTimeContainer.innerText=dateTimeToString(bulletinTime);
+                // 删除键
                 var deleteBtn=document.createElement("button");
-                deleteBtn.setAttribute("class","deleteBtn");
+                deleteBtn.setAttribute("class","formerBulletinDelete");
+                deleteBtn.innerText = "撤回";
                 deleteBtn.setAttribute("onclick","deleteBulletin(this.parentNode.id)");
-                deleteBtn.innerText="删除";
+
+                // 放进其中
+                bulletinDiv.appendChild(bulletinTitleContainer);
+                bulletinDiv.appendChild(bulletinTimeContainer);
                 bulletinDiv.appendChild(deleteBtn);
                 document.getElementById("formerBulletins").appendChild(bulletinDiv);
+                console.log("title:", bulletinTitle);
+                console.log("time:", bulletinTimeText);
+                continue;
             }
         })
     }
+
     //显示公告的内容
     function showBulletinContent(bulletinObjectId){
         const bulletinQuery = new AV.Query("Bulletin");

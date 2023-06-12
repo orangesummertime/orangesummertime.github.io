@@ -75,6 +75,8 @@ int main(int argc, char *argv[])
 
         // 将处理后的图片转换为 Qt 格式并显示
         QImage processedImage(result.data, result.cols, result.rows, result.step, QImage::Format_RGB888);
+        //Mat图片默认为BGR顺序
+        processedImage=processedImage.rgbSwapped();
         imgViewer->setImage(QPixmap::fromImage(processedImage));
 
     });

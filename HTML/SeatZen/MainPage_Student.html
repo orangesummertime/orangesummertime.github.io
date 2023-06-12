@@ -9,9 +9,12 @@
     <link rel="stylesheet" href="./src/styles/header_style.css">
 </head>
 <style>
+    html {
+        height: 100%;
+    }
     html,
     body {
-        height: 100%;
+        min-height: 100%;
         width: 100%;
         margin: 0;
 
@@ -24,54 +27,12 @@
         vertical-align: top;
     }
 
-    /* div{
-            font-size: 30px;
-        }
-        span{
-            font-size: 30px;
-        }
-        h1 {
-            font-family: '楷体';
-        } */
-    /* 
-    #mainWindow {
-        margin: 0 auto;
-        background-color: azure;
-
-    }
-
-    menu {
-        font-family: '楷体';
-        font-size: 32px;
-    }
-
-    nav {
-        font-family: '楷体';
-        font-size: 20px;
-    }
-
-    .blank {
-        background-color: white !important;
-        height: 400px;
-        width: 2%;
-    }
-
-    .module {
-        background-color: azure;
-        height: 700px;
-        font-family: '楷体';
-        padding: 2%;
-        float: left;
-        width: calc(86% - 15%);
-        display: none;
-        width: 600px;
-    }*/
-
     /* 主要信息 */
     .main_content {
         width: 80%;
         min-width: 800px;
         /* height: 100%; */
+        min-height: 100%;
         margin-top: 30px;
 
         margin-left: auto;
@@ -294,6 +255,49 @@
         background-color: rgba(255, 255, 255, 0.9);       
     }
 </style>
+<!-- 预约信息style -->
+<style>
+    .reserveCase {
+        text-align: center;
+        /* background-color: #0c3483; */
+        width: calc(100% - 40px);
+        padding: 10px;
+        /* margin: 10px; */
+        margin-left: 10px;
+        margin-right: 10px;
+        font-size: 25px;
+        height: auto;
+        overflow: hidden;
+
+        border-bottom: #aaa 1px solid;
+        border-top: #aaa 1px solid;
+    }
+    .reserveCase .reserveCaseRoom{
+        display: inline-block;
+        width: 45%;
+    }
+    .reserveCase .reserveCaseTime{
+        display: inline-block;
+        width: 30%;
+    }
+    .reserveCase .reserveCaseQuit{
+        text-decoration: none;
+        display: inline-block;
+        width: 15%;
+        background-color: #fff;
+        border-radius: 5px;
+        font-size: 25px;
+        cursor: pointer;
+        letter-spacing: 2px;
+        transition: all 200ms ease-in-out;
+        border: #000 1px solid;
+    }
+    .reserveCase .reserveCaseQuit:hover {
+        background-color: #3273dc;
+        border: #eee 1px solid;
+        color: #fff;
+    }
+</style>
 
 <body>
     <!-- 头部导航栏 -->
@@ -320,13 +324,16 @@
                     <a href="javascript:showReserveSeat()">座位预约</a>
                 </li>
                 <li class="content_nav_link">
-                    <a href="javascript:showViewReservation()">查看预约信息</a>
+                    <a href="javascript:showViewReservation()">图书馆签到</a>
                 </li>
                 <li class="content_nav_link">
                     <a href="javascript:showViewProfile()">查看个人信息</a>
                 </li>
                 <li class="content_nav_link">
                     <a href="javascript:showBulletin()">查看公告</a>
+                </li>
+                <li class="content_nav_link">
+                    <a href="javascript:showReserveList()">预约信息列表</a>
                 </li>
             </ul>
             <br>
@@ -341,6 +348,21 @@
                 是大学城校区的标志性建筑之一。大学城校区图书分馆馆舍于2006
                 年8月竣工，建筑面积42300平方米，分为地下一层，地上八层，是
                 一座集楼宇自控，智能布线，防火监控于一体的现代化生态型图书馆。
+            </div>
+
+            <div id="reserveList" class="content_right_in_content">
+                <h1>预约信息列表</h1>
+                <div class="reserveCase">
+                    <span class="reserveCaseRoom">图书馆一楼</span>
+                    <span class="reserveCaseTime">2023-01-02 12:00-31:00</span>
+                    <button class="reserveCaseQuit">取消预约</button>
+                </div>
+                
+                <div class="reserveCase">
+                    <span class="reserveCaseRoom">图书馆一楼</span>
+                    <span class="reserveCaseTime">2023-01-02 12:00-31:00</span>
+                    <button class="reserveCaseQuit">取消预约</button>
+                </div>
             </div>
 
             <div id="reserveSeat" class="content_right_in_content">
@@ -492,10 +514,12 @@
         document.getElementById("reserveSeat").style.display = "block";
         document.getElementsByClassName("content_article")[0].style.display = "none";
     }
+
     function showViewReservation() {
         //显示下一次预约的座位
         const reservationQuery = new AV.Query("reservationLake");
         reservationQuery.equalTo('userObjectId', userObjectId);
+        reservationQuery.ascending("exactTime");
         reservationQuery.find().then((reservationsGet) => {
             if (reservationsGet.length != 0) {//此用户存在下一次预约
                 console.log('找到了下一次预约');
@@ -518,18 +542,95 @@
                 resDate = reservationGet.get("exactTime");
                 document.getElementById("reservedTime").innerText = resDate;
                 //签到按钮，按下后删除此次预约
+                var formerBtns = document.getElementById("signInBtn");
+                if (formerBtns != null)
+                    formerBtns.remove();
                 var signInBtn = document.createElement("button");
                 signInBtn.setAttribute("class", "mainpage_btn");
                 signInBtn.setAttribute("id", "signInBtn");
-                signInBtn.innerText = "签到";
-                signInBtn.onclick = function () {
-                    reservationGet.destroy().then((success) => {
-                        if (success) {
-                            console.log("删除成功");
-                            alert("签到成功");
-                            showViewReservation();
-                        }
-                    })
+
+                // 签到的设定
+                if (!reservationGet.get("signIn")) {
+                    signInBtn.innerText = "签到";
+                    signInBtn.onclick = ()=>{
+
+                        // 在Reservation中查询
+                        const personQuery = new AV.Query("Reservation");
+                        personQuery.equalTo("seatReservedPerson", userObjectId);
+                        const timeQuery = new AV.Query("Reservation");
+                        timeQuery.equalTo("reservationDate", reservationGet.get("exactTime"));
+                        const buildingQuery = new AV.Query("Reservation");
+                        buildingQuery.equalTo("seatBuilding", reservationGet.get("exactLocation")[0]);
+
+                        var query = AV.Query.and(personQuery, timeQuery);
+                        query = AV.Query.and(query, buildingQuery);
+                        query.find().then((reservationListsGet)=>{
+                            if(reservationListsGet.length!=0){
+                                reservationListGet = reservationListsGet[0];
+                                var seatCheckedArr = reservationListGet.get("seatChecked");
+                                var seatReservedPersonArr = reservationListGet.get("seatReservedPerson");
+                                for (let i=0;i <seatCheckedArr.length; i++) {
+                                    if (seatReservedPersonArr[i] == userObjectId) 
+                                    seatCheckedArr[i] = 1;
+                                }
+                                
+                                const newReserveList = AV.Object.createWithoutData("Reservation", reservationListGet.id);
+                                newReserveList.set("seatChecked", seatCheckedArr);
+                                newReserveList.save().then((success)=>{
+                                    console.log("步骤1签到成功。");
+                                    const todo = AV.Object.createWithoutData("reservationLake", reservationGet.id);
+                                    todo.set("signIn", true);
+                                    todo.save().then((success) => {
+                                        console.log("签到成功");
+                                        alert("签到成功！");
+                                        showViewReservation();
+                                    })
+                                })
+                            }
+                        });
+                    }
+                } else {
+                    signInBtn.innerText = "签退";
+
+                    signInBtn.onclick = ()=>{
+                        // 在Reservation中查询
+                        const personQuery = new AV.Query("Reservation");
+                        personQuery.equalTo("seatReservedPerson", userObjectId);
+                        const timeQuery = new AV.Query("Reservation");
+                        timeQuery.equalTo("reservationDate", reservationGet.get("exactTime"));
+                        const buildingQuery = new AV.Query("Reservation");
+                        buildingQuery.equalTo("seatBuilding", reservationGet.get("exactLocation")[0]);
+
+                        var query = AV.Query.and(personQuery, timeQuery);
+                        query = AV.Query.and(query, buildingQuery);
+                        query.find().then((reservationListsGet)=>{
+                            if(reservationListsGet.length!=0){
+                                reservationListGet = reservationListsGet[0];
+                                var seatOffArr = reservationListGet.get("seatOff");
+                                var seatReservedPersonArr = reservationListGet.get("seatReservedPerson");
+                                for (let i=0;i <seatOffArr.length; i++) {
+                                    if (seatReservedPersonArr[i] == userObjectId) 
+                                        seatOffArr[i] = 1;
+                                }
+                                
+                                const newReserveList = AV.Object.createWithoutData("Reservation", reservationListGet.id);
+                                newReserveList.set("seatOff", seatOffArr);
+                                newReserveList.save().then((success)=>{
+                                    console.log("步骤1签到成功。");
+                                    
+                                    // 删除记录
+                                    reservationGet.destroy().then((success) => {
+                                        if (success) {
+                                            console.log("删除成功");
+                                            alert("签退成功");
+                                            showViewReservation();
+                                        }
+                                    })
+                                })
+                            }
+                        });
+                    }
+                    
                 }
                 document.getElementById("reservationInfo").appendChild(signInBtn);
             }
@@ -547,7 +648,103 @@
         document.getElementById("viewReservation").style.display = "block";
         document.getElementsByClassName("content_article")[0].style.display = "none";
     }
+    
+    function dateTimeToSegmentString(date) {
+        var y = date.getFullYear();
+        var M = date.getMonth() + 1;
+        var d = date.getDate();
+        var H = date.getHours();
+        var m = date.getMinutes();
+        var s = date.getSeconds();
+        var H_after = H + 5;
+        if (H_after == 23) H_after = 22;
+        var startDate = y + '-' + (M < 10 ? ('0' + M) : M) + '-' + (d < 10 ? ('0' + d) : d) + " " + (H < 10 ? ('0' + H) : H) + ":" + (m < 10 ? ('0' + m) : m);
+        var endTime = (H_after < 10 ? ('0' + H_after) : H_after) + ":" + (m < 10 ? ('0' + m) : m);
+        return startDate + "-" + endTime;
+    }
 
+    // 显示预约列表
+    function showReserveList() {
+        // 删除原有信息
+        var formerReserveList = document.getElementsByClassName("reserveCase");
+        for (let i=formerReserveList.length-1; i>=0; i--)
+            formerReserveList[i].parentNode.removeChild(formerReserveList[i]);
+
+        const reservationQuery = new AV.Query("reservationLake");
+        reservationQuery.equalTo('userObjectId', userObjectId);
+        reservationQuery.descending("exactTime");
+        reservationQuery.find().then((reservationsGet) => {
+            // 显示预约信息
+            for (let i=0; i<reservationsGet.length; i++) {
+                var newReserveCase = document.createElement('div');
+                newReserveCase.setAttribute('class', 'reserveCase');
+                var newReserveRoom = document.createElement('span');
+                newReserveRoom.setAttribute('class', 'reserveCaseRoom');
+                var newReserveTime = document.createElement('span');
+                newReserveTime.setAttribute('class', 'reserveCaseTime');
+                var newReserveQuit = document.createElement('button');
+                newReserveQuit.setAttribute('class', 'reserveCaseQuit');
+                newReserveQuit.onclick = ()=>{
+                    // 继续删除
+                    const personQuery = new AV.Query("Reservation");
+                    personQuery.equalTo("seatReservedPerson", userObjectId);
+                    const timeQuery = new AV.Query("Reservation");
+                    timeQuery.equalTo("reservationDate", reservationsGet[i].get("exactTime"));
+                    const buildingQuery = new AV.Query("Reservation");
+                    buildingQuery.equalTo("seatBuilding", reservationsGet[i].get("exactLocation")[0]);
+
+                    var query = AV.Query.and(personQuery, timeQuery);
+                    query = AV.Query.and(query, buildingQuery);
+                    query.find().then((reservationListsGet)=>{
+                        if(reservationListsGet.length!=0){
+                            reservationListGet = reservationListsGet[0];
+                            var seatOffArr = reservationListGet.get("seatOff");
+                            var seatReservedPersonArr = reservationListGet.get("seatReservedPerson");
+                            for (let i=0;i <seatOffArr.length; i++) {
+                                if (seatReservedPersonArr[i] == userObjectId) 
+                                    seatOffArr[i] = 1;
+                            }
+                            
+                            const newReserveList = AV.Object.createWithoutData("Reservation", reservationListGet.id);
+                            newReserveList.set("seatOff", seatOffArr);
+                            newReserveList.save().then((success)=>{
+                                console.log("步骤1取消预约成功。");
+                                reservationsGet[i].destroy().then((success) => {
+                                    if (success) {
+                                        console.log("删除成功");
+                                        alert("取消预约成功");
+
+                                    }
+                                })
+                            })
+                        }
+                    });
+                    
+                }
+                var floorName = ['二楼', '三楼', '四楼', '五楼'];
+                newReserveRoom.innerText = '图书馆' + floorName[reservationsGet[i].get("exactLocation")[0]] + " " + reservationsGet[i].get("exactLocation")[1] + '号座位';
+                newReserveTime.innerText = dateTimeToSegmentString(reservationsGet[i].get("exactTime"));
+                newReserveQuit.innerText = '取消预约';
+                newReserveCase.appendChild(newReserveRoom);
+                newReserveCase.appendChild(newReserveTime);
+                newReserveCase.appendChild(newReserveQuit);
+                
+                document.getElementById('reserveList').appendChild(newReserveCase);
+            }
+        })
+        var a = document.getElementsByClassName("content_right_in_content");
+        for (let i = 0; i < a.length; i++) {
+            a[i].style.display = "none";
+        }
+        var links = document.getElementsByClassName("content_nav_link");
+        for (let i = 0; i < links.length; i++) {
+            links[i].classList.remove("menu_selected");
+        }
+        links[5].classList.add("menu_selected");
+
+        document.getElementById("reserveList").style.display = "block";
+        document.getElementsByClassName("content_article")[0].style.display = "none";
+    }
 
     function showViewProfile() {
         //显示“查看个人信息”模块
@@ -566,7 +763,9 @@
         document.getElementById("viewProfile").style.display = "block";
         document.getElementsByClassName("content_article")[0].style.display = "none";
     }
+
     function updateBulletin(){//更新公告
+        document.getElementById("bulletin").innerHTML="";
         const bulletinQuery=new AV.Query("Bulletin");
         bulletinQuery.descending("createdAt");
         bulletinQuery.find().then((bulletinsGet)=>{
@@ -578,25 +777,64 @@
                     var bulletinAuthorName=bulletinGet.get("authorName");
                     var bulletinContent=bulletinGet.get("content");
                     var bulletinDiv=document.createElement("div");
-                    bulletinDiv.setAttribute("class","bulletin");
-                    bulletinDiv.setAttribute("id","bulletin"+i);
+                    // bulletinDiv.setAttribute("class","bulletin");
+                    // bulletinDiv.setAttribute("id","bulletin"+i);
+                    // var bulletinTitleDiv=document.createElement("h1");
+                    // bulletinTitleDiv.setAttribute("id","bulletinTitle"+i);
+                    // bulletinTitleDiv.innerText=bulletinTitle;
+                    // var bulletinAuthorNameDiv=document.createElement("div");
+                    // bulletinAuthorNameDiv.setAttribute("id","bulletinAuthorName"+i);
+                    // bulletinAuthorNameDiv.innerText=bulletinAuthorName;
+                    // var bulletinContentDiv=document.createElement("div");
+                    // bulletinContentDiv.setAttribute("id","bulletinContent"+i);
+                    // bulletinContentDiv.innerText=bulletinContent;
+                    // bulletinDiv.appendChild(bulletinTitleDiv);
+                    // bulletinDiv.appendChild(bulletinAuthorNameDiv);
+                    // bulletinDiv.appendChild(bulletinContentDiv);
+                    // document.getElementById("bulletin").appendChild(bulletinDiv);
+                    //隐藏作者内容，仅显示标题和日期，附带一个展开a标签，点击后显示作者和内容
                     var bulletinTitleDiv=document.createElement("h1");
                     bulletinTitleDiv.setAttribute("id","bulletinTitle"+i);
                     bulletinTitleDiv.innerText=bulletinTitle;
                     var bulletinAuthorNameDiv=document.createElement("div");
                     bulletinAuthorNameDiv.setAttribute("id","bulletinAuthorName"+i);
+                    bulletinAuthorNameDiv.setAttribute("class","bulletinAuthorName");
                     bulletinAuthorNameDiv.innerText=bulletinAuthorName;
+                    bulletinAuthorNameDiv.style.display="none";
                     var bulletinContentDiv=document.createElement("div");
                     bulletinContentDiv.setAttribute("id","bulletinContent"+i);
-                    bulletinContentDiv.innerText=bulletinContent;
+                    bulletinContentDiv.setAttribute("class","bulletinContent");
+                    bulletinContentDiv.style.display="none";
+                    bulletinContentDiv.innerHTML=bulletinContent;
+                    var bulletinShowMore=document.createElement("a");
+                    bulletinShowMore.setAttribute("id","bulletinShowMore"+i);
+                    bulletinShowMore.innerText="展开";  
+                    bulletinShowMore.setAttribute("href","javascript:showMore("+i+")");
                     bulletinDiv.appendChild(bulletinTitleDiv);
                     bulletinDiv.appendChild(bulletinAuthorNameDiv);
+                    bulletinDiv.appendChild(bulletinShowMore);
                     bulletinDiv.appendChild(bulletinContentDiv);
                     document.getElementById("bulletin").appendChild(bulletinDiv);
+
                 }
             }
         })
         
+    }
+    function showMore(i){//展开公告
+        var bulletinAuthorNameDiv=document.getElementById("bulletinAuthorName"+i);
+        var bulletinContentDiv=document.getElementById("bulletinContent"+i);
+        var bulletinShowMore=document.getElementById("bulletinShowMore"+i);
+        if(bulletinAuthorNameDiv.style.display=="none"){
+            bulletinAuthorNameDiv.style.display="block";
+            bulletinContentDiv.style.display="block";
+            bulletinShowMore.innerText="收起";
+        }
+        else{
+            bulletinAuthorNameDiv.style.display="none";
+            bulletinContentDiv.style.display="none";
+            bulletinShowMore.innerText="展开";
+        }
     }
     function showBulletin(){
         updateBulletin();
@@ -619,6 +857,7 @@
         //登出
         location.href = "./LoginPage.html"
     }
+
     function viewSelectedFloor() {
         //去往选定的楼层选座
         var selectedFloor = document.getElementById('Floor').value;
@@ -626,5 +865,16 @@
         window.open('./Floors/f2.html?userObjectId=' + userObjectId + '&floorId=' + selectedFloor);
     }
 </script>
-
+<style>
+    .bulletinAuthorName{
+        font-size: 20px;
+        color: #4a4a4a;
+        padding: 10px;
+    }
+    .bulletinContent{
+        font-size: 25px;
+        font-family: '黑体';
+        padding: 10px;
+    }
+</style>
 </html>

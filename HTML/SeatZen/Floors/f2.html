@@ -234,7 +234,7 @@
             console.log("selectedFloorId:", selectedFloorId);
             reserveSeat(userObjectId, date_selected, selectedFloorId, posArray);
             updateReservationLake();
-            window.confirm('预定成功！');
+            alert('预定成功！');
 
         }
 
@@ -282,7 +282,10 @@
             }
 
             // 关闭窗口
-            document.getElementById('dateChooseDialog').style.display = 'none';
+            document.getElementById('dateChooseDialog').style.opacity = 0;
+            setTimeout(()=>{
+                document.getElementById('dateChooseDialog').style.display = 'none';
+            }, 500);
 
         }
 
@@ -323,11 +326,38 @@
             exLoc[0] = Number(selectedFloorId);
             exLoc[1] = Number(posArray);
             console.log(exLoc);
-            const reservationQuery = new AV.Query("reservationLake");
-            reservationQuery.equalTo("userObjectId", userObjectId);
-            reservationQuery.find().then((reservationsGet) => {
-                if (reservationsGet.length == 0) {
-                    console.log("无记录，创建下一次预订");
+            // const reservationQuery = new AV.Query("reservationLake");
+            // reservationQuery.equalTo("userObjectId", userObjectId);
+            // reservationQuery.find().then((reservationsGet) => {
+            //     if (reservationsGet.length == 0) {
+            //         console.log("无记录，创建下一次预订");
+            //         const reservationLakeClass = AV.Object.extend("reservationLake");
+            //         const nextReservationLake = new reservationLakeClass();
+            //         nextReservationLake.set("exactLocation", exLoc);
+            //         nextReservationLake.set("exactTime", date_selected);
+            //         nextReservationLake.set("userObjectId", userObjectId);
+            //         nextReservationLake.save().then((newestReservation) => {
+            //             console.log("成功，location:", newestReservation.get("exactLocation"));
+            //             console.log("time:", newestReservation.get("exactTime"));
+            //             console.log("userObjectId:", newestReservation.get("userObjectId"));
+            //         }, 
+            //         (error) => {
+            //             console.log("生成下一次预约失败！");
+            //         })
+            //     }
+            //      else {//如果已有则更新
+
+            //         console.log('有数据,更新');
+            //         reservationGet = reservationsGet[0];
+            //         const reservationUpdate = AV.Object.createWithoutData("reservationLake", reservationGet.get('objectId'));
+            //         reservationUpdate.set("exactLocation", exLoc);
+            //         reservationUpdate.set("exactTime", date_selected);
+            //         reservationUpdate.save().then(() => {
+            //             console.log('数据更新成功！');
+            //         })               
+            //     }
+            // })
+                    console.log("创建下一次预订");
                     const reservationLakeClass = AV.Object.extend("reservationLake");
                     const nextReservationLake = new reservationLakeClass();
                     nextReservationLake.set("exactLocation", exLoc);
@@ -337,22 +367,10 @@
                         console.log("成功，location:", newestReservation.get("exactLocation"));
                         console.log("time:", newestReservation.get("exactTime"));
                         console.log("userObjectId:", newestReservation.get("userObjectId"));
-                    }, (error) => {
+                    }, 
+                    (error) => {
                         console.log("生成下一次预约失败！");
                     })
-                }
-                 else {//如果已有则更新
-
-                    console.log('有数据,更新');
-                    reservationGet = reservationsGet[0];
-                    const reservationUpdate = AV.Object.createWithoutData("reservationLake", reservationGet.get('objectId'));
-                    reservationUpdate.set("exactLocation", exLoc);
-                    reservationUpdate.set("exactTime", date_selected);
-                    reservationUpdate.save().then(() => {
-                        console.log('数据更新成功！');
-                    })               
-                }
-            })
         }
 
 
@@ -362,11 +380,21 @@
             updateFloorId();
             updateTitle();
 
-            initSeats();
+            // initSeats();
         }
     </script>
+    
 </head>
-
+<style>
+        body{
+        /* 渐变色背景 */
+        background: linear-gradient(200deg,#0c3483,#a2b6df);
+    }
+    header{
+        background-color: rgba(255, 255, 255, 0.5);
+        
+    }
+</style>
 <style>
     body {
         background-color: #f7f7f7;
@@ -482,7 +510,7 @@
 <body>
     <!-- 头部导航栏 -->
     <header>
-        <img src="../src/logo/SeatZen.png" alt="" class="logo" alt="logo" height="60px">
+        <img src="../src/logo/SeatZen3.png" alt="" class="logo" alt="logo" height="60px">
         <nav>
             <ul class="nav_links">
                 <li><a href="../MainPage_Student.html">首页</a></li>
@@ -522,23 +550,24 @@
             background-color: rgba(255, 255, 255, 0.6);
             display: block;
 
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             text-align: center;
+            transition: all 500ms ease-in-out;
         }
-        /* 进入动画 */
-        @keyframes dialog_in {
-            0% {opacity: 0;}
-            100% {opacity: 1;}
-        }
+
         .window_dialog {
             width: 300px;
             height: 300px;
 
             text-align: center;
+            position: absolute;
             margin: auto;
-            margin-top: 15%;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
 
             background-color: #fff;
             border-radius: 10px;
@@ -546,7 +575,6 @@
 
             opacity: 0;
             transition: all 500ms ease-in-out;
-            animation: dialog_in 1s ease-in-out 100ms 1 normal forwards;
         }
 
         /* 标题 */
@@ -606,7 +634,7 @@
         }
     </style>
     <div class="window_block" id="dateChooseDialog">
-        <div class="window_dialog">
+        <div class="window_dialog" id="dataChooseDialogWindow">
             <div class="dialogTitle">
                 请选择时间
             </div>
@@ -632,6 +660,7 @@
     //自动填充今天的日期
     const today = new Date().toISOString().substr(0, 10); // 获取当天日期并转换为 ISO 格式
     document.getElementById("dateSelection").value = today; // 设置日期选择框的值
+    document.getElementById("dataChooseDialogWindow").style.opacity = 1;
 </script>
 
 </html>

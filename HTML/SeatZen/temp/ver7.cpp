@@ -9,25 +9,14 @@
 #include<QMessageBox>
 #include<QTranslator>
 #include<QMainWindow>
-#include"ConfigManager.h"
-//#include"jpeglib.h"
-//#include"tiffio.h"
 using namespace Qt;
-void resizeWindow(QMainWindow* window,QSize size){
-    window->resize(size);
-}
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
     //创建MainWindow
     QMainWindow MainWindow;
-    //这里读取了config.xml
-    ConfigManager config;
-    QString title = config.readConfig("config.xml", "title");
-    if (!title.isEmpty()) {
-        MainWindow.setWindowTitle(title);
-    }
+    MainWindow.setWindowTitle("双边滤波图像处理");
 
     // 创建主窗口
     QWidget* mainWidget = new QWidget();
@@ -42,11 +31,11 @@ int main(int argc, char *argv[])
     layout->addWidget(imgViewer);
 
     // 创建按钮用于选择图片
-    QPushButton* selectButton = new QPushButton("选择图片");
+    QPushButton* selectButton = new QPushButton("Select Image");
     layout->addWidget(selectButton);
 
     // 创建按钮用于处理图片
-    QPushButton* processButton = new QPushButton("双边滤波处理");
+    QPushButton* processButton = new QPushButton("Process");
     layout->addWidget(processButton);
 
 
@@ -57,23 +46,18 @@ int main(int argc, char *argv[])
 
     // 将布局设置为主窗口的布局
     mainWidget->setLayout(layout);
+
     // 处理选择图片的信号
-    QObject::connect(selectButton, &QPushButton::clicked, [=] {
+    QObject::connect(selectButton, &QPushButton::clicked, [=]() {
         QString fileName = QFileDialog::getOpenFileName(mainWidget, "Select Image", ".", "Image Files (*.png *.jpg *.bmp)");
         if (!fileName.isEmpty()) {
             QImage image(fileName);
             imgViewer->setImage(QPixmap::fromImage(image));
             QSize imageSize = image.size();
                 // 添加一个偏移量，例如 100 像素
-                QSize windowSize(imageSize.width() + 100, imageSize.height() + 200);
+                QSize windowSize(imageSize.width() + 100, imageSize.height() + 100);
             mainWidget->setFixedSize(windowSize);
         }
-    });
-
-    //自动调整窗口大小
-    QObject::connect(selectButton, &QPushButton::clicked, [&MainWindow] {
-        MainWindow.hide();
-        MainWindow.show();
     });
 
     // 处理处理按钮的信号
@@ -106,7 +90,7 @@ int main(int argc, char *argv[])
         processedImg->setImage(QPixmap::fromImage(processedImage));
         QWidget* processedWidget = new QWidget();
         processedWidget->setWindowTitle("处理结果");
-        processedWidget->setFixedSize(processedImg->qimage().size().width()+200,processedImg->qimage().size().height()+300);
+
         // 创建垂直布局
         QVBoxLayout* processedLayout = new QVBoxLayout();
 
@@ -120,17 +104,10 @@ int main(int argc, char *argv[])
         processedWidget->setLayout(processedLayout);
 
         processedWindow->setCentralWidget(processedWidget);
-        processedWindow->setWindowTitle("使用OpenCV处理结果");
+        processedWindow->setWindowTitle("处理结果");
         //创建按钮用于保存图片
-        QPushButton* saveButton = new QPushButton("保存为png/jpg/bmp图片");
-        QPushButton* saveJpegButton = new QPushButton("使用libjpeg编码并保存为jpeg图片");
-        QPushButton* saveTiffButton = new QPushButton("使用libtiff编码并保存为tiff图片");
-        QPushButton* processAgainButton = new QPushButton("再次处理");
-        processedLayout->addWidget(processAgainButton);
+        QPushButton* saveButton = new QPushButton("保存图片");
         processedLayout->addWidget(saveButton);
-        processedLayout->addWidget(saveJpegButton);
-        processedLayout->addWidget(saveTiffButton);
-
         QLabel* text3=new QLabel("按住Ctrl使用鼠标滚轮来缩放图片");
         processedLayout->addWidget(text3);
 
@@ -140,47 +117,9 @@ int main(int argc, char *argv[])
             }
             QImage imgToSave = processedImg->pixmap().toImage();
 
-            imgToSave.save(QFileDialog::getSaveFileName(processedWidget,"保存至","./output.png", "Image Files (*.png *.jpg *.bmp);"));
+            imgToSave.save(QFileDialog::getSaveFileName(processedWidget,"保存至","./", "Image Files (*.png *.jpg *.bmp);"));
 
         });
-
-        //再次处理图片
-        QObject::connect(processAgainButton, &QPushButton::clicked,[=](){
-            QImage newImage = processedImg->qimage();
-            cv::Mat newMat(newImage.height(), newImage.width(), CV_8UC4, const_cast<uchar*>(newImage.bits()), newImage.bytesPerLine());
-            cv::cvtColor(newMat, newMat, cv::COLOR_BGRA2BGR);
-
-            // 使用双边滤波处理图片
-            cv::Mat newResult;
-            cv::bilateralFilter(newMat, newResult, 15, 80, 80);
-            QImage tempImage(newResult.data, newResult.cols, newResult.rows, newResult.step, QImage::Format_RGB888);
-            processedImg->setImage(QPixmap::fromImage(tempImage.rgbSwapped()));
-        });
-
-        QObject::connect(saveJpegButton, &QPushButton::clicked, [=]() {
-            if (!processedImg->pixmap()) {
-                return;
-            }
-            //TODO
-            QImage imgToSave = processedImg->pixmap().toImage();
-
-            imgToSave.save(QFileDialog::getSaveFileName(processedWidget,"保存至","./output.jpeg", "Jpeg File (*.jpeg *.jpg);"));
-
-
-        });
-
-        QObject::connect(saveTiffButton, &QPushButton::clicked, [=]() {
-            if (!processedImg->pixmap()) {
-                return;
-            }
-            //TODO
-            QImage imgToSave = processedImg->pixmap().toImage();
-
-            imgToSave.save(QFileDialog::getSaveFileName(processedWidget,"保存至","./output.tiff", "Tiff File (*.tiff);"));
-
-
-        });
-
 
         processedWindow->show();
         //imgViewer->setImage(QPixmap::fromImage(processedImage));

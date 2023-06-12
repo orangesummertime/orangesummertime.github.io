@@ -367,9 +367,9 @@
         <div class="content_center_content">
             <div class="content_center_in_content" id="homePageModule">
                 <!-- 主页内容 -->
-                主页内容
+                
                 <br>
-                <div>管理员信息</div>
+                <div><h1>管理员信息</h1></div>
                 <div id="attributePair">
                     <span>您的ID：</span>
                     <span id="curId"></span>
@@ -785,8 +785,8 @@
                 title = document.getElementById("bulletinTitle").value;
                 content = document.getElementById("bulletinContent").value;
                 //把尖括号变成转义字符
-                content = content.replace(/</g, "&lt;");
-                content = content.replace(/>/g, "&gt;");
+                // content = content.replace(/</g, "&lt;");
+                // content = content.replace(/>/g, "&gt;");
                 //把回车替换为<br>
                 content = content.replace(/\n/g, "<br>");
                 const bulletinQuery = new AV.Query("Bulletin");

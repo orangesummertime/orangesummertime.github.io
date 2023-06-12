@@ -491,6 +491,10 @@
         const urlParas = new URLSearchParams(queryString);
         const objid = urlParas.get('user');
         userObjectId = objid;
+        if(objid==null){
+            alert("请先登录！");
+            window.location.href="./LoginPage.html";
+        }
         console.log(objid);
     }
 

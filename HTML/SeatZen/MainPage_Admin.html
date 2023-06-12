@@ -22,7 +22,10 @@
         if(userObjectId!=null)  
         console.log(objid);
         else
-        userObjectId='645a63c9c48240148927e22a';
+        {
+            alert("请先登录！");
+            location.assign("./LoginPage.html");
+        }
         console.log(userObjectId);
         updateCurrentInfo();
     }

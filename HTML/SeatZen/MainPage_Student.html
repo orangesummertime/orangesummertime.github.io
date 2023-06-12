@@ -298,6 +298,41 @@
         color: #fff;
     }
 </style>
+<!-- 公告的样式 -->
+<style>
+    #bulletinContent{
+        font-size: 25px;
+        font-family: '宋体';
+    }
+    .bulletinShowCase {
+        margin: 10px;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding: 10px;
+        width: calc(100% - 40px);
+        border-top: 1px solid #aaaaaa50;
+        border-bottom: 1px solid #aaaaaa50;
+    }
+    .bulletinShowCase .bulletinShowBar .bulletinTitle{
+        font-size: 27px;
+        font-weight: 600;
+        display: inline-block;
+        margin: 0;
+        width: 50%;
+        text-align: left;
+    }
+    .bulletinShowCase .bulletinShowBar .bulletinTime{
+        font-size: 18px;
+        color: #aaa;
+        font-weight: 500;
+        display: inline-block;
+        width: 35%;
+        text-align: center;
+    }
+    .bulletinShowCase .bulletinShowBar a {
+        font-size: 20px;
+    }
+</style>
 
 <body>
     <!-- 头部导航栏 -->
@@ -340,6 +375,7 @@
         </div>
         <div class="content_right_content">
             <div class="content_article">
+
                 <br>
                 <b>面向泱泱珠水</b>
                 <br>
@@ -428,12 +464,6 @@
                 <br>
             </div>
 
-            <style>
-                #bulletinContent{
-                    font-size: 25px;
-                    font-family: '宋体';
-                }
-            </style>
             <div id="bulletin" class="content_right_in_content">
                 <!-- <div class="right_content_title" >
                     公告
@@ -768,8 +798,19 @@
         document.getElementsByClassName("content_article")[0].style.display = "none";
     }
 
+    // date格式转字符串
+    function dateTimeToString(date) {
+        var y = date.getFullYear();
+        var M = date.getMonth() + 1;
+        var d = date.getDate();
+        var H = date.getHours();
+        var m = date.getMinutes();
+        var s = date.getSeconds();
+        return y + '-' + (M < 10 ? ('0' + M) : M) + '-' + (d < 10 ? ('0' + d) : d) + " " + (H < 10 ? ('0' + H) : H) + ":" + (m < 10 ? ('0' + m) : m);
+    }
+
     function updateBulletin(){//更新公告
-        document.getElementById("bulletin").innerHTML="";
+        document.getElementById("bulletin").innerHTML="<br><div class='right_content_title'>公告</div><br><br>";
         const bulletinQuery=new AV.Query("Bulletin");
         bulletinQuery.descending("createdAt");
         bulletinQuery.find().then((bulletinsGet)=>{
@@ -780,43 +821,49 @@
                     var bulletinTitle=bulletinGet.get("title");
                     var bulletinAuthorName=bulletinGet.get("authorName");
                     var bulletinContent=bulletinGet.get("content");
+
                     var bulletinDiv=document.createElement("div");
-                    // bulletinDiv.setAttribute("class","bulletin");
-                    // bulletinDiv.setAttribute("id","bulletin"+i);
-                    // var bulletinTitleDiv=document.createElement("h1");
-                    // bulletinTitleDiv.setAttribute("id","bulletinTitle"+i);
-                    // bulletinTitleDiv.innerText=bulletinTitle;
-                    // var bulletinAuthorNameDiv=document.createElement("div");
-                    // bulletinAuthorNameDiv.setAttribute("id","bulletinAuthorName"+i);
-                    // bulletinAuthorNameDiv.innerText=bulletinAuthorName;
-                    // var bulletinContentDiv=document.createElement("div");
-                    // bulletinContentDiv.setAttribute("id","bulletinContent"+i);
-                    // bulletinContentDiv.innerText=bulletinContent;
-                    // bulletinDiv.appendChild(bulletinTitleDiv);
-                    // bulletinDiv.appendChild(bulletinAuthorNameDiv);
-                    // bulletinDiv.appendChild(bulletinContentDiv);
-                    // document.getElementById("bulletin").appendChild(bulletinDiv);
+                    bulletinDiv.classList.add("bulletinShowCase");
+                    
                     //隐藏作者内容，仅显示标题和日期，附带一个展开a标签，点击后显示作者和内容
                     var bulletinTitleDiv=document.createElement("h1");
                     bulletinTitleDiv.setAttribute("id","bulletinTitle"+i);
+                    bulletinTitleDiv.classList.add("bulletinTitle");
                     bulletinTitleDiv.innerText=bulletinTitle;
+
+                    var bulletinTimeDiv = document.createElement("span");
+                    bulletinTimeDiv.setAttribute("id", "bulletinTime" + i);
+                    bulletinTimeDiv.classList.add("bulletinTime");
+                    bulletinTimeDiv.innerText = dateTimeToString(bulletinGet.createdAt);
+
                     var bulletinAuthorNameDiv=document.createElement("div");
                     bulletinAuthorNameDiv.setAttribute("id","bulletinAuthorName"+i);
                     bulletinAuthorNameDiv.setAttribute("class","bulletinAuthorName");
                     bulletinAuthorNameDiv.innerText=bulletinAuthorName;
                     bulletinAuthorNameDiv.style.display="none";
+
                     var bulletinContentDiv=document.createElement("div");
                     bulletinContentDiv.setAttribute("id","bulletinContent"+i);
                     bulletinContentDiv.setAttribute("class","bulletinContent");
                     bulletinContentDiv.style.display="none";
                     bulletinContentDiv.innerHTML=bulletinContent;
+
+                    // 展开按钮
                     var bulletinShowMore=document.createElement("a");
                     bulletinShowMore.setAttribute("id","bulletinShowMore"+i);
                     bulletinShowMore.innerText="展开";  
                     bulletinShowMore.setAttribute("href","javascript:showMore("+i+")");
-                    bulletinDiv.appendChild(bulletinTitleDiv);
+
+                    var tmpBox = document.createElement('div');
+                    tmpBox.classList.add("bulletinShowBar");
+                    tmpBox.appendChild(bulletinTitleDiv);
+                    tmpBox.appendChild(bulletinTimeDiv);
+                    tmpBox.appendChild(bulletinShowMore);
+
+                    // bulletinDiv.appendChild(bulletinTitleDiv);
+                    // bulletinDiv.appendChild(bulletinShowMore);
+                    bulletinDiv.appendChild(tmpBox);
                     bulletinDiv.appendChild(bulletinAuthorNameDiv);
-                    bulletinDiv.appendChild(bulletinShowMore);
                     bulletinDiv.appendChild(bulletinContentDiv);
                     document.getElementById("bulletin").appendChild(bulletinDiv);
 

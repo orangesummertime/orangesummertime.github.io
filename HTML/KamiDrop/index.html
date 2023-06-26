@@ -25,7 +25,8 @@
     <br>
     <button onclick="update()">更新/清除</button>
     <button onclick="refresh()">刷新</button>
-    <button onclick="copyToClipboard()">分享</button>
+    <button onclick="copyToClipboard()">复制</button>
+    <button onclick="uploadImage()">上传图片</button>
     <br>
     <div style="font-size: larger; font-weight: 700;">内容</div>
     <div id="content"></div>
@@ -70,17 +71,15 @@
         }, (error) => { alert('未知错误！'); }
         )
     }
-    function copyToClipboard() {
-        var copyText = window.location.href;
-        navigator.clipboard.writeText(copyText).then(function () {
-            console.log("链接已复制到剪贴板");
-            alert("已复制当前页面链接！");
-        }, function () {
-            console.log("复制链接失败");
-            alert("复制链接失败");
-        });
+    //将内容复制到剪贴板，把<br>换成\n
+    function copyToClipboard(){
+        var c = new String;
+        c = document.getElementById('content').innerHTML;
+        c = c.replace(/<br>/g, "\n");
+        navigator.clipboard.writeText(c);
+        alert('已复制到剪贴板！')
     }
-
-</script>
+    
+    </script>
 
 </html>
